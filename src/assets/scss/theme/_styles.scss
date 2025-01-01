@@ -1,0 +1,132 @@
+@use "sass:map";
+@use "settings" as *;
+@use "helpers/functions";
+@use "variables" as *;
+
+:root {
+  // Typography base
+  --pico-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --pico-font-family-sans-serif: #{$body-font-family}, system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, var(--pico-font-family-emoji);
+  --pico-font-family: var(--pico-font-family-sans-serif);
+
+  // Font weights and sizes
+  --pico-line-height: 1.5;
+  --pico-font-weight: #{$body-font-weight};
+  --pico-font-size: 100%;
+  --pico-text-underline-offset: calc(var(--pico-spacing) * 0.1);
+
+  // Responsive typography
+  @if $enable-responsive-typography {
+    @each $key, $values in $breakpoints {
+      @if $values {
+        @media (min-width: map.get($values, "breakpoint")) {
+          --pico-font-size: map.get($values, "root-font-size");
+        }
+      }
+    }
+  }
+
+  // Borders and spacing
+  --pico-border-radius: calc(var(--pico-spacing) * 0.5);
+  --pico-border-width: 1px;
+  --pico-nav-element-spacing-vertical: 0;
+  --pico-spacing: 1rem;
+
+  // Form spacing
+  @if map.get($modules, "content/button") or map.get($modules, "forms/basic") {
+    --pico-form-element-spacing-vertical: calc(var(--pico-spacing) * 0.75);
+    --pico-form-element-spacing-horizontal: var(--pico-spacing);
+  }
+
+  // Typography spacing
+  @if map.get($modules, "content/typography") {
+    --pico-typography-spacing-vertical: var(--pico-spacing);
+  }
+
+  // Block spacing
+  @if map.get($modules, "layout/landmarks") or
+    map.get($modules, "layout/section") or
+    map.get($modules, "components/card") or
+    map.get($modules, "components/modal")
+  {
+    --pico-block-spacing-vertical: calc(var(--pico-spacing) * 1.5);
+    --pico-block-spacing-horizontal: calc(var(--pico-spacing) * 1.5);
+  }
+}
+
+// Typography styles
+@if map.get($modules, "content/typography") {
+  small {
+    --pico-font-size: 0.875em;
+  }
+
+  h1 {
+    --pico-font-family: #{$title-font-family};
+    --pico-font-weight: #{$title-font-weight};
+    --pico-font-size: calc(var(--pico-spacing) * 2.5);
+    --pico-line-height: 1.125;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 3);
+  }
+
+  h2, h3, h4, h5, h6 {
+    --pico-font-family: #{$heading-font-family};
+    --pico-font-weight: #{$heading-font-weight};
+  }
+
+  h2 {
+    --pico-font-size: calc(var(--pico-spacing) * 1.75);
+    --pico-line-height: 1.15;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 2.625);
+  }
+
+  h3 {
+    --pico-font-size: calc(var(--pico-spacing) * 1.5);
+    --pico-line-height: 1.175;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 2.25);
+  }
+
+  h4 {
+    --pico-font-size: calc(var(--pico-spacing) * 1.25);
+    --pico-line-height: 1.2;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 1.874);
+  }
+
+  h5 {
+    --pico-font-size: calc(var(--pico-spacing) * 1.125);
+    --pico-line-height: 1.225;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 1.6875);
+  }
+
+  h6 {
+    --pico-font-size: var(--pico-spacing);
+    --pico-line-height: 1.25;
+    --pico-typography-spacing-top: calc(var(--pico-spacing) * 1.5);
+  }
+}
+
+a {
+  color: var(--pico-primary);
+}
+
+// Buttons
+button,
+[type="submit"],
+[type="reset"],
+[type="button"],
+[type="file"]::file-selector-button,
+[role="button"] {
+  --pico-font-weight: 700;
+}
+
+// Table
+@if map.get($modules, "content/table") {
+  thead,
+  tfoot {
+    th,
+    td {
+      --pico-font-weight: 600;
+      --pico-border-width: 0.1875rem;
+    }
+  }
+}
