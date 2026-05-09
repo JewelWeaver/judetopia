@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bug of the Week — Judetopia</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comfortaa:wght@700&family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --lavender:#BDA7D1; --lav-deep:#9B82B8; --lav-light:#EDE6F5; --lav-pale:#F7F3FC;
+      --sage:#74BF92; --sage-deep:#4EA070; --sage-light:#C5E8D2; --sage-pale:#F0FAF4;
+      --navy:#00127A; --periwinkle:#4E5AE4; --ice:#D9E3E8; --white:#FEFEFE;
+      --text-dark:#1A1035; --text-mid:#5A4E6E; --text-soft:#8B7FA0;
+      --font-logo:'Pacifico',cursive; --font-hero:'Comfortaa',cursive;
+      --font-head:'Baloo 2',sans-serif; --font-body:'Nunito',sans-serif;
+      --radius:20px; --radius-sm:12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);overflow-x:hidden;cursor:none;}
+    a{text-decoration:none;color:inherit;}
+    /* cursor */
+    .cursor{width:18px;height:18px;background:var(--lavender);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .2s;mix-blend-mode:multiply;}
+    .cursor.big{width:36px;height:36px;background:var(--sage);}
+    /* nav */
+    nav{position:sticky;top:0;z-index:100;background:rgba(247,243,252,0.96);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;padding:0.85rem 2.5rem;border-bottom:2.5px solid var(--lavender);}
+    .nav-logo{font-family:var(--font-logo);font-size:1.5rem;color:var(--lav-deep);}
+    .nav-links{display:flex;gap:0.2rem;list-style:none;}
+    .nav-links a{font-family:var(--font-body);font-weight:700;font-size:0.82rem;color:var(--text-mid);padding:0.4rem 0.8rem;border-radius:999px;transition:background .2s,color .2s;}
+    .nav-links a:hover,.nav-links a.active{background:var(--lavender);color:var(--white);}
+    .nav-links a.art{background:var(--sage-light);color:var(--sage-deep);}
+    .nav-links a.art:hover,.nav-links a.art.active{background:var(--sage);color:var(--white);}
+    /* footer */
+    footer{background:linear-gradient(145deg,#1a0a3d,#00127A);padding:3rem 2rem;text-align:center;border-top:3px solid var(--lavender);}
+    .foot-logo{font-family:var(--font-logo);font-size:2.2rem;color:var(--lavender);margin-bottom:.4rem;}
+    .foot-sub{font-size:.85rem;color:rgba(237,230,245,.4);margin-bottom:1.5rem;font-weight:500;}
+    .foot-nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+    .foot-nav a{font-size:.78rem;font-weight:700;color:rgba(237,230,245,.5);padding:.3rem .8rem;border-radius:999px;transition:background .2s,color .2s;}
+    .foot-nav a:hover{background:rgba(189,167,209,.2);color:var(--lavender);}
+    .foot-copy{font-size:.72rem;color:rgba(255,255,255,.18);font-weight:500;}
+    /* shared layout */
+    .page-section{padding:5rem 2rem;}
+    .container{max-width:1100px;margin:0 auto;}
+    .sec-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-deep);background:var(--sage-light);padding:.25rem .85rem;border-radius:999px;margin-bottom:.9rem;}
+    .sec-label.lav{background:var(--lav-light);color:var(--lav-deep);}
+    .sec-label.ghost{background:rgba(116,191,146,.2);color:var(--sage-light);}
+    .sec-title{font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin-bottom:.75rem;}
+    .sec-intro{font-size:1rem;line-height:1.75;color:var(--text-mid);max-width:560px;margin-bottom:3rem;font-weight:500;}
+    .page-header{padding:4rem 2rem 3rem;background:var(--lav-pale);border-bottom:2px solid var(--lav-light);}
+    /* animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes blobdrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,15px) scale(.97)}}
+    @keyframes pulse{0%,100%{opacity:.6}50%{opacity:.2}}
+    @media(max-width:700px){nav{padding:.75rem 1rem;}.nav-links{gap:0;flex-wrap:wrap;}.nav-links a{font-size:.72rem;padding:.3rem .6rem;}.page-section{padding:3.5rem 1.25rem;}}
+  </style>
+  <style>
+    body{background:linear-gradient(145deg,#1a0a3d 0%,#00127A 60%,#1a2a6c 100%);min-height:100vh;}
+    body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 55% 60% at 90% 30%,rgba(116,191,146,.18) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(189,167,209,.2) 0%,transparent 65%);pointer-events:none;z-index:0;}
+    .page-header{padding:4rem 2rem 3rem;background:transparent;border-bottom:1px solid rgba(116,191,146,.2);position:relative;z-index:1;}
+    .page-section{position:relative;z-index:1;}
+    .bug-card{background:rgba(255,255,255,.05);border:2px solid rgba(116,191,146,.3);border-radius:var(--radius);padding:2.5rem;max-width:720px;backdrop-filter:blur(8px);margin-bottom:2.5rem;}
+    .bug-name{font-family:var(--font-head);font-weight:800;font-size:2.2rem;color:var(--sage-light);margin-bottom:.3rem;}
+    .bug-sci{font-style:italic;font-size:.88rem;color:rgba(197,232,210,.5);margin-bottom:1.25rem;}
+    .bug-desc{font-size:1rem;line-height:1.8;color:rgba(237,230,245,.85);font-weight:500;}
+    .bug-fact{margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(116,191,146,.12);border-left:4px solid var(--sage);border-radius:var(--radius-sm);font-size:.92rem;color:var(--sage-light);font-weight:500;}
+    .bug-fact strong{display:block;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;opacity:.6;margin-bottom:.35rem;}
+    .archive-label{font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(189,167,209,.6);margin:2.5rem 0 1rem;}
+    .bug-archive{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .archive-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;transition:background .2s,border-color .2s;}
+    .archive-card:hover{background:rgba(116,191,146,.1);border-color:rgba(116,191,146,.3);}
+    .a-name{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--white);margin-bottom:.2rem;}
+    .a-sci{font-size:.78rem;font-style:italic;color:rgba(197,232,210,.4);margin-bottom:.5rem;}
+    .a-date{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(116,191,146,.6);}
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Judetopia</a>
+  <ul class="nav-links">
+    <li><a href="bug.html" class="active">Bug of the Week</a></li>
+    <li><a href="blog.html" >Blog</a></li>
+    <li><a href="art.html" class="art" >Art</a></li>
+    <li><a href="tuba.html" >Tuba's Corner</a></li>
+  </ul>
+</nav>
+<div class="page-header">
+  <div class="container">
+    <p class="sec-label ghost">Featured This Week</p>
+    <h1 class="sec-title" style="color:var(--white);">Bug of the Week</h1>
+    <p class="sec-intro" style="color:rgba(237,230,245,.7);">Every week, a different tiny creature gets their moment in the sun.</p>
+  </div>
+</div>
+<section class="page-section">
+  <div class="container">
+    <div class="bug-card">
+      <div class="bug-name">Dogbane Beetle</div>
+      <div class="bug-sci">Chrysochus auratus</div>
+      <p class="bug-desc">Found across North America, the Dogbane Beetle is one of the most iridescently beautiful insects on the continent. Its shell shifts between copper, green, and blue depending on how light hits it — structural color, not pigment. It feeds exclusively on dogbane and milkweed plants, which makes it a quiet specialist in a world that rewards generalists.</p>
+      <div class="bug-fact"><strong>Fun Fact</strong>Their metallic shimmer isn't paint — it's microscopic architecture. The shell's layered structure bends light itself into color.</div>
+    </div>
+    <p class="archive-label">Previous Bugs</p>
+    <div class="bug-archive">
+      <div class="archive-card"><p class="a-name">Rosy Maple Moth</p><p class="a-sci">Dryocampa rubicunda</p><p class="a-date">Week of April 28</p></div>
+      <div class="archive-card"><p class="a-name">Velvet Ant</p><p class="a-sci">Dasymutilla occidentalis</p><p class="a-date">Week of April 21</p></div>
+      <div class="archive-card"><p class="a-name">Glowworm Beetle</p><p class="a-sci">Phengodidae sp.</p><p class="a-date">Week of April 14</p></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="foot-logo">Judetopia</div>
+  <p class="foot-sub">A corner of the internet for community, curiosity &amp; cats.</p>
+  <nav class="foot-nav">
+    <a href="blog.html">Blog</a>
+    <a href="art.html">Art</a>
+    <a href="bug.html">Bug of the Week</a>
+    <a href="tuba.html">Tuba's Corner</a>
+  </nav>
+  <p class="foot-copy">Made with care in Seattle. Tuba-approved.</p>
+</footer>
+
+<script>
+  const cur = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+</script>
+</body>
+</html>
