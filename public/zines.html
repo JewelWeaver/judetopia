@@ -11,7 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    .page-head { padding: 2rem 0 2.2rem; }
+    .page-head { padding: 1.6rem 0 .6rem; text-align: center; }
+    #alien-mode { padding-top: 1.4rem; } /* first zine sits close under the jump links */
+    .page-head h1 { font-size: var(--title-size); margin-bottom: 1.1rem; }
     .shelf { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 2rem; list-style: none; }
     .shelf a {
       color: var(--on-desk);
@@ -133,7 +135,7 @@
 
 <main class="wrap">
   <header class="page-head">
-    <h1 class="sr-only">Joodlebug Ink</h1>
+    <h1 class="yolk-title">Zines</h1>
     <ul class="shelf">
       <li><a href="#alien-mode">Alien Mode</a></li>
       <li><a href="#emergence">Emergence</a></li>
@@ -141,7 +143,7 @@
   </header>
 
   <!-- ===== Alien Mode ===== -->
-  <section class="zine ruled" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
+  <section class="zine" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
     <div class="blurb">
       <h2 id="am-title" class="loud riso-light">Alien Mode</h2>
       <span class="thin vol">vol. 1</span>
