@@ -162,7 +162,7 @@ main { flex: 1; overflow-x: clip; }
   text-decoration: none;
   color: var(--ink);
   background: var(--chip, var(--butter));
-  border: var(--line-thin) solid var(--ink);
+  border: var(--line) solid var(--ink);
   border-radius: 999px;
   transition: transform .2s, background .2s;
   white-space: nowrap;
@@ -319,7 +319,7 @@ main { flex: 1; overflow-x: clip; }
   font-size: .85rem;
   color: var(--ink);
   background: var(--butter);
-  border: var(--line-thin) solid var(--ink);
+  border: var(--line) solid var(--ink);
   box-shadow: 3px 3px 0 var(--magenta);
 }
 .be-ico { display: block; width: 26px; height: 26px; border-radius: 50%; }
@@ -353,7 +353,7 @@ main { flex: 1; overflow-x: clip; }
 .be-panel[hidden] { display: none; }
 .be-top { display: flex; justify-content: space-between; align-items: center; }
 .be-top h2 { font-family: var(--f-loud); font-weight: 400; text-transform: uppercase; font-size: 1.4rem; }
-.be-x { width: 34px; height: 34px; font-size: 1.6rem; line-height: 1; }
+.be-x { width: 36px; height: 36px; font-size: 1.5rem; line-height: 1; border: var(--line) solid var(--ink); border-radius: 50%; background: var(--butter); }
 .be-sum { font-size: .85rem; line-height: 1.45; margin: .3rem 0 .7rem; }
 .be-where { list-style: none; font-size: .82rem; margin-bottom: .9rem; }
 .be-where li { display: flex; justify-content: space-between; padding: .3rem 0; border-bottom: 1px dashed rgba(27, 20, 32, .25); }
@@ -365,7 +365,7 @@ main { flex: 1; overflow-x: clip; }
 .be-mini { display: block; width: 100%; height: 100%; border-radius: 50%; rotate: var(--r, 0deg); }
 .be-burst { position: fixed; z-index: 90; width: 30px; height: 30px; pointer-events: none; }
 .be-foot { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .78rem; }
-.be-foot button { text-decoration: underline; text-underline-offset: 3px; }
+.be-foot button { padding: .3rem .8rem; font-weight: 700; border: var(--line) solid var(--ink); border-radius: 999px; background: var(--butter); }
 .be-reset.sure { color: var(--red); font-weight: 700; }
 /* the prize: a button-eye cursor */
 html.be-complete {

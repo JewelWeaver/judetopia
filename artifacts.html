@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="assets/site.css" />
   <style>
     /* ---------- third eye charms ---------- */
-    .charms { padding: 2.4rem 0 1rem; }
+    .charms { padding: .6rem 0 1rem; }
     .charms-top {
       display: grid;
       justify-items: center;
@@ -29,12 +29,15 @@
       box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
     }
     .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin: 0 auto .8rem; }
-    .charms-me { margin: 1.4rem auto .6rem; width: min(100%, 240px); }
+    /* at the market: three photos in one row, columns sized by each photo's shape so they share a height */
+    .charms-me { margin: 1.4rem auto .6rem; width: min(100%, 940px); }
+    .market-photos { display: grid; grid-template-columns: .752fr 1.485fr .753fr; gap: clamp(.5rem, 2vw, 1rem); }
     .charms-me img {
       display: block;
       width: 100%;
-      height: auto;
-      border: 6px solid #1a9984; /* the logo's teal, a touch brighter for the dark page */
+      height: 100%; /* all three share the row's height exactly */
+      object-fit: cover;
+      border: clamp(3px, .8vw, 6px) solid #1a9984; /* the logo's teal, a touch brighter for the dark page */
       border-radius: 16px;
       box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
     }
@@ -52,7 +55,7 @@
       text-decoration: none;
       color: var(--ink);
       background: var(--yolk);
-      border: var(--line-thin) solid var(--ink);
+      border: var(--line) solid var(--ink);
       border-radius: 999px;
       box-shadow: 4px 4px 0 var(--magenta);
       transition: transform .2s, box-shadow .2s;
@@ -105,19 +108,23 @@
       <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="600" height="600" /></h2>
       <p>Charms handmade in Baltimore. Each is blessed with magik. Pins, magnets, bolo ties, and framed fine art pieces.</p>
       <figure class="charms-me">
-      <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="851" loading="lazy" />
+      <div class="market-photos">
+        <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="851" loading="lazy" />
+        <img src="assets/img/charms/market-night.webp" alt="At an indoor Third Eye Charms table at night, wearing light-up antennae, behind framed boards of button eyes, a rack of bolo ties and bracelets, and a pricing sign." width="900" height="606" loading="lazy" />
+        <img src="assets/img/charms/market-stars.webp" alt="At an outdoor Third Eye Charms table at dusk, wearing a button-eye bolo tie, behind framed constellations made of button eyes: Leo, Boötes and Cassiopeia." width="640" height="850" loading="lazy" />
+      </div>
       <figcaption class="thin">at the market</figcaption>
     </figure>
     <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
     </div>
 
     <ul class="products">
-      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
-      <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/button-board.webp" alt="A black display board covered in colorful button eyes." width="560" height="560" loading="lazy" /><h3>Button eye board</h3></li>
-      <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/box-red.webp" alt="A black shadow box filled with red and white button eyes." width="560" height="560" loading="lazy" /><h3>Red shadow box</h3></li>
-      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-blue.webp" alt="A black shadow box of blue and violet button eyes around a big pale one." width="560" height="560" loading="lazy" /><h3>Blue shadow box</h3></li>
-      <li class="product paper boxed" style="--stock: var(--mint)"><img src="assets/img/charms/box-rainbow.webp" alt="A shadow box packed with dozens of button eyes sorted in rainbow order." width="560" height="560" loading="lazy" /><h3>Rainbow shadow box</h3></li>
-      <li class="product paper boxed" style="--stock: var(--butter)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colors, including flowers and squares." width="560" height="560" loading="lazy" /><h3>Mixed shadow box</h3></li>
+      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/pins.webp" alt="Button-eye pins on a denim jacket: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Pins</h3></li>
+      <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
+      <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/magnets.webp" alt="Button-eye magnets on a teal surface: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Magnets</h3></li>
+      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Council of Watchers</h3></li>
+      <li class="product paper boxed" style="--stock: var(--mint)"><img src="assets/img/charms/box-rainbow.webp" alt="A shadow box packed with dozens of button eyes sorted in rainbow order." width="560" height="560" loading="lazy" /><h3>Good Afternoon</h3></li>
+      <li class="product paper boxed" style="--stock: var(--butter)"><img src="assets/img/charms/box-red.webp" alt="A black shadow box filled with red and white button eyes." width="560" height="560" loading="lazy" /><h3>Applebees</h3></li>
     </ul>
   </section>
 </main>
