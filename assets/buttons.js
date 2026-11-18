@@ -1,7 +1,7 @@
 // Button eyes: a side quest. They're sewn onto every page; click one to collect it.
 (() => {
-  // One photo per button (assets/img/buttons/eye-01…42.webp); return null to draw a stand-in instead.
-  const COUNT = 42;
+  // One photo per button (assets/img/buttons/eye-01…23.webp are in play); return null to draw a stand-in instead.
+  const COUNT = 23;
   const art = i => `assets/img/buttons/eye-${String(i + 1).padStart(2, '0')}.webp`;
 
   const PAGES = {
@@ -46,7 +46,9 @@
   const MUTE = 'judetopia.buttonEyes.muted';
   const read = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
   const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
-  const got = new Set(read(KEY, []));
+  // forget saved finds for buttons that are no longer in play (e.g. after COUNT shrinks)
+  const got = new Set(read(KEY, []).filter(id => buttons.some(b => b.id === id)));
+  write(KEY, [...got]);
   let muted = read(MUTE, false);
   const here = document.body.dataset.page;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
