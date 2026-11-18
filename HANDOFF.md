@@ -29,7 +29,7 @@ Plain static HTML in the repo root, one shared stylesheet. No build step.
 ## Open items
 
 ### Button-eye game (done)
-The 42 photos from the Drive folder "Eyes" are in `assets/img/buttons/eye-01…42.webp` (trimmed, 160px, transparent). Eye 22 had a fake checkerboard background baked in and was cut out with an ellipse mask. `cursor.png` (32px, from eye 07) is the prize cursor shown after collecting all 42; the drawn SVG stays as a fallback. To add or swap a button, replace or add a webp and update `COUNT` in `assets/buttons.js` (there are 49 spots, so up to 49 buttons fit without adding spots).
+The 42 photos from the Drive folder "Eyes" are in `assets/img/buttons/eye-01…42.webp` (trimmed, 160px, transparent). Eye 22 had a fake checkerboard background baked in and was cut out with an ellipse mask. Only the first 23 are in play (`COUNT = 23` in `assets/buttons.js`); eye-24…42 are spare art for swapping in. `cursor.png` (32px, from eye 07) is the prize cursor shown after collecting them all; the drawn SVG stays as a fallback. To add or swap a button, replace or add a webp and update `COUNT` in `assets/buttons.js` (there are 49 spots, so up to 49 buttons fit without adding spots).
 
 How the game works:
 - `SPOTS` lists where buttons sit on each page as `[selector, nth, x, y]`, with x and y as fractions of that element's box. Spots are dealt round-robin across pages, and button *i* gets the *i*-th spot.
