@@ -19,7 +19,6 @@
       gap: 1.5rem 3rem;
       align-items: center;
       padding: clamp(1.75rem, 5vw, 3.25rem);
-      rotate: .5deg;
       animation: pop-in .6s ease both;
     }
     /* a photo print of this week's bug */
@@ -29,8 +28,8 @@
       display: block;
       width: 100%;
       height: auto;
-      border: 8px solid var(--bone);
-      border-bottom-width: 10px;
+      border: var(--line) solid var(--ink);
+      border-radius: 14px;
       box-shadow: 0 12px 24px -12px rgba(0,0,0,.5);
     }
     .credit { margin-top: .55rem; font-size: .66rem; line-height: 1.4; color: var(--navy); }
@@ -45,7 +44,8 @@
       padding: .85rem 1rem .8rem;
       font-size: .88rem;
       line-height: 1.55;
-      rotate: -.5deg; /* cancels the card's tilt so the fact sits level */
+      border: var(--line-thin) solid var(--ink);
+      border-radius: 14px;
       box-shadow: 0 8px 16px -10px rgba(0,0,0,.35);
     }
     .fact strong {
@@ -68,27 +68,25 @@
     }
     .scrap {
       padding: 1.2rem 1.3rem 1.1rem;
-      clip-path: polygon(0 3%, 6% 0, 40% 2%, 72% 0, 100% 3%, 98% 52%, 100% 97%, 64% 100%, 30% 98%, 2% 100%, 0 60%);
-      rotate: var(--r, -1deg);
-      transition: rotate .3s, translate .3s;
+      overflow: hidden;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
+      transition: translate .2s;
     }
-    .scrap:nth-child(2n) { --r: 1.2deg; }
-    .scrap:hover { rotate: 0deg; translate: 0 -3px; }
+    .scrap:hover { translate: 0 -3px; }
     .a-name { font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
     .a-sci { font-style: italic; font-size: .85rem; color: var(--navy); margin: .1rem 0 .5rem; }
     .a-date { font-family: var(--f-thin); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
-    .a-photo { margin: -.2rem -.3rem .9rem; }
+    .a-photo { margin: -1.2rem -1.3rem .9rem; border-bottom: var(--line) solid var(--ink); }
     .a-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
     .scrap .credit { margin-top: .7rem; }
 
     /* the one that ran in the zine */
     .scrap.from-zine { display: grid; grid-template-columns: 74px 1fr; gap: 1rem; align-items: center; text-decoration: none; }
-    .scrap.from-zine img { width: 74px; box-shadow: 0 6px 12px rgba(0,0,0,.25); rotate: -4deg; }
+    .scrap.from-zine img { width: 74px; border: var(--line-thin) solid var(--ink); border-radius: 6px; rotate: -4deg; }
     .scrap.from-zine .a-date { color: var(--magenta); }
 
     @media (max-width: 760px) {
       .feature { grid-template-columns: 1fr; rotate: 0deg; }
-      .fact { rotate: 0deg; }
       .beetle { width: min(100%, 340px); justify-self: center; }
     }
   </style>
@@ -112,7 +110,7 @@
     <p>Every week, a different tiny creature gets their moment in the sun.</p>
   </header>
 
-  <article class="feature paper shadowed" style="--stock: var(--sky)">
+  <article class="feature paper shadowed boxed" style="--stock: var(--sky)">
     <figure class="beetle">
       <img src="assets/img/bugs/dogbane-beetle.webp" alt="A dogbane beetle on a leaf, its shell shimmering green, copper and violet." width="760" height="508" />
       <figcaption class="credit">Photo: <a href="https://www.insectimages.org/browse/image/2158024">David Cappaert, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></figcaption>
@@ -131,7 +129,7 @@
 
   <h2 class="thin archive-label">previous bugs</h2>
   <ul class="archive">
-    <li><a class="scrap paper from-zine" style="--stock: var(--powder)" href="zines.html#alien-mode">
+    <li><a class="scrap paper boxed from-zine" style="--stock: var(--powder)" href="zines.html#alien-mode">
       <img src="assets/img/zines/alien-mode/p5.webp" alt="" width="640" height="998" loading="lazy" />
       <div>
         <p class="a-name">Jade Faced Buffalo Beetle</p>
@@ -139,17 +137,17 @@
         <p class="a-date">Bug of the Month &middot; Alien Mode vol. 1 &rarr;</p>
       </div>
     </a></li>
-    <li class="scrap paper" style="--stock: var(--salmon)">
+    <li class="scrap paper boxed" style="--stock: var(--salmon)">
       <div class="a-photo"><img src="assets/img/bugs/rosy-maple-moth.webp" alt="A fuzzy rosy maple moth, pink wings and a yellow body, perched on a twig." width="520" height="326" loading="lazy" /></div>
       <p class="a-name">Rosy Maple Moth</p><p class="a-sci">Dryocampa rubicunda</p><p class="a-date">Week of April 28</p>
       <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/1453319">Sturgis McKeever, Georgia Southern University, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
     </li>
-    <li class="scrap paper" style="--stock: var(--peach)">
+    <li class="scrap paper boxed" style="--stock: var(--peach)">
       <div class="a-photo"><img src="assets/img/bugs/velvet-ant.webp" alt="A velvet ant, fuzzy red and black, walking across a leaf." width="520" height="432" loading="lazy" /></div>
       <p class="a-name">Velvet Ant</p><p class="a-sci">Dasymutilla occidentalis</p><p class="a-date">Week of April 21</p>
       <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/5387778">Johnny N. Dell, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
     </li>
-    <li class="scrap paper" style="--stock: var(--leaf)">
+    <li class="scrap paper boxed" style="--stock: var(--leaf)">
       <div class="a-photo"><img src="assets/img/bugs/glowworm-beetle.webp" alt="A male glowworm beetle with orange legs and big feathery antennae." width="520" height="326" loading="lazy" /></div>
       <p class="a-name">Glowworm Beetle</p><p class="a-sci">Phengodidae sp.</p><p class="a-date">Week of April 14</p>
       <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/1453726">Sturgis McKeever, Georgia Southern University, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
