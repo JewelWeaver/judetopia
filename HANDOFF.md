@@ -25,7 +25,6 @@ Plain static HTML in `public/`, one shared stylesheet. No build step. Hosted on 
 - `public/assets/buttons.js`: the button-eye side quest (below).
 - `public/assets/img/bugs/`: bug photos from insectimages.org (Bugwood), CC BY-NC 3.0 US. Each needs its credit line ("Photographer, Organization, Bugwood.org") shown next to it, and the site can't use them commercially. The credits are in `bug.html`.
 - `public/assets/img/`: doodles, `tuba-photo.webp`, `tuba.svg` and `beetle.svg` (old drawings, no longer used), `brand-mark.png` (the hand-lettered "Joodlebug ink." logo), and `zines/<zine>/p1–p8.webp`.
-- `src/` is an older, unused Eleventy/Alpine work-in-progress (no eleventy config, does not build). Not part of the live site.
 
 ## Open items
 
