@@ -1,6 +1,5 @@
 export function QuickFinder() {
   return {
-    showServices: true,
     showServices1: false,
     showServices2: false,
     showServices3: false,
@@ -32,7 +31,6 @@ export function QuickFinder() {
       this.selectedService = service;
       this.hideServices();
       window.setTimeout(() => {
-        console.log('selectService');
         this.doShowLocation();
         this.$focus.focus(this.$refs.locationInput);
       }, 600);
@@ -89,7 +87,6 @@ export function QuickFinder() {
     },
 
     resetQuickFinder() {
-      this.showServices = true;
       this.doHideLocation();
       this.selectedService = '';
       this.selectedLocation = '';

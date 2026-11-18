@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 export function ChatApp() {
   return {
     showLoading: false,
@@ -21,7 +23,6 @@ export function ChatApp() {
 
     async sendMessage() {
       const message = this.$store.chat.messageToSend.trim();
-      console.log('Sending message:', message);
 
       if (message === '') return;
 
@@ -62,20 +63,14 @@ export function ChatApp() {
 
     async fetchChatResponse(message) {
       try {
-        console.log('Fetching chat response...');
-        console.log('API URL:', window.API_URL);
-
         const response = await fetch(`${window.API_URL}/chat/stream`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message,
-            chat_history: this.chatHistory
+            chat_history: this.$store.chat.chatHistory
           }),
         });
-
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -84,7 +79,7 @@ export function ChatApp() {
         return response;
       } catch (error) {
         console.error('Fetch error:', error);
-        this.addMessage('System', `Fetch error: ${error.message}`);
+        this.addMessage('system', `Fetch error: ${error.message}`);
         this.$store.chat.scrollToBottom = true;
         throw error;
       }
@@ -100,7 +95,7 @@ export function ChatApp() {
       let buffer = '';
       let done = false;
       let isMetadataProcessed = false;
-      let currentMessage = '';  // Add this to accumulate content
+      let currentMessage = '';
 
       try {
         while (!done) {
@@ -120,14 +115,11 @@ export function ChatApp() {
                   if (!isMetadataProcessed && data.type === 'metadata') {
                     this.handleMetadata(data);
                     isMetadataProcessed = true;
-                    // Add an empty assistant message to start accumulating content
                     this.addMessage('assistant', '');
                   } else if (data.type === 'content') {
                     currentMessage += data.content;
                     this.updateLastMessage(this.formatMessage(currentMessage));
                     this.$store.chat.scrollToBottom = true;
-                  } else if (data.type === 'end') {
-                    console.log('Stream ended');
                   }
                 } catch (e) {
                   console.error('Error parsing JSON:', e);
@@ -139,8 +131,7 @@ export function ChatApp() {
         }
       } catch (error) {
         console.error('Stream error:', error);
-        reader.cancel();
-        this.addMessage('System', 'The connection was interrupted. Please try again.');
+        this.addMessage('system', 'The connection was interrupted. Please try again.');
         throw error;
       } finally {
         reader.cancel();
@@ -152,18 +143,15 @@ export function ChatApp() {
           const data = JSON.parse(buffer.trim());
           if (data.type === 'content') {
             if (this.messages.length === 0 || this.messages[this.messages.length - 1].role !== 'assistant') {
-              this.addMessage('Assistant', '');
+              this.addMessage('assistant', '');
             }
             this.updateAssistantMessage(this.messages.length - 1, data.content);
           }
         } catch (e) {
           console.error('Error parsing remaining buffer:', e);
-          this.addMessage('System', 'Received malformed data from server.');
+          this.addMessage('system', 'Received malformed data from server.');
         }
       }
-
-      // Signal the end of the stream
-      // Optionally, you can add a specific end message or status here
     },
 
     updateAssistantMessage(messageIndex, message) {
@@ -173,17 +161,10 @@ export function ChatApp() {
 
     handleError(error) {
       console.error('Error:', error);
-      this.addMessage('System', `An error occurred. Please try again. (${error.message})`);
+      this.addMessage('system', `An error occurred. Please try again. (${error.message})`);
       this.showLoading = false;
       this.showAssistantResponse = true;
       this.$store.chat.scrollToBottom = true;
-    },
-
-    toggleQuickFinder() {
-      this.showQuickFinder = !this.showQuickFinder;
-      if (this.showQuickFinder) {
-        this.quickFinder.resetQuickFinder();
-      }
     },
 
     addMessage(role, content) {

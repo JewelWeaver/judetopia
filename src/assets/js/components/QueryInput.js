@@ -33,6 +33,7 @@ export function QueryInput() {
     pushButton() {
       window.setTimeout(() => {
         this.$refs.sendButton.click();
+        this.$store.chat.pushButton = false;
       }, 100);
     },
 
@@ -43,7 +44,6 @@ export function QueryInput() {
 
     sendMessage() {
       if (this.$store.chat.userMessage.trim() === '') return;
-      // this.$dispatch('message-sent', this.$store.chat.userMessage.trim());
       this.$store.chat.messageToSend = this.$store.chat.userMessage.trim();
       this.clearInput();
     },
