@@ -22,14 +22,19 @@
       rotate: .5deg;
       animation: pop-in .6s ease both;
     }
-    .beetle {
-      width: min(100%, 300px);
-      margin-inline: auto;
-      rotate: 16deg;
-      animation: bob 4.5s ease-in-out infinite;
-      transition: rotate .5s;
+    /* a photo print of this week's bug */
+    .beetle { margin: 0; rotate: -2deg; transition: rotate .4s; }
+    .feature:hover .beetle { rotate: 0deg; }
+    .beetle img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 8px solid var(--bone);
+      border-bottom-width: 10px;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,.5);
     }
-    .feature:hover .beetle { rotate: -8deg; }
+    .credit { margin-top: .55rem; font-size: .66rem; line-height: 1.4; color: var(--navy); }
+    .credit a { color: inherit; text-underline-offset: 2px; }
     .feature .thin { font-size: .78rem; color: var(--navy); }
     .bug-name { font-weight: 700; font-size: clamp(1.8rem, 4.4vw, 2.6rem); line-height: 1.1; color: #1f6f2c; margin: .3rem 0 .2rem; }
     .bug-sci { font-style: italic; color: var(--navy); margin-bottom: 1.1rem; }
@@ -72,6 +77,9 @@
     .a-name { font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
     .a-sci { font-style: italic; font-size: .85rem; color: var(--navy); margin: .1rem 0 .5rem; }
     .a-date { font-family: var(--f-thin); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+    .a-photo { margin: -.2rem -.3rem .9rem; }
+    .a-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+    .scrap .credit { margin-top: .7rem; }
 
     /* the one that ran in the zine */
     .scrap.from-zine { display: grid; grid-template-columns: 74px 1fr; gap: 1rem; align-items: center; text-decoration: none; }
@@ -81,7 +89,7 @@
     @media (max-width: 760px) {
       .feature { grid-template-columns: 1fr; rotate: 0deg; }
       .fact { rotate: 0deg; }
-      .beetle { width: 190px; }
+      .beetle { width: min(100%, 340px); justify-self: center; }
     }
   </style>
 </head>
@@ -105,7 +113,10 @@
   </header>
 
   <article class="feature paper shadowed" style="--stock: var(--sky)">
-    <img class="beetle" src="assets/img/beetle.svg" alt="An iridescent green-blue beetle with copper highlights." width="120" height="120" />
+    <figure class="beetle">
+      <img src="assets/img/bugs/dogbane-beetle.webp" alt="A dogbane beetle on a leaf, its shell shimmering green, copper and violet." width="760" height="508" />
+      <figcaption class="credit">Photo: <a href="https://www.insectimages.org/browse/image/2158024">David Cappaert, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></figcaption>
+    </figure>
     <div>
       <p class="thin">featured this week</p>
       <h2 class="bug-name">Dogbane Beetle</h2>
@@ -128,9 +139,21 @@
         <p class="a-date">Bug of the Month &middot; Alien Mode vol. 1 &rarr;</p>
       </div>
     </a></li>
-    <li class="scrap paper" style="--stock: var(--salmon)"><p class="a-name">Rosy Maple Moth</p><p class="a-sci">Dryocampa rubicunda</p><p class="a-date">Week of April 28</p></li>
-    <li class="scrap paper" style="--stock: var(--peach)"><p class="a-name">Velvet Ant</p><p class="a-sci">Dasymutilla occidentalis</p><p class="a-date">Week of April 21</p></li>
-    <li class="scrap paper" style="--stock: var(--leaf)"><p class="a-name">Glowworm Beetle</p><p class="a-sci">Phengodidae sp.</p><p class="a-date">Week of April 14</p></li>
+    <li class="scrap paper" style="--stock: var(--salmon)">
+      <div class="a-photo"><img src="assets/img/bugs/rosy-maple-moth.webp" alt="A fuzzy rosy maple moth, pink wings and a yellow body, perched on a twig." width="520" height="326" loading="lazy" /></div>
+      <p class="a-name">Rosy Maple Moth</p><p class="a-sci">Dryocampa rubicunda</p><p class="a-date">Week of April 28</p>
+      <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/1453319">Sturgis McKeever, Georgia Southern University, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
+    </li>
+    <li class="scrap paper" style="--stock: var(--peach)">
+      <div class="a-photo"><img src="assets/img/bugs/velvet-ant.webp" alt="A velvet ant, fuzzy red and black, walking across a leaf." width="520" height="432" loading="lazy" /></div>
+      <p class="a-name">Velvet Ant</p><p class="a-sci">Dasymutilla occidentalis</p><p class="a-date">Week of April 21</p>
+      <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/5387778">Johnny N. Dell, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
+    </li>
+    <li class="scrap paper" style="--stock: var(--leaf)">
+      <div class="a-photo"><img src="assets/img/bugs/glowworm-beetle.webp" alt="A male glowworm beetle with orange legs and big feathery antennae." width="520" height="326" loading="lazy" /></div>
+      <p class="a-name">Glowworm Beetle</p><p class="a-sci">Phengodidae sp.</p><p class="a-date">Week of April 14</p>
+      <p class="credit">Photo: <a href="https://www.insectimages.org/browse/image/1453726">Sturgis McKeever, Georgia Southern University, Bugwood.org</a> &middot; <a href="https://creativecommons.org/licenses/by-nc/3.0/us/">CC BY-NC 3.0</a></p>
+    </li>
   </ul>
 </main>
 
