@@ -10,7 +10,7 @@ Private clickable preview (owner-only until shared): https://claude.ai/artifact/
 
 ## The site
 
-Plain static HTML in the repo root, one shared stylesheet. No build step.
+Plain static HTML in `public/`, one shared stylesheet. No build step. Hosted on Cloudflare Workers static assets (`cloudflare.config.ts` + `wrangler.config.ts`); deploy with `npx cf deploy`.
 
 | Page | What it is |
 |---|---|
@@ -21,16 +21,16 @@ Plain static HTML in the repo root, one shared stylesheet. No build step.
 | `bug.html` | Featured Bug (page heading still says "Bug of the Week"). Dogbane Beetle + archive scraps, incl. the Jade Faced Buffalo Beetle from Alien Mode. |
 | `art.html` | Redirect to `zines.html` so old links work. |
 
-- `assets/site.css`: palette (sampled from the zine paper colors), fonts (Courier Prime, Luckiest Guy, Josefin Sans), nav links, paper/sticker styles, footer, button-eye game styles.
-- `assets/buttons.js`: the button-eye side quest (below).
-- `assets/img/bugs/`: bug photos from insectimages.org (Bugwood), CC BY-NC 3.0 US. Each needs its credit line ("Photographer, Organization, Bugwood.org") shown next to it, and the site can't use them commercially. The credits are in `bug.html`.
-- `assets/img/`: doodles, `tuba-photo.webp`, `tuba.svg` and `beetle.svg` (old drawings, no longer used), `brand-mark.png` (the hand-lettered "Joodlebug ink." logo), and `zines/<zine>/p1–p8.webp`.
+- `public/assets/site.css`: palette (sampled from the zine paper colors), fonts (Courier Prime, Luckiest Guy, Josefin Sans), nav links, paper/sticker styles, footer, button-eye game styles.
+- `public/assets/buttons.js`: the button-eye side quest (below).
+- `public/assets/img/bugs/`: bug photos from insectimages.org (Bugwood), CC BY-NC 3.0 US. Each needs its credit line ("Photographer, Organization, Bugwood.org") shown next to it, and the site can't use them commercially. The credits are in `bug.html`.
+- `public/assets/img/`: doodles, `tuba-photo.webp`, `tuba.svg` and `beetle.svg` (old drawings, no longer used), `brand-mark.png` (the hand-lettered "Joodlebug ink." logo), and `zines/<zine>/p1–p8.webp`.
 - `src/` is an older, unused Eleventy/Alpine work-in-progress (no eleventy config, does not build). Not part of the live site.
 
 ## Open items
 
 ### Button-eye game (done)
-The 42 photos from the Drive folder "Eyes" are in `assets/img/buttons/eye-01…42.webp` (trimmed, 160px, transparent). Eye 22 had a fake checkerboard background baked in and was cut out with an ellipse mask. Only the first 23 are in play (`COUNT = 23` in `assets/buttons.js`); eye-24…42 are spare art for swapping in. `cursor.png` (32px, from eye 07) is the prize cursor shown after collecting them all; the drawn SVG stays as a fallback. To add or swap a button, replace or add a webp and update `COUNT` in `assets/buttons.js` (there are 49 spots, so up to 49 buttons fit without adding spots).
+The 42 photos from the Drive folder "Eyes" are in `public/assets/img/buttons/eye-01…42.webp` (trimmed, 160px, transparent). Eye 22 had a fake checkerboard background baked in and was cut out with an ellipse mask. Only the first 23 are in play (`COUNT = 23` in `public/assets/buttons.js`); eye-24…42 are spare art for swapping in. `cursor.png` (32px, from eye 07) is the prize cursor shown after collecting them all; the drawn SVG stays as a fallback. To add or swap a button, replace or add a webp and update `COUNT` in `public/assets/buttons.js` (there are 49 spots, so up to 49 buttons fit without adding spots).
 
 How the game works:
 - `SPOTS` lists where buttons sit on each page as `[selector, nth, x, y]`, with x and y as fractions of that element's box. Spots are dealt round-robin across pages, and button *i* gets the *i*-th spot.
@@ -40,7 +40,7 @@ How the game works:
 - The tin in the bottom-right corner shows the count, progress per page, a sound toggle, and a two-tap "start over".
 
 ### Tuba photo (done)
-`assets/img/tuba-photo.webp` (900px, transparent) replaces the drawn `tuba.svg` in `tuba.html`. The halo sits over her ears and the eyeball hangs just past her raised paw. The photo sits low so the flames cover where it's cropped at the bottom. If the photo is swapped, retune `.halo` and `.lure`.
+`public/assets/img/tuba-photo.webp` (900px, transparent) replaces the drawn `tuba.svg` in `tuba.html`. The halo sits over her ears and the eyeball hangs just past her raised paw. The photo sits low so the flames cover where it's cropped at the bottom. If the photo is swapped, retune `.halo` and `.lure`.
 
 ### Small questions for the owner for the owner
 - Rename the page headings to match the nav: "Zines" → "Joodlebug Ink", "Bug of the Week" → "Featured Bug"?
@@ -54,10 +54,10 @@ Both zines come from the owner's per-page PDFs in `~/Joodlebug Ink/zines/Zine_in
 - Every zine page `<img>` in `zines.html` has full alt text (the poem text for Emergence). Update it if a page changes.
 
 ## Checking changes
-- Serve locally with `npx serve . -p 3000`.
+- Serve locally with `npx serve public -p 3000` (or `npx cf dev`).
 - Screenshot at 1366×900 and 390×844 with Playwright. Chromium is preinstalled; launch with `chromium.launch()`.
 - Things that have broken before:
   - horizontal overflow on phones (`main` uses `overflow-x: clip`);
   - forgetting `height: auto` on sized images;
   - `cqi` units inside a container's own padding.
-- To refresh the preview, copy the site into a scratch folder, duplicate `index.html` as `home.html`, and point `href="index.html"` (and `'index.html'` in `assets/buttons.js`) at `home.html`. Republish to the same artifact URL.
+- To refresh the preview, copy the site into a scratch folder, duplicate `index.html` as `home.html`, and point `href="index.html"` (and `'index.html'` in `public/assets/buttons.js`) at `home.html`. Republish to the same artifact URL.

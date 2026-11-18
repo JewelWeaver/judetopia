@@ -1,37 +1,18 @@
 {
-  "name": "beacon",
+  "name": "judetopia",
   "version": "1.0.0",
-  "description": "A custom Eleventy site with blog post generation",
-  "main": "index.js",
+  "private": true,
+  "description": "judetopia.com: plain static HTML, served as Workers static assets",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve",
-    "serve": "serve _site"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.0.1-alpha.1",
-    "@picocss/pico": "^2.0.0",
-    "@tinacms/cli": "^1.6.9",
-    "dotenv": "^16.4.5",
-    "esbuild": "^0.20.1",
-    "lightningcss": "^1.27.0",
-    "nunjucks": "^3.2.4",
-    "rosetta": "^1.1.0",
-    "sass": "^1.79.5",
-    "tinacms": "^2.2.9"
-  },
-  "dependencies": {
-    "@alpinejs/focus": "^3.14.7",
-    "alpinejs": "^3.14.7",
-    "annyang": "^2.6.1",
-    "focus-trap": "^7.6.2",
-    "marked": "^15.0.3",
-    "dompurify": "^3.1.7"
+    "dev": "cf dev",
+    "deploy": "cf deploy"
   },
   "engines": {
-    "node": ">=18.0.0"
-  }
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "cf": "^1.0.0-rc.1",
+    "wrangler": "^4.164.0"
+  },
+  "type": "module"
 }
