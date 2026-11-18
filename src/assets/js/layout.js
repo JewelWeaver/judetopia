@@ -1,5 +1,3 @@
-import { createFocusTrap } from 'focus-trap';
-
 function initHamburgerMenu() {
   const hamburger = document.querySelector('.hamburger-menu');
   const nav = document.querySelector('.footer-menu');

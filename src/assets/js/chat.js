@@ -1,6 +1,4 @@
 document.addEventListener('alpine:init', () => {
-  Alpine.plugin(focus);
-
   Alpine.store('chat', {
     userMessage: '',
     messageToSend: '',
@@ -9,6 +7,7 @@ document.addEventListener('alpine:init', () => {
     initiateVoiceCommand: false,
     scrollToBottom: false,
     focusQueryInput: false,
+    pushButton: false,
     showQueryInput: true,
     showQuickFinder: true,
     selectedService: '',
