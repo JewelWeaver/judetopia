@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artifacts — Judetopia</title>
+  <meta name="description" content="Artifacts: Third Eye Charms, handmade in Baltimore. Pins, magnets, bolo ties, and framed fine art pieces." />
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    /* market and product photos share one thick black frame */
+    :root { --photo-line: clamp(4px, .9vw, 8px); }
+    /* ---------- third eye charms ---------- */
+    .charms { padding: .6rem 0 1rem; }
+    .charms-top {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .charms-top h2 { margin: 0 0 1.4rem; }
+    .charms-logo {
+      display: block;
+      width: clamp(180px, 24.75vw, 248px);
+      height: auto;
+      border: 6px solid var(--edge);
+      border-radius: 50%;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
+    }
+    .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin: 0 auto .8rem; }
+    /* at the market: three photos in one row, columns sized by each photo's shape so they share a height */
+    .charms-me { margin: 1.4rem auto .6rem; width: min(100%, 940px); }
+    .market-photos { display: grid; grid-template-columns: .752fr 1.485fr .753fr; gap: clamp(.5rem, 2vw, 1rem); }
+    .charms-me img {
+      display: block;
+      width: 100%;
+      height: 100%; /* all three share the row's height exactly */
+      object-fit: cover;
+      border: var(--photo-line) solid var(--hot); /* the bright pink from the logo ring */
+      border-radius: 14px;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
+    }
+    .charms-me figcaption { margin-top: .6rem; font-size: .74rem; color: var(--on-desk-soft); }
+    .etsy {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .9rem;
+      padding: .7rem 1.4rem;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      background: #cfd1ec; /* soft, muted periwinkle */
+      border: var(--line) solid var(--edge);
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 var(--magenta);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .etsy:hover, .etsy:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--magenta); }
+    .products {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(165px, 42vw), 1fr));
+      gap: 1.4rem;
+    }
+    .product {
+      padding: .7rem .7rem .9rem;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
+      transition: translate .2s, box-shadow .2s;
+    }
+    .product:hover { translate: -2px -3px; box-shadow: 7px 8px 0 rgba(0, 0, 0, .45); }
+    .product img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: var(--photo-line) solid var(--edge);
+      border-radius: 14px;
+      margin-bottom: .75rem;
+    }
+    .product h3 { font-family: var(--f-loud); font-weight: 400; font-size: 1.1rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
+
+  </style>
+</head>
+<body data-page="artifacts">
+
+<header class="site-head">
+  <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/eye-mandala-sm.webp" alt="" width="128" height="128" />PIA</a>
+  <nav aria-label="Main">
+    <ul class="site-nav">
+      <li><a class="nav-link" href="zines.html">Joodlebug Ink</a></li>
+      <li><a class="nav-link" href="artifacts.html" aria-current="page">Artifacts</a></li>
+      <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
+      <li><a class="nav-link" href="bug.html">Featured Bug</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+  <h1 class="sr-only">Artifacts</h1>
+  <section class="charms" id="charms" aria-labelledby="charms-title">
+    <div class="charms-top">
+      <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="600" height="600" /></h2>
+      <p>Charms handmade in Baltimore. Each is blessed with magik. Pins, magnets, bolo ties, and framed fine art pieces.</p>
+      <figure class="charms-me">
+      <div class="market-photos">
+        <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="851" loading="lazy" />
+        <img src="assets/img/charms/market-night.webp" alt="At an indoor Third Eye Charms table at night, wearing light-up antennae, behind framed boards of button eyes, a rack of bolo ties and bracelets, and a pricing sign." width="900" height="606" loading="lazy" />
+        <img src="assets/img/charms/market-stars.webp" alt="At an outdoor Third Eye Charms table at dusk, wearing a button-eye bolo tie, behind framed constellations made of button eyes: Leo, Boötes and Cassiopeia." width="640" height="850" loading="lazy" />
+      </div>
+      <figcaption class="thin">at the market</figcaption>
+    </figure>
+    <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <ul class="products">
+      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/pins.webp" alt="Button-eye pins on a denim jacket: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Pins</h3></li>
+      <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
+      <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/magnets.webp" alt="Button-eye magnets on a teal surface: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Magnets</h3></li>
+      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Council of Watchers</h3></li>
+      <li class="product paper boxed" style="--stock: var(--mint)"><img src="assets/img/charms/box-rainbow.webp" alt="A shadow box packed with dozens of button eyes sorted in rainbow order." width="560" height="560" loading="lazy" /><h3>Good Afternoon</h3></li>
+      <li class="product paper boxed" style="--stock: var(--butter)"><img src="assets/img/charms/box-red.webp" alt="A black shadow box filled with red and white button eyes." width="560" height="560" loading="lazy" /><h3>Applebees</h3></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot ruled">
+  <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
+  <ul class="foot-links">
+    <li><a href="zines.html">Joodlebug Ink</a></li>
+    <li><a href="artifacts.html">Artifacts</a></li>
+    <li><a href="tuba.html">Tuba's Corner</a></li>
+    <li><a href="bug.html">Featured Bug</a></li>
+  </ul>
+</footer>
+
+<script src="assets/buttons.js"></script>
+</body>
+</html>

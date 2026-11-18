@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuba's Corner — Judetopia</title>
+  <meta name="description" content="A word from Tuba, the cat in charge." />
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    :root {
+      --ember: #ff8a1f;
+      --blood: #7a0f2a;
+      --pit: #1c0409;
+    }
+    .site-foot { margin-top: 0; background: var(--pit); }
+
+    /* ---- the inferno ---- */
+    .inferno {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      min-height: max(640px, calc(100svh - 90px));
+      padding: 2rem 16px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 100%, #ff6a2a 0%, var(--red) 28%, var(--blood) 58%, transparent 85%),
+        linear-gradient(to bottom, #2a0613, var(--blood) 70%, var(--red));
+    }
+    /* silly little pitchforks for wallpaper */
+    .inferno::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      opacity: .09;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffd21f' stroke-width='2.4' stroke-linecap='round' transform='rotate(-22 48 48)'%3E%3Cpath d='M48 36v40M37 24v7q0 9 11 9t11-9v-7M48 22v14'/%3E%3C/g%3E%3C/svg%3E");
+      animation: drift 30s linear infinite;
+    }
+    @keyframes drift { to { background-position: 96px -96px; } }
+
+    .hell-title {
+      font-size: var(--title-size);
+      text-shadow: .06em .07em 0 var(--blood), 0 0 .35em rgba(255, 138, 31, .75);
+      animation: smolder 2.6s ease-in-out infinite alternate;
+    }
+    @keyframes smolder { to { text-shadow: .06em .07em 0 var(--blood), 0 0 .6em rgba(255, 90, 42, .95); } }
+
+    /* ---- the scene ---- */
+    .scene {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      width: min(1000px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      align-items: end;
+      gap: 1rem 2rem;
+      margin-top: 1.5rem;
+    }
+    .thought { align-self: center; margin-bottom: 18%; text-align: center; }
+    .bubble {
+      padding: 1.7rem 1.8rem 1.5rem;
+      color: var(--ink);
+      background: var(--butter);
+      border: var(--line) solid var(--edge);
+      border-radius: 58% 42% 52% 48% / 46% 56% 44% 54%;
+      box-shadow: 6px 6px 0 var(--magenta);
+      rotate: -3deg;
+    }
+    .bubble p { font-weight: 700; font-size: clamp(.98rem, 1.9vw, 1.12rem); line-height: 1.45; }
+    .bubble cite {
+      display: block;
+      margin-top: .7rem;
+      font-style: normal;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--magenta);
+    }
+    .dots { display: flex; justify-content: flex-end; gap: .5rem; padding-right: 8%; margin-top: .6rem; }
+    .dots span { border-radius: 50%; background: var(--butter); border: var(--line) solid var(--edge); }
+    .dots span:nth-child(1) { width: 22px; height: 22px; }
+    .dots span:nth-child(2) { width: 13px; height: 13px; margin-top: 18px; }
+
+    .tuba-spot { position: relative; justify-self: center; width: min(100%, 520px); }
+    .tuba {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: auto;
+      /* the photo is cropped at the bottom: sit it low so the flames cover the cut */
+      margin-bottom: 6px;
+      filter: drop-shadow(0 0 26px rgba(255, 106, 42, .55));
+      animation: bob 4s ease-in-out infinite;
+    }
+    /* a halo, but it's on fire */
+    .halo {
+      position: absolute;
+      z-index: 2;
+      left: 27%;
+      top: -1%;
+      width: 31%;
+      aspect-ratio: 3 / 1;
+      border: 5px solid var(--yolk);
+      border-radius: 50%;
+      rotate: -16deg;
+      box-shadow: 0 0 12px 3px var(--ember), inset 0 0 10px 2px var(--ember);
+      animation: bob 4s ease-in-out infinite, halo-burn .9s ease-in-out infinite alternate;
+    }
+    @keyframes halo-burn { to { box-shadow: 0 0 22px 7px #ff5a2a, inset 0 0 14px 4px var(--ember); } }
+    /* an eyeball dangled just out of reach */
+    .lure {
+      position: absolute;
+      z-index: 3;
+      right: -14%;
+      top: -24%;
+      width: 23%;
+      height: auto;
+      transform-origin: 50% -200px;
+      animation: dangle 3.2s ease-in-out infinite;
+    }
+    .lure::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 88%;
+      width: 2px;
+      height: 200px;
+      background: rgba(255, 220, 190, .7);
+    }
+    @keyframes dangle {
+      0%, 100% { rotate: -7deg; translate: 0 -6px; }
+      50% { rotate: 6deg; translate: 0 10px; }
+    }
+
+    /* ---- fire ---- */
+    .flames {
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      width: 100%;
+      height: clamp(110px, 17vw, 210px);
+      pointer-events: none;
+    }
+    .flames path { transform-box: fill-box; transform-origin: 50% 100%; }
+    .flames .back { fill: var(--magenta); animation: flicker 1.7s ease-in-out infinite alternate; }
+    .flames .mid { fill: var(--red); animation: flicker 1.2s .3s ease-in-out infinite alternate-reverse; }
+    .flames .front { fill: url(#fire); animation: flicker .9s .1s ease-in-out infinite alternate; }
+    @keyframes flicker {
+      0% { transform: scaleY(.9) skewX(-2deg); }
+      100% { transform: scaleY(1.07) skewX(2deg); }
+    }
+
+    .embers i {
+      position: absolute;
+      z-index: 4;
+      bottom: 40px;
+      left: var(--l);
+      width: var(--s);
+      height: var(--s);
+      border-radius: 50%;
+      background: var(--yolk);
+      box-shadow: 0 0 8px 2px var(--ember);
+      opacity: 0;
+      animation: rise var(--t) linear var(--d) infinite;
+    }
+    @keyframes rise {
+      10% { opacity: 1; }
+      100% { translate: var(--w) -620px; opacity: 0; }
+    }
+
+    @media (max-width: 760px) {
+      .scene { grid-template-columns: 1fr; }
+      .thought { margin-bottom: 0; order: -1; max-width: 420px; justify-self: center; }
+      .dots { justify-content: center; padding-right: 0; }
+      .tuba-spot { width: min(88%, 380px); }
+    }
+  </style>
+</head>
+<body data-page="tuba">
+
+<header class="site-head">
+  <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/eye-mandala-sm.webp" alt="" width="128" height="128" />PIA</a>
+  <nav aria-label="Main">
+    <ul class="site-nav">
+      <li><a class="nav-link" href="zines.html">Joodlebug Ink</a></li>
+      <li><a class="nav-link" href="artifacts.html">Artifacts</a></li>
+      <li><a class="nav-link" href="tuba.html" aria-current="page">Tuba's Corner</a></li>
+      <li><a class="nav-link" href="bug.html">Featured Bug</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="inferno">
+
+    <h1 class="yolk-title hell-title">Tuba's Corner</h1>
+
+    <div class="scene">
+      <div class="thought">
+        <blockquote class="bubble">
+          <p>&ldquo;Where were you when I laid the foundations of the earth? Tell me, if you have understanding.&rdquo;</p>
+          <cite>&mdash; God to Job, Job 38:4</cite>
+        </blockquote>
+        <div class="dots" aria-hidden="true"><span></span><span></span></div>
+      </div>
+
+      <div class="tuba-spot">
+        <img class="lure" src="assets/img/jazzy.webp" alt="" width="600" height="710" />
+        <span class="halo" aria-hidden="true"></span>
+        <img class="tuba" src="assets/img/tuba-photo.webp" alt="Tuba, a fluffy black cat, wearing a flaming halo and reaching one paw up toward Jazzy, a curled-up grey cat dangling on a string just out of reach." width="900" height="816" />
+      </div>
+    </div>
+
+    <div class="embers" aria-hidden="true">
+      <i style="--l:4%;--t:8.8s;--d:-2.0s;--s:3px;--w:26px"></i><i style="--l:8%;--t:10.6s;--d:-1.6s;--s:4px;--w:26px"></i><i style="--l:40%;--t:11.2s;--d:-1.0s;--s:6px;--w:26px"></i><i style="--l:55%;--t:11.3s;--d:-9.8s;--s:5px;--w:26px"></i><i style="--l:97%;--t:10.1s;--d:-4.6s;--s:4px;--w:-18px"></i><i style="--l:10%;--t:6.9s;--d:-7.9s;--s:3px;--w:26px"></i><i style="--l:82%;--t:7.1s;--d:-3.4s;--s:4px;--w:26px"></i><i style="--l:53%;--t:9.7s;--d:-3.8s;--s:4px;--w:34px"></i><i style="--l:93%;--t:9.9s;--d:-8.9s;--s:6px;--w:34px"></i><i style="--l:40%;--t:8.4s;--d:-1.2s;--s:6px;--w:-30px"></i><i style="--l:20%;--t:11.9s;--d:-5.3s;--s:3px;--w:14px"></i><i style="--l:60%;--t:6.6s;--d:-6.8s;--s:3px;--w:14px"></i><i style="--l:61%;--t:6.4s;--d:-2.5s;--s:6px;--w:-18px"></i><i style="--l:63%;--t:11.7s;--d:-7.2s;--s:6px;--w:-30px"></i><i style="--l:13%;--t:8.9s;--d:-11.7s;--s:6px;--w:26px"></i><i style="--l:32%;--t:6.9s;--d:-9.0s;--s:5px;--w:26px"></i><i style="--l:82%;--t:7.0s;--d:-0.3s;--s:5px;--w:-18px"></i><i style="--l:68%;--t:11.5s;--d:-9.1s;--s:5px;--w:-30px"></i>
+    </div>
+
+    <svg class="flames" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="fire" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#ff5a2a" />
+          <stop offset=".55" stop-color="#ff8a1f" />
+          <stop offset="1" stop-color="#ffd21f" />
+        </linearGradient>
+      </defs>
+      <path class="back" d="M0 220 L0 150 Q20 107 43 26 Q73 94 133 150 Q153 112 171 43 Q205 102 267 150 Q287 110 324 37 Q346 99 400 150 Q420 102 467 13 Q483 88 533 150 Q553 102 596 12 Q614 88 667 150 Q687 102 706 13 Q738 89 800 150 Q820 108 888 31 Q891 97 933 150 Q953 103 982 16 Q1009 90 1067 150 Q1087 112 1163 41 Q1161 101 1200 150 L1200 220 Z" />
+      <path class="mid" d="M0 220 L0 170 Q14 140 41 85 Q55 132 92 170 Q106 149 118 109 Q141 142 185 170 Q198 146 221 102 Q238 139 277 170 Q291 131 305 59 Q327 120 369 170 Q383 134 430 69 Q432 124 462 170 Q475 132 511 61 Q520 121 554 170 Q568 141 594 88 Q609 133 646 170 Q660 140 672 83 Q695 131 738 170 Q752 129 771 54 Q790 118 831 170 Q845 142 874 91 Q887 134 923 170 Q937 135 973 69 Q982 124 1015 170 Q1029 138 1052 77 Q1069 128 1108 170 Q1122 145 1163 98 Q1169 137 1200 170 L1200 220 Z" />
+      <path class="front" d="M0 220 L0 190 Q11 164 38 116 Q45 157 71 190 Q81 169 119 129 Q120 162 141 190 Q152 172 169 138 Q182 167 212 190 Q222 176 234 149 Q250 172 282 190 Q293 167 327 124 Q330 160 353 190 Q364 163 388 112 Q397 155 424 190 Q434 161 465 107 Q470 153 494 190 Q505 172 532 139 Q539 167 565 190 Q575 174 593 144 Q606 169 635 190 Q646 171 674 136 Q680 166 706 190 Q716 169 740 131 Q749 163 776 190 Q787 173 827 143 Q827 169 847 190 Q858 168 888 126 Q893 161 918 190 Q928 161 960 108 Q964 153 988 190 Q999 170 1041 134 Q1039 165 1059 190 Q1069 173 1087 142 Q1100 168 1129 190 Q1140 166 1171 122 Q1176 160 1200 190 L1200 220 Z" />
+    </svg>
+  </section>
+</main>
+
+<footer class="site-foot ruled">
+  <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
+  <ul class="foot-links">
+    <li><a href="zines.html">Joodlebug Ink</a></li>
+    <li><a href="artifacts.html">Artifacts</a></li>
+    <li><a href="tuba.html">Tuba's Corner</a></li>
+    <li><a href="bug.html">Featured Bug</a></li>
+  </ul>
+</footer>
+
+<script src="assets/buttons.js"></script>
+</body>
+</html>
