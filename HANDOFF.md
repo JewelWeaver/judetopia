@@ -16,13 +16,14 @@ Plain static HTML in the repo root, one shared stylesheet. No build step.
 |---|---|
 | `index.html` | Quiet homepage: one eye in the dark, "are you there?", three nav links. The Emergence figure is hidden around the eye and shows where a light follows the pointer (drifts on its own when idle). |
 | `zines.html` | "Joodlebug Ink" in the nav. Alien Mode vol. 1 and Emergence vol. 1 as page-flip readers (spreads on wide screens, single pages on phones, arrows/keys/swipe), each with a one-line blurb. Third Eye Charms below as hang tags. |
-| `tuba.html` | Tuba's Corner: silly hell (flames, embers, pitchfork wallpaper, eye-sun, flaming halo, dangling eyeball) + Job 38:4 thought bubble. |
+| `tuba.html` | Tuba's Corner: silly hell (flames, embers, pitchfork wallpaper, flaming halo, dangling eyeball) + Job 38:4 thought bubble. |
 | `bug.html` | Featured Bug (page heading still says "Bug of the Week"). Dogbane Beetle + archive scraps, incl. the Jade Faced Buffalo Beetle from Alien Mode. |
 | `art.html` | Redirect to `zines.html` so old links work. |
 
 - `assets/site.css`: palette (sampled from the zine paper colors), fonts (Courier Prime, Luckiest Guy, Josefin Sans), nav links, paper/sticker styles, footer, button-eye game styles.
 - `assets/buttons.js`: the button-eye side quest (below).
-- `assets/img/`: doodles, `tuba.svg`, `beetle.svg`, `brand-mark.png` (the hand-lettered "Joodlebug ink." logo), and `zines/<zine>/p1–p8.webp`.
+- `assets/img/bugs/`: bug photos from insectimages.org (Bugwood), CC BY-NC 3.0 US. Each needs its credit line ("Photographer, Organization, Bugwood.org") shown next to it, and the site can't use them commercially. The credits are in `bug.html`.
+- `assets/img/`: doodles, `tuba-photo.webp`, `tuba.svg` and `beetle.svg` (old drawings, no longer used), `brand-mark.png` (the hand-lettered "Joodlebug ink." logo), and `zines/<zine>/p1–p8.webp`.
 - `src/` is an older, unused Eleventy/Alpine work-in-progress (no eleventy config, does not build). Not part of the live site.
 
 ## Open items

@@ -46,20 +46,6 @@
     }
     @keyframes drift { to { background-position: 96px -96px; } }
 
-    /* the sun down here is an eye */
-    .eye-sun {
-      position: absolute;
-      z-index: -1;
-      width: min(520px, 80vw);
-      top: -8%;
-      left: 50%;
-      translate: -50% 0;
-      opacity: .17;
-      mix-blend-mode: screen;
-      filter: blur(1px) saturate(1.4);
-      animation: blink 9s 2s infinite;
-    }
-
     .hell-title {
       font-size: clamp(2.8rem, 10vw, 6rem);
       text-shadow: .06em .07em 0 var(--blood), 0 0 .35em rgba(255, 138, 31, .75);
@@ -224,7 +210,6 @@
 
 <main>
   <section class="inferno">
-    <img class="eye-sun" src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />
 
     <h1 class="yolk-title hell-title">Tuba's Corner</h1>
     <p class="pop">population: one cat</p>
