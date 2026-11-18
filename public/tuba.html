@@ -66,7 +66,7 @@
     }
     .thought { align-self: center; margin-bottom: 18%; text-align: center; }
     .bubble {
-      padding: 1.7rem 1.8rem 1.5rem;
+      padding: 3.3rem 2.8rem 1.7rem; /* the oval bulges low (and its shadow sits below), so the words sit a little low to look centred */
       color: var(--ink);
       background: var(--butter);
       border: var(--line) solid var(--edge);
@@ -74,7 +74,7 @@
       box-shadow: 6px 6px 0 var(--magenta);
       rotate: -3deg;
     }
-    .bubble p { font-weight: 700; font-size: clamp(.98rem, 1.9vw, 1.12rem); line-height: 1.45; }
+    .bubble p { font-weight: 700; font-size: clamp(.82rem, 1.5vw, .92rem); line-height: 1.45; }
     .bubble cite {
       display: block;
       margin-top: .7rem;
@@ -210,7 +210,7 @@
       <div class="thought">
         <blockquote class="bubble">
           <p>&ldquo;Where were you when I laid the foundations of the earth? Tell me, if you have understanding.&rdquo;</p>
-          <cite>&mdash; God to Job, Job 38:4</cite>
+          <cite>&mdash; Job 38:4</cite>
         </blockquote>
         <div class="dots" aria-hidden="true"><span></span><span></span></div>
       </div>
