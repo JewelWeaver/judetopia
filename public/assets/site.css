@@ -138,16 +138,16 @@ main { flex: 1; overflow-x: clip; }
   display: inline-flex;
   align-items: center;
   font-family: var(--f-loud);
-  font-size: 2rem;
+  font-size: 2.75rem; /* letters about as tall as the eye's ring */
   line-height: 1;
   text-decoration: none;
   color: var(--on-desk);
   text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green);
 }
 .logo img {
-  height: 1.25em;
+  height: 40px; /* the eye stays this size whatever the letters do */
   width: auto;
-  margin: -.2em .02em 0;
+  margin: -6px 1px 0;
   transition: transform .4s cubic-bezier(.3, 1.6, .5, 1);
 }
 .logo:hover img { transform: rotate(-18deg) scale(1.12); }
