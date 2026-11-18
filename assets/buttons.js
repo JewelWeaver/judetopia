@@ -1,8 +1,8 @@
 // Button eyes: a side quest. They're sewn onto every page; click one to collect it.
 (() => {
-  // Set to a function returning each image's path once the art is in; null draws a stand-in button.
-  const COUNT = 41;
-  const art = () => null;
+  // One photo per button (assets/img/buttons/eye-01…42.webp); return null to draw a stand-in instead.
+  const COUNT = 42;
+  const art = i => `assets/img/buttons/eye-${String(i + 1).padStart(2, '0')}.webp`;
 
   const PAGES = {
     home: { name: 'Home', href: 'index.html' },

@@ -118,7 +118,9 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      margin-bottom: clamp(30px, 6vw, 70px);
+      height: auto;
+      /* the photo is cropped at the bottom: sit it low so the flames cover the cut */
+      margin-bottom: 6px;
       filter: drop-shadow(0 0 26px rgba(255, 106, 42, .55));
       animation: bob 4s ease-in-out infinite;
     }
@@ -126,13 +128,13 @@
     .halo {
       position: absolute;
       z-index: 2;
-      left: 30%;
-      top: 0;
-      width: 40%;
+      left: 27%;
+      top: -1%;
+      width: 31%;
       aspect-ratio: 3 / 1;
       border: 5px solid var(--yolk);
       border-radius: 50%;
-      rotate: -10deg;
+      rotate: -16deg;
       box-shadow: 0 0 12px 3px var(--ember), inset 0 0 10px 2px var(--ember);
       animation: bob 4s ease-in-out infinite, halo-burn .9s ease-in-out infinite alternate;
     }
@@ -141,9 +143,9 @@
     .lure {
       position: absolute;
       z-index: 3;
-      right: 0;
-      top: -10%;
-      width: 22%;
+      right: -4%;
+      top: -9%;
+      width: 20%;
       transform-origin: 50% -200px;
       animation: dangle 3.2s ease-in-out infinite;
     }
@@ -239,7 +241,7 @@
       <div class="tuba-spot">
         <img class="lure" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
         <span class="halo" aria-hidden="true"></span>
-        <img class="tuba" src="assets/img/tuba.svg" alt="Tuba the cat, wearing a flaming halo, reaching for an eyeball dangling just out of reach." width="160" height="170" />
+        <img class="tuba" src="assets/img/tuba-photo.webp" alt="Tuba, a fluffy black cat, wearing a flaming halo and reaching one paw up toward an eyeball dangling just out of reach." width="900" height="816" />
       </div>
     </div>
 
