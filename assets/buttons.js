@@ -1,4 +1,4 @@
-// Button eyes: a side quest. They're sewn onto every page; click one to collect it.
+// Button eyes: a side quest. They're scattered across every page; click one to collect it.
 (() => {
   // One photo per button (assets/img/buttons/eye-01…23.webp are in play); return null to draw a stand-in instead.
   const COUNT = 23;
@@ -9,17 +9,21 @@
     zines: { name: 'Joodlebug Ink', href: 'zines.html' },
     tuba: { name: "Tuba's Corner", href: 'tuba.html' },
     bug: { name: 'Featured Bug', href: 'bug.html' },
+    artifacts: { name: 'Artifacts', href: 'artifacts.html' },
   };
 
   // [selector, nth match, x, y] — x/y are fractions of that element's box
   const SPOTS = {
     zines: [
-      ['.shelf li', 0, -.35, .5], ['.product', 0, .82, .9], ['#alien-mode .blurb h2', 0, -.06, .35], ['#alien-mode', 0, .92, .1],
-      ['#emergence .pages', 0, .95, .06], ['.product', 2, .2, .92], ['.charms-top p', 0, 1.02, .5], ['#alien-mode .reader-ui', 0, .9, .5],
-      ['.etsy', 0, 1.12, .5], ['#emergence .blurb h2', 0, 1.06, .6], ['.product', 4, .5, .2], ['.shelf li', 2, 1.3, .5],
-      ['.charms-logo', 0, .95, .12], ['.site-foot', 0, .14, .55], ['#alien-mode .pages', 0, .04, .96], ['.product', 1, .78, .1],
-      ['#emergence .reader-ui', 0, .1, .5], ['.foot-mark', 0, 1.05, .1], ['#alien-mode .blurb p', 0, 1.04, .5], ['.product', 3, .15, .5],
+      ['.shelf li', 0, -.35, .5], ['#alien-mode .blurb h2', 0, -.06, .35], ['#alien-mode', 0, .92, .1], ['#emergence .pages', 0, .95, .06],
+      ['#alien-mode .reader-ui', 0, .9, .5], ['#emergence .blurb h2', 0, 1.06, .6], ['.shelf li', 1, 1.3, .5], ['.site-foot', 0, .14, .55],
+      ['#alien-mode .pages', 0, .04, .96], ['#emergence .reader-ui', 0, .1, .5], ['.foot-mark', 0, 1.05, .1], ['#alien-mode .blurb p', 0, 1.04, .5],
       ['.site-foot', 0, .86, .3], ['.logo', 0, 1.06, .3],
+    ],
+    artifacts: [
+      ['.charms-logo', 0, .95, .12], ['.product', 0, .82, .9], ['.charms-top p', 0, 1.02, .5], ['.product', 2, .2, .92],
+      ['.etsy', 0, 1.12, .5], ['.product', 4, .5, .2], ['.charms-me', 0, -.12, .3], ['.product', 1, .78, .1],
+      ['.product', 3, .15, .5], ['.site-foot', 0, .8, .45], ['.logo', 0, 1.06, .3],
     ],
     tuba: [
       ['.hell-title', 0, .96, .25], ['.inferno', 0, .07, .55], ['.bubble', 0, .92, .04], ['.inferno', 0, .05, .3],
@@ -38,7 +42,7 @@
 
   // deal spots round-robin so every page gets its share
   const order = [];
-  const queues = ['zines', 'tuba', 'bug', 'home'].map(p => SPOTS[p].map(s => [p, ...s]));
+  const queues = ['zines', 'artifacts', 'tuba', 'bug', 'home'].map(p => SPOTS[p].map(s => [p, ...s]));
   while (queues.some(q => q.length)) queues.forEach(q => q.length && order.push(q.shift()));
   const buttons = order.slice(0, COUNT).map(([page, sel, nth, x, y], i) => ({ id: 'b' + i, i, page, sel, nth, x, y }));
 
@@ -118,7 +122,7 @@
     tin.setAttribute('aria-label', `Button eyes collected: ${n} of ${buttons.length}. Open collection.`);
     $('.be-sum').textContent = n === buttons.length
       ? 'Every button eye found. Tuba-approved.'
-      : `${n} of ${buttons.length} found. They're sewn on all over the site.`;
+      : `${n} of ${buttons.length} found. They're scattered all over the site.`;
     $('.be-where').innerHTML = Object.entries(PAGES).map(([key, p]) => {
       const all = buttons.filter(b => b.page === key);
       const mine = all.filter(b => got.has(b.id)).length;
@@ -212,7 +216,7 @@
       node.remove();
       tin.animate([{ scale: 1 }, { scale: 1.25 }, { scale: 1 }], { duration: 320, easing: 'ease-out' });
       if (got.size === buttons.length) finish();
-      else if (first) say(`You found a button eye! ${buttons.length - 1} more are sewn on around the site.`, 5200);
+      else if (first) say(`You found a button eye! ${buttons.length - 1} more are scattered around the site.`, 5200);
     };
     node.disabled = true;
     if (still) return land();
