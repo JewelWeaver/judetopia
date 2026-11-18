@@ -64,8 +64,10 @@
       list-style: none;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+      grid-auto-rows: 1fr; /* every card as tall as the tallest */
       gap: 1.3rem;
     }
+    .archive > li:not(.scrap) { display: grid; } /* the linked card fills its cell too */
     .scrap {
       padding: 1.2rem 1.3rem 1.1rem;
       overflow: hidden;
@@ -81,8 +83,7 @@
     .scrap .credit { margin-top: .7rem; }
 
     /* the one that ran in the zine */
-    .scrap.from-zine { display: grid; grid-template-columns: 74px 1fr; gap: 1rem; align-items: center; text-decoration: none; }
-    .scrap.from-zine img { width: 74px; border: var(--line-thin) solid var(--ink); border-radius: 6px; rotate: -4deg; }
+    .scrap.from-zine { display: block; text-decoration: none; }
     .scrap.from-zine .a-date { color: var(--magenta); }
 
     @media (max-width: 760px) {
@@ -107,7 +108,6 @@
 <main class="wrap">
   <header class="page-head">
     <h1 class="yolk-title">Bug of the Week</h1>
-    <p>Every week, a different tiny creature gets their moment in the sun.</p>
   </header>
 
   <article class="feature paper shadowed boxed" style="--stock: var(--sky)">
@@ -130,12 +130,10 @@
   <h2 class="thin archive-label">previous bugs</h2>
   <ul class="archive">
     <li><a class="scrap paper boxed from-zine" style="--stock: var(--powder)" href="zines.html#alien-mode">
-      <img src="assets/img/zines/alien-mode/p5.webp" alt="" width="640" height="998" loading="lazy" />
-      <div>
-        <p class="a-name">Jade Faced Buffalo Beetle</p>
-        <p class="a-sci">Tilt the beetle, change the beetle.</p>
-        <p class="a-date">Bug of the Month &middot; Alien Mode vol. 1 &rarr;</p>
-      </div>
+      <div class="a-photo"><img src="assets/img/bugs/jade-faced-buffalo-beetle.webp" alt="A drawing of the Jade Faced Buffalo Beetle from Alien Mode: an orange shell, a green head and branching antlers." width="520" height="347" loading="lazy" /></div>
+      <p class="a-name">Jade Faced Buffalo Beetle</p>
+      <p class="a-sci">Tilt the beetle, change the beetle.</p>
+      <p class="a-date">Bug of the Month &middot; Alien Mode vol. 1 &rarr;</p>
     </a></li>
     <li class="scrap paper boxed" style="--stock: var(--salmon)">
       <div class="a-photo"><img src="assets/img/bugs/rosy-maple-moth.webp" alt="A fuzzy rosy maple moth, pink wings and a yellow body, perched on a twig." width="520" height="326" loading="lazy" /></div>

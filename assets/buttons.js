@@ -14,9 +14,9 @@
   // [selector, nth match, x, y] — x/y are fractions of that element's box
   const SPOTS = {
     zines: [
-      ['.page-head h1', 0, .98, .2], ['.product', 0, .82, .9], ['#alien-mode .blurb h2', 0, -.06, .35], ['.head-gecko', 0, .3, .75],
+      ['.shelf li', 0, -.35, .5], ['.product', 0, .82, .9], ['#alien-mode .blurb h2', 0, -.06, .35], ['#alien-mode', 0, .92, .1],
       ['#emergence .pages', 0, .95, .06], ['.product', 2, .2, .92], ['.charms-top p', 1, 1.02, .5], ['#alien-mode .reader-ui', 0, .9, .5],
-      ['.etsy', 0, 1.12, .5], ['#emergence .blurb h2', 0, 1.06, .6], ['.product', 4, .5, .2], ['.shelf', 0, 1.02, .5],
+      ['.etsy', 0, 1.12, .5], ['#emergence .blurb h2', 0, 1.06, .6], ['.product', 4, .5, .2], ['.shelf li', 2, 1.3, .5],
       ['.charms-logo', 0, .95, .12], ['.site-foot', 0, .14, .55], ['#alien-mode .pages', 0, .04, .96], ['.product', 1, .78, .1],
       ['#emergence .reader-ui', 0, .1, .5], ['.foot-mark', 0, 1.05, .1], ['#alien-mode .blurb p', 0, 1.04, .5], ['.product', 3, .15, .5],
       ['.site-foot', 0, .86, .3], ['.logo', 0, 1.06, .3],
@@ -29,7 +29,7 @@
     bug: [
       ['.page-head h1', 0, .99, .12], ['.feature', 0, .03, .05], ['.scrap', 0, .9, .15], ['.fact', 0, .96, .88],
       ['.beetle', 0, .86, .22], ['.scrap', 2, .9, .62], ['.feature', 0, .97, .95], ['.archive-label', 0, .35, .5],
-      ['.scrap', 1, .92, .58], ['.scrap', 3, .9, .2], ['.page-head p', 0, .7, 1.25], ['.site-foot', 0, .2, .6],
+      ['.scrap', 1, .92, .58], ['.scrap', 3, .9, .2], ['.feature', 0, .5, -.05], ['.site-foot', 0, .2, .6],
     ],
     home: [
       ['.stage', 0, .12, .2], ['.stage', 0, .87, .3], ['.stage', 0, .18, .8], ['.stage', 0, .9, .86],

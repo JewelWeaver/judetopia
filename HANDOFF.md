@@ -46,13 +46,10 @@ How the game works:
 - Merge to `main` / go live?
 
 ## Zine page sources (in case pages need re-cutting)
-- **Alien Mode**: from `AlienMode_issue01_LETTER_print.pdf`, an 8-panel imposition (4×2, top row upside down).
-  - Page order by tile (row-major, `r` = rotate 180): `0r 4 5 6 7 3r 2r 1r`.
-  - `p1` (cover) is cropped from a 300dpi render to remove the empty band above the title, so it is shorter than the other pages.
-- **Emergence**:
-  - Pages 1–5 come from the owner's per-page PDFs (`Emergence_vol1_01…05`, A6).
-  - Pages 6–8 come from `emergencevol1.psd` (same 4×2 imposition, tile order `7 3r 2r 1r 0r 4 5 6`).
-  - If new PDFs for pages 6–8 turn up, swap them in the same way.
+Both zines come from the owner's per-page PDFs in `~/Joodlebug Ink/zines/Zine_individual_pages/`:
+- **Alien Mode**: `AlienMode_issue01_individual_pages/AlienMode_issue01_0N_*.pdf`. All 8 pages are the same size (1240×1500 at 300 dpi), saved as 640×774 webp.
+- **Emergence**: `Emergence_vol1_individual_pages/Emergence_vol1_0N_*.pdf`. They're A6 (1240×1754 at 300 dpi), saved as 640×907 webp. These PDFs have a 1px black trim line on the right and bottom edges, so shave 4px off each side before resizing.
+- Render with `gs -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=out.png in.pdf`, then `convert out.png [-shave 4x4 +repage] -resize 640x -strip -quality 76 pN.webp`.
 - Every zine page `<img>` in `zines.html` has full alt text (the poem text for Emergence). Update it if a page changes.
 
 ## Checking changes
