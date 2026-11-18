@@ -14,6 +14,8 @@
     /* market and product photos share one thick black frame */
     :root { --photo-line: clamp(4px, .9vw, 8px); }
     /* ---------- third eye charms ---------- */
+    .page-head { padding: 1.6rem 0 .4rem; text-align: center; }
+    .page-head h1 { font-size: var(--title-size); }
     .charms { padding: .6rem 0 1rem; }
     .charms-top {
       display: grid;
@@ -104,7 +106,9 @@
 </header>
 
 <main class="wrap">
-  <h1 class="sr-only">Artifacts</h1>
+  <header class="page-head">
+    <h1 class="yolk-title">Eye Candy</h1>
+  </header>
   <section class="charms" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
       <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="600" height="600" /></h2>
