@@ -33,7 +33,7 @@
     /* ---------- one zine: a short blurb, then the booklet ---------- */
     .zine {
       padding: 3.5rem 0;
-      border-top: 2px dashed rgba(196, 179, 209, .2);
+      border-top: var(--rule);
       scroll-margin-top: 1rem;
     }
     .blurb { text-align: center; margin: 0 auto 2rem; max-width: 34rem; }
@@ -109,7 +109,7 @@
       color: var(--ink);
       background: var(--accent-stock);
       border-radius: 50% 46% 52% 48% / 48% 52% 46% 50%;
-      border: 2px solid var(--ink);
+      border: var(--line-thin) solid var(--ink);
       box-shadow: 3px 3px 0 var(--ink);
       transition: translate .15s, box-shadow .15s, opacity .2s;
     }
@@ -118,120 +118,68 @@
     .count { min-width: 11ch; text-align: center; font-weight: 700; color: var(--on-desk-soft); font-size: .9rem; }
 
     /* ---------- third eye charms ---------- */
-    .charms { padding: 4rem 0 1rem; border-top: 2px dashed rgba(196, 179, 209, .2); scroll-margin-top: 1rem; }
+    .charms { padding: 4rem 0 1rem; border-top: var(--rule); scroll-margin-top: 1rem; }
     .charms-top {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
+      justify-items: center;
+      text-align: center;
       margin-bottom: 3rem;
     }
-    .charms-top h2 { font-size: clamp(2.6rem, 6vw, 4.4rem); margin: .3rem 0 1rem; }
-    .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin-bottom: .8rem; }
-    .stamp {
-      display: inline-block;
-      margin-top: .6rem;
-      padding: .35rem .8rem;
+    .charms-top h2 { margin: 0 0 1.4rem; }
+    .charms-logo {
+      display: block;
+      width: clamp(160px, 22vw, 220px);
+      height: auto;
+      border: 6px solid var(--hot);
+      border-radius: 50%;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
+    }
+    .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin: 0 auto .8rem; }
+    .etsy {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .9rem;
+      padding: .7rem 1.4rem;
       font-weight: 700;
-      font-size: .82rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--hot);
-      border: 3px double var(--hot);
-      rotate: -4deg;
-      opacity: .9;
-    }
-    .note {
-      position: relative;
-      padding: 2rem 1.7rem 1.6rem;
-      rotate: 2deg;
-    }
-    .note blockquote { font-weight: 700; font-size: 1.18rem; line-height: 1.4; margin-bottom: .8rem; }
-    .note cite { font-style: normal; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); font-weight: 700; }
-    .note .eye-sticker { position: absolute; width: 96px; right: -26px; bottom: -40px; rotate: 14deg; z-index: 6; }
-
-    .tags {
-      position: relative;
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(150px, 42vw), 1fr));
-      gap: 2.6rem 1.4rem;
-      padding-top: 1.6rem;
-    }
-    /* the string they hang from */
-    .tags::before {
-      content: '';
-      position: absolute;
-      left: -16px;
-      right: -16px;
-      top: 0;
-      height: 2px;
-      background: repeating-linear-gradient(90deg, var(--on-desk-soft) 0 6px, transparent 6px 9px);
-      opacity: .45;
-    }
-    /* li = the hanging tag (string + swing), .tag-face = the cut card */
-    .tag {
-      position: relative;
-      rotate: var(--r, -1.5deg);
-      transform-origin: 50% -1.6rem;
-      transition: rotate .4s cubic-bezier(.3, 1.6, .5, 1);
-    }
-    .tag:nth-child(2n) { --r: 1.8deg; }
-    .tag:nth-child(3n) { --r: -.6deg; }
-    .tag:hover { rotate: calc(var(--r) * -2); }
-    .tag::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: -1.6rem;
-      width: 2px;
-      height: calc(1.6rem + 17px);
-      background: var(--on-desk-soft);
-      opacity: .5;
-      z-index: 1;
-    }
-    .tag-face {
-      height: 100%;
-      padding: 2.6rem 1.2rem 1.4rem;
-      clip-path: polygon(16% 0, 84% 0, 100% 11%, 100% 100%, 0 100%, 0 11%);
-      background-image: radial-gradient(circle at 50% 17px, var(--desk) 0 7px, transparent 8px);
-    }
-    .charm-art { height: 120px; position: relative; display: grid; place-items: center; margin-bottom: 1rem; }
-    .charm-eye::before { content: ''; width: 92px; height: 52px; border: 4px solid var(--violet); border-radius: 50%; }
-    .charm-eye::after { content: ''; position: absolute; width: 26px; height: 26px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 0 6px var(--hot); }
-    .charm-moon::before { content: ''; width: 76px; height: 76px; border-radius: 50%; box-shadow: inset -18px 6px 0 var(--violet); rotate: -20deg; }
-    .charm-leaf::before { content: ''; width: 54px; height: 82px; background: var(--green); border-radius: 50% 6% 50% 6%; rotate: 32deg; box-shadow: inset 0 0 0 3px #1f6f2c; }
-    .charm-star::before { content: '\2736'; font-size: 5rem; line-height: 1; color: var(--magenta); }
-    .tag h3 { font-family: var(--f-loud); font-weight: 400; font-size: 1.35rem; text-transform: uppercase; letter-spacing: .02em; margin-bottom: .35rem; }
-    .tag p { font-size: .86rem; line-height: 1.5; }
-    .badge {
-      display: inline-block;
-      margin-top: .8rem;
-      padding: .15rem .55rem;
-      font-size: .7rem;
-      font-weight: 700;
+      font-size: .9rem;
       letter-spacing: .1em;
       text-transform: uppercase;
+      text-decoration: none;
       color: var(--ink);
-      border: 1.5px solid var(--ink);
-      background: rgba(255,255,255,.45);
+      background: var(--yolk);
+      border: var(--line-thin) solid var(--ink);
+      border-radius: 999px;
+      box-shadow: 4px 4px 0 var(--magenta);
+      transition: transform .2s, box-shadow .2s;
     }
-    .tag.empty .tag-face {
-      background: transparent;
-      outline: 2px dashed rgba(196, 179, 209, .45);
-      outline-offset: -2px;
-      color: var(--on-desk-soft);
+    .etsy:hover, .etsy:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--magenta); }
+    .products {
+      list-style: none;
       display: grid;
-      place-items: center;
-      text-align: center;
-      min-height: 280px;
+      grid-template-columns: repeat(auto-fill, minmax(min(165px, 42vw), 1fr));
+      gap: 1.4rem;
     }
-    .tag.empty .plus { font-size: 2.4rem; color: var(--yolk); display: block; }
+    .product {
+      padding: .7rem .7rem .9rem;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
+      transition: translate .2s, box-shadow .2s;
+    }
+    .product:hover { translate: -2px -3px; box-shadow: 7px 8px 0 rgba(0, 0, 0, .45); }
+    .product img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: var(--line-thin) solid var(--ink);
+      border-radius: 12px;
+      margin-bottom: .75rem;
+    }
+    .product h3 { font-family: var(--f-loud); font-weight: 400; font-size: 1.1rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
 
     @media (max-width: 860px) {
-      .charms-top { grid-template-columns: 1fr; }
       .head-gecko { width: 140px; top: auto; bottom: -6px; right: -6px; opacity: .9; }
-      .note .eye-sticker { right: -8px; }
     }
   </style>
 </head>
@@ -318,26 +266,19 @@
   <!-- ===== Third Eye Charms ===== -->
   <section class="charms" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
-      <div>
-        <p class="thin">also from the studio</p>
-        <h2 id="charms-title" class="loud riso-light">Third Eye Charms</h2>
-        <p>Handmade charms and wearable art rooted in intuition, protection, and the belief that beauty is something everyone deserves access to.</p>
-        <p>Each piece is made with intention and a whole lot of care. Find Third Eye Charms on Etsy, at local markets, and right here when the shop goes live.</p>
-        <span class="stamp">shop opening soon</span>
-      </div>
-      <figure class="note paper shadowed" style="--stock: var(--butter)">
-        <blockquote>&ldquo;Wear what makes you feel like yourself &mdash; even if that's a tiny eye watching over you.&rdquo;</blockquote>
-        <figcaption><cite>&mdash; Third Eye Charms</cite></figcaption>
-        <img class="eye-sticker sticker" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
-      </figure>
+      <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="400" height="400" /></h2>
+      <p>Button eyes: stacked buttons, each with an eye peering out of the middle, made into bolo ties and framed shadow boxes.</p>
+      <p>Each piece is made with intention and a whole lot of care. Find Third Eye Charms on Etsy and at local markets.</p>
+      <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
     </div>
 
-    <ul class="tags">
-      <li class="tag"><div class="tag-face paper" style="--stock: var(--lilac)"><div class="charm-art charm-eye"></div><h3>The Watcher</h3><p>Evil eye protection charm in iridescent resin. Each one catches light differently.</p><span class="badge">Available</span></div></li>
-      <li class="tag"><div class="tag-face paper" style="--stock: var(--salmon)"><div class="charm-art charm-moon"></div><h3>Hearthlight</h3><p>Moon phase charm set. Soft, warm tones. Made to hang or wear.</p><span class="badge">Limited</span></div></li>
-      <li class="tag"><div class="tag-face paper" style="--stock: var(--mint)"><div class="charm-art charm-leaf"></div><h3>The Veilwalker</h3><p>Botanical pressed-flower charm sealed in clear resin. No two alike.</p><span class="badge">Made to Order</span></div></li>
-      <li class="tag"><div class="tag-face paper" style="--stock: var(--sky)"><div class="charm-art charm-star"></div><h3>Stardust</h3><p>Galaxy resin earrings. Lightweight, statement-making, galaxy-brained.</p><span class="badge">Available</span></div></li>
-      <li class="tag empty"><div class="tag-face"><p><span class="plus">+</span>Add your pieces here when you're ready!</p></div></li>
+    <ul class="products">
+      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
+      <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/bolo-rack.webp" alt="A rack of button-eye bolo ties with colorful beaded cords." width="560" height="560" loading="lazy" /><h3>The bolo rack</h3></li>
+      <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/box-red.webp" alt="A black shadow box filled with red and white button eyes." width="560" height="560" loading="lazy" /><h3>Red shadow box</h3></li>
+      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-blue.webp" alt="A black shadow box of blue and violet button eyes around a big pale one." width="560" height="560" loading="lazy" /><h3>Blue shadow box</h3></li>
+      <li class="product paper boxed" style="--stock: var(--mint)"><img src="assets/img/charms/box-rainbow.webp" alt="A shadow box packed with dozens of button eyes sorted in rainbow order." width="560" height="560" loading="lazy" /><h3>Rainbow shadow box</h3></li>
+      <li class="product paper boxed" style="--stock: var(--butter)"><img src="assets/img/charms/market.webp" alt="The Third Eye Charms booth at a market, with boards of button eyes and a rack of bolo ties." width="560" height="560" loading="lazy" /><h3>At the market</h3></li>
     </ul>
   </section>
 </main>
