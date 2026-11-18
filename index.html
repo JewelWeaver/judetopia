@@ -4,473 +4,317 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Judetopia</title>
+  <meta name="description" content="A corner of the internet for community, curiosity & cats. Zines, Tuba's Corner, and the Bug of the Week." />
+  <link rel="icon" href="assets/img/doodle-eye-spiral.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Special+Elite&family=Baloo+2:wght@400;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
-    :root {
-      --ink: #0A0010;
-      --ink-mid: #160028;
-      --ink-lite: #240040;
-      --magenta: #D4006A;
-      --fuchsia: #FF0F7F;
-      --purple: #6B1FA8;
-      --violet: #9340D8;
-      --lime: #A8FF3E;
-      --lavender: #C8A8E8;
-      --off-white: #F7F3FC;
-      --white: #FEFEFE;
-      --font-logo: 'Pacifico', cursive;
-      --font-label: 'Special Elite', monospace;
-      --font-head: 'Baloo 2', sans-serif;
-      --font-body: 'Nunito', sans-serif;
+    .hint {
+      text-align: center;
+      color: var(--on-desk-soft);
+      font-size: .9rem;
+      margin: .25rem 16px 1.6rem;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--ink);
-      color: var(--off-white);
-      overflow-x: hidden;
-      cursor: none;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a { text-decoration: none; color: inherit; }
+    .hint b { color: var(--yolk); font-weight: 700; }
 
-    /* EYE CURSOR */
-    .cursor {
-      width: 22px; height: 13px;
-      border: 2px solid var(--fuchsia);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .15s, height .15s, border-color .2s;
-    }
-    .cursor::after {
-      content: '';
-      position: absolute;
-      width: 7px; height: 7px;
-      background: var(--fuchsia);
-      border-radius: 50%;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      transition: background .2s, width .15s, height .15s;
-    }
-    .cursor.big { width: 36px; height: 22px; border-color: var(--lime); }
-    .cursor.big::after { background: var(--lime); width: 10px; height: 10px; }
-
-    /* NAV */
-    nav.topnav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10, 0, 16, 0.92);
-      backdrop-filter: blur(16px);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.7rem 1.75rem;
-      border-bottom: 2px solid var(--magenta);
-    }
-    .nav-logo {
-      font-family: var(--font-logo);
-      font-size: 1.7rem;
-      color: var(--fuchsia);
-      letter-spacing: .02em;
-      text-shadow: 2px 2px 0 var(--purple);
-    }
-    .nav-links { display: flex; gap: 0.4rem; list-style: none; align-items: center; }
-    .nav-links a {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: var(--lavender);
-      padding: 0.3rem 0.75rem;
-      border: 1.5px solid transparent;
-      border-radius: 4px;
-      transition: background .2s, color .2s, border-color .2s;
-      white-space: nowrap;
-      letter-spacing: .04em;
-    }
-    .nav-links a:hover, .nav-links a.active { background: var(--magenta); color: var(--white); border-color: var(--magenta); }
-    .nav-links a.zines { border-color: var(--magenta); color: var(--fuchsia); }
-    .nav-links a.zines:hover { background: var(--magenta); color: var(--white); }
-
-    @media(max-width:700px){
-      nav.topnav { padding: .6rem .9rem; }
-      .nav-logo { font-size: 1.3rem; }
-      .nav-links a { font-size: .7rem; padding: .25rem .5rem; }
-      .full-label { display: none; }
-      .short-label { display: inline; }
-    }
-    @media(min-width:701px){ .short-label { display: none; } .full-label { display: inline; } }
-
-    /* HERO */
-    .hero {
-      flex: 1;
+    /* ---- the unfolded sheet ---- */
+    .sheet {
       position: relative;
+      width: min(1180px, 100% - 32px);
+      margin: 0 auto 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      rotate: -.5deg;
+      box-shadow: 0 2px 0 rgba(0,0,0,.35), 0 50px 90px -30px rgba(0,0,0,.85);
+      animation: pop-in .7s ease both;
+    }
+    .sheet > .tape-strip:nth-of-type(1) { top: -12px; left: 6%; rotate: -4deg; }
+    .sheet > .tape-strip:nth-of-type(2) { top: -10px; right: 7%; rotate: 5deg; }
+    /* the one cut that turns a sheet into a booklet */
+    .cut {
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      width: 50%;
+      border-top: 2px solid var(--ink);
+      z-index: 6;
+      pointer-events: none;
+    }
+    .cut::before {
+      content: '\2702';
+      position: absolute;
+      left: -.2em;
+      top: -.72em;
+      font-size: 1.6rem;
+      color: var(--ink);
+      background: var(--lilac);
+      border-radius: 50%;
+      line-height: 1;
+      padding: 0 .1em;
+    }
+
+    .panel {
+      position: relative;
+      aspect-ratio: 11 / 17;
+      container-type: inline-size;
       overflow: hidden;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 5rem 1.5rem 4rem;
-      min-height: 82vh;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, #200040 0%, var(--ink) 70%);
-    }
-    .hero-doodle {
-      position: absolute;
-      pointer-events: none;
-      user-select: none;
-      opacity: 0.75;
-    }
-    .doodle-eye-spiral {
-      width: 240px;
-      top: 4%;
-      right: -2%;
-      animation: floatEyeSpiral 5s ease-in-out infinite;
-    }
-    .doodle-gecko {
-      width: 220px;
-      bottom: 6%;
-      left: -1%;
-      animation: floatGecko 6s 1s ease-in-out infinite;
-    }
-    .doodle-eye-stitch {
-      width: 150px;
-      bottom: 10%;
-      right: 3%;
-      animation: floatStitch 7s .5s ease-in-out infinite;
-      opacity: 0.6;
-    }
-    .doodle-figure {
-      width: 190px;
-      top: 5%;
-      left: 2%;
-      animation: floatFigure 8s .3s ease-in-out infinite;
-      opacity: 0.6;
-    }
-    @keyframes floatEyeSpiral {
-      0%, 100% { transform: rotate(12deg) translateY(0); }
-      50% { transform: rotate(12deg) translateY(-14px); }
-    }
-    @keyframes floatGecko {
-      0%, 100% { transform: rotate(-8deg) translateY(0); }
-      50% { transform: rotate(-8deg) translateY(-10px); }
-    }
-    @keyframes floatStitch {
-      0%, 100% { transform: rotate(5deg) translateY(0); }
-      50% { transform: rotate(5deg) translateY(-8px); }
-    }
-    @keyframes floatFigure {
-      0%, 100% { transform: rotate(-5deg) translateY(0); }
-      50% { transform: rotate(-5deg) translateY(-12px); }
-    }
-    .hero-inner {
-      position: relative; z-index: 2;
-      max-width: 740px;
-    }
-    .hero-eyebrow {
-      font-family: var(--font-label);
-      font-size: 1rem;
-      color: var(--lime);
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      display: block;
-      animation: fadeUp .6s ease both;
-    }
-    .hero-title {
-      font-family: var(--font-logo);
-      font-size: clamp(3.8rem, 14vw, 9rem);
-      line-height: 1;
-      color: var(--fuchsia);
-      text-shadow: 5px 5px 0 var(--purple), 9px 9px 0 rgba(107,31,168,.3);
-      margin-bottom: 1.75rem;
-      animation: fadeUp .7s .1s ease both;
-    }
-    .hero-links {
-      display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center;
-      animation: fadeUp .7s .2s ease both;
-    }
-    .hero-btn {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: .95rem;
-      padding: .6rem 1.5rem;
-      border-radius: 4px;
-      border: 2px solid transparent;
-      transition: transform .2s, box-shadow .2s, background .2s;
-      letter-spacing: .04em;
-    }
-    .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
-    .hero-btn.magenta { background: var(--magenta); color: var(--white); border-color: var(--magenta); }
-    .hero-btn.magenta:hover { background: var(--fuchsia); border-color: var(--fuchsia); }
-    .hero-btn.purple { background: transparent; color: var(--lavender); border-color: var(--violet); }
-    .hero-btn.purple:hover { background: var(--purple); color: var(--white); }
-    .hero-btn.lime { background: transparent; color: var(--lime); border-color: var(--lime); }
-    .hero-btn.lime:hover { background: var(--lime); color: var(--ink); }
-
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-    /* SECTION DIVIDER */
-    .divider {
-      height: 2px;
-      background: repeating-linear-gradient(90deg, var(--magenta) 0px, var(--magenta) 8px, transparent 8px, transparent 14px);
-      opacity: 0.35;
-    }
-
-    /* CARDS SECTION */
-    .cards-section {
-      padding: 4rem 1.5rem;
-      background: var(--ink-mid);
-    }
-    .cards-section .container { max-width: 1100px; margin: 0 auto; }
-    .cards-section h2 {
-      font-family: var(--font-label);
-      font-size: .78rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--magenta);
-      margin-bottom: 2rem;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .site-card {
-      background: var(--ink-lite);
-      border: 1.5px solid rgba(212,0,106,.3);
-      border-radius: 8px;
-      padding: 2rem;
-      display: flex;
       flex-direction: column;
-      gap: .75rem;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
+      padding: 9% 8%;
+      text-decoration: none;
+      border-right: 1.5px dashed rgba(27, 20, 32, .3);
+      transition: transform .35s cubic-bezier(.3, 1.4, .5, 1), box-shadow .35s;
+      --cap: 5.6cqi;
     }
-    .site-card:hover {
-      transform: translateY(-4px) rotate(.3deg);
-      border-color: var(--fuchsia);
-      box-shadow: 0 12px 36px rgba(212,0,106,.2);
+    .panel:nth-child(4n of .panel) { border-right: 0; }
+    .panel:nth-child(-n + 4 of .panel) { border-bottom: 1.5px dashed rgba(27, 20, 32, .3); }
+    a.panel:hover, a.panel:focus-visible {
+      transform: translateY(-12px) rotate(-1.4deg);
+      z-index: 7;
+      box-shadow: 0 30px 44px -18px rgba(0, 0, 0, .6);
+      outline-offset: -8px;
     }
-    .card-icon { width: 72px; height: 72px; display: block; }
-    .card-label {
-      font-family: var(--font-label);
-      font-size: .68rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--magenta);
-    }
-    .card-title {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: var(--off-white);
-      line-height: 1.2;
-    }
-    .card-desc {
-      font-size: .88rem;
-      line-height: 1.65;
-      color: var(--lavender);
-      flex: 1;
-    }
-    .card-link {
-      display: inline-block;
-      margin-top: .5rem;
-      font-family: var(--font-body);
+    .p-title { font-size: 15cqi; position: relative; z-index: 2; }
+    .cap {
+      position: relative;
+      z-index: 2;
+      font-size: var(--cap);
+      line-height: 1.35;
       font-weight: 700;
-      font-size: .82rem;
-      color: var(--fuchsia);
-      border-bottom: 1.5px solid var(--magenta);
-      padding-bottom: 1px;
-      transition: color .2s, border-color .2s;
-      letter-spacing: .04em;
     }
-    .card-link:hover { color: var(--white); border-color: var(--white); }
+    .go::after { content: '\2192'; display: inline-block; margin-left: .45em; transition: translate .25s; }
+    a.panel:hover .go::after { translate: 4px 0; }
 
-    /* FOOTER */
-    footer {
-      background: var(--ink);
-      border-top: 2px solid var(--magenta);
-      padding: 2rem 1.75rem;
+    /* 1 — cover */
+    .p-cover .vol { font-size: 4.4cqi; letter-spacing: .3em; margin-bottom: 3cqi; }
+    .cover-title { font-size: 22cqi; position: relative; z-index: 2; }
+    .cover-title img {
+      display: inline-block;
+      height: 1.08em;
+      width: auto;
+      vertical-align: -.2em;
+      margin: 0 -.04em;
+      animation: blink 6s 2s infinite;
+    }
+    /* the scan has opaque paper scraps at its edges; fade them into the stock */
+    .cover-figure {
+      position: absolute;
+      width: 118%;
+      left: -9%;
+      bottom: -12%;
+      mix-blend-mode: multiply;
+      -webkit-mask-image: radial-gradient(ellipse 52% 62% at 50% 46%, #000 62%, transparent 100%);
+      mask-image: radial-gradient(ellipse 52% 62% at 50% 46%, #000 62%, transparent 100%);
+      z-index: 1;
+    }
+    .p-cover .cap {
+      position: absolute;
+      left: 7cqi;
+      right: 9cqi;
+      bottom: 9cqi;
+      padding: 3cqi 4cqi;
+      background: var(--butter);
+      rotate: -2deg;
+      box-shadow: 0 2px 6px rgba(0,0,0,.18);
+      font-weight: 400;
+    }
+
+    /* 2 — zines */
+    .mini-covers { position: relative; flex: 1; margin: 6cqi 0 4cqi; }
+    .mini-covers img {
+      position: absolute;
+      width: 54cqi;
+      border: 1.5cqi solid #fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,.3);
+      transition: rotate .35s, translate .35s;
+    }
+    .mini-covers .a { top: 0; left: 0; rotate: -7deg; }
+    .mini-covers .b { top: 16cqi; right: 0; rotate: 6deg; }
+    a.panel:hover .mini-covers .a { rotate: -13deg; translate: -3cqi -2cqi; }
+    a.panel:hover .mini-covers .b { rotate: 11deg; translate: 3cqi 2cqi; }
+
+    /* 3 — tuba */
+    .p-tuba .tuba { width: 72cqi; margin: auto auto 2cqi; animation: bob 4s ease-in-out infinite; }
+    .bubble {
+      position: absolute;
+      top: 44cqi;
+      right: 7cqi;
+      padding: 2.5cqi 5cqi;
+      font-size: 9cqi;
+      font-weight: 700;
+      color: var(--violet);
+      background: var(--butter);
+      border: .9cqi solid var(--violet);
+      border-radius: 55% 45% 50% 50% / 60% 55% 45% 40%;
+      rotate: 8deg;
+      z-index: 2;
+    }
+
+    /* 4 — bug */
+    .p-bug .p-title { font-size: 13.5cqi; }
+    .p-bug .beetle { width: 66cqi; margin: auto auto 3cqi; rotate: 14deg; transition: rotate .4s; }
+    a.p-bug:hover .beetle { rotate: -10deg; }
+    .bug-name { font-size: 7.4cqi; font-weight: 700; color: #1f6f2c; line-height: 1.2; position: relative; z-index: 2; }
+    .p-bug .cap { font-weight: 400; color: var(--navy); }
+
+    /* 5 — charms */
+    .p-charms { justify-content: flex-end; }
+    .p-charms .big-eye {
+      position: absolute;
+      width: 110cqi;
+      top: -16cqi;
+      left: -22cqi;
+      rotate: -8deg;
+      mix-blend-mode: multiply;
+      transition: rotate .5s;
+    }
+    a.p-charms:hover .big-eye { rotate: 4deg; }
+    .charm-title {
+      position: relative;
+      z-index: 2;
+      font-size: 11cqi;
+      line-height: 1.05;
+      font-weight: 700;
+      color: var(--magenta);
+      margin-bottom: 3cqi;
+    }
+
+    /* 6 — gecko (just visiting) */
+    .p-gecko .gecko {
+      position: absolute;
+      width: 118cqi;
+      left: -12cqi;
+      top: 52cqi;
+      rotate: -62deg;
+      mix-blend-mode: multiply;
+      animation: crawl 5s ease-in-out infinite;
+    }
+    .p-gecko svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .p-gecko .cap {
+      margin-top: auto;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--navy);
+      font-size: 5cqi;
       text-align: center;
     }
-    .foot-logo {
-      font-family: var(--font-logo);
-      font-size: 2rem;
-      color: var(--fuchsia);
-      text-shadow: 3px 3px 0 var(--purple);
-      margin-bottom: .4rem;
+
+    /* 7 — gargoyle, white ink screened onto olive stock like the zine page */
+    .p-garg { padding: 0; }
+    .p-garg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 30%;
+      mix-blend-mode: screen;
     }
-    .foot-sub {
-      font-family: var(--font-label);
-      font-size: .75rem;
-      letter-spacing: .18em;
-      color: rgba(200,168,232,.35);
-      margin-bottom: 1.25rem;
-      text-transform: uppercase;
-    }
-    .foot-nav {
-      display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-      list-style: none;
-    }
-    .foot-nav a {
-      font-size: .78rem;
-      font-weight: 700;
-      color: rgba(200,168,232,.45);
-      padding: .25rem .75rem;
-      border: 1px solid rgba(200,168,232,.15);
-      border-radius: 4px;
-      transition: color .2s, border-color .2s;
-    }
-    .foot-nav a:hover { color: var(--fuchsia); border-color: var(--magenta); }
-    .foot-copy {
-      font-size: .68rem;
-      color: rgba(255,255,255,.12);
-      font-weight: 600;
+
+    /* 8 — back cover */
+    .p-back { align-items: center; justify-content: center; text-align: center; }
+    .p-back .stitch { width: 52cqi; margin-bottom: 9cqi; rotate: -6deg; animation: blink 5s infinite; }
+    .p-back .mark { width: 74cqi; margin-bottom: 7cqi; }
+    .p-back .cap { font-weight: 400; font-size: 5cqi; }
+
+    @media (max-width: 760px) {
+      .sheet { grid-template-columns: repeat(2, 1fr); rotate: 0deg; }
+      .cut { display: none; }
+      .panel { --cap: 7.4cqi; border-bottom: 1.5px dashed rgba(27, 20, 32, .3); }
+      .panel:nth-child(odd of .panel) { border-right: 1.5px dashed rgba(27, 20, 32, .3); }
+      .panel:nth-child(even of .panel) { border-right: 0; }
+      .panel:nth-child(n + 7 of .panel) { border-bottom: 0; }
+      .p-cover .cap { font-size: 6.6cqi; }
+      .p-back .cap, .p-gecko .cap { font-size: 6.4cqi; }
     }
   </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
 
-<nav class="topnav">
-  <a href="index.html" class="nav-logo">Judetopia</a>
-  <ul class="nav-links">
-    <li><a href="art.html" class="zines">Zines</a></li>
-    <li><a href="tuba.html">Tuba's Corner</a></li>
-    <li><a href="bug.html"><span class="full-label">Bug of the Week</span><span class="short-label">Bugs</span></a></li>
-  </ul>
-</nav>
+<header class="site-head">
+  <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />PIA</a>
+  <nav aria-label="Main">
+    <ul class="site-nav">
+      <li><a class="tape" href="zines.html">Zines</a></li>
+      <li><a class="tape" href="tuba.html"><span class="full">Tuba's Corner</span><span class="short">Tuba</span></a></li>
+      <li><a class="tape" href="bug.html"><span class="full">Bug of the Week</span><span class="short">Bugs</span></a></li>
+    </ul>
+  </nav>
+</header>
 
-<section class="hero">
-  <img class="hero-doodle doodle-eye-spiral" src="assets/img/doodle-eye-spiral.webp" alt="" aria-hidden="true" />
-  <img class="hero-doodle doodle-gecko" src="assets/img/doodle-gecko.webp" alt="" aria-hidden="true" />
-  <img class="hero-doodle doodle-eye-stitch" src="assets/img/doodle-eye-stitch.webp" alt="" aria-hidden="true" />
-  <img class="hero-doodle doodle-figure" src="assets/img/doodle-figure.webp" alt="" aria-hidden="true" />
+<main>
+  <p class="hint">this whole page is a zine. <b>pick a panel</b> to open it.</p>
 
-  <div class="hero-inner">
-    <span class="hero-eyebrow">goodboy.ink presents</span>
-    <h1 class="hero-title">Judetopia</h1>
-    <div class="hero-links">
-      <a href="art.html" class="hero-btn magenta">Zines</a>
-      <a href="tuba.html" class="hero-btn purple">Tuba's Corner</a>
-      <a href="bug.html" class="hero-btn lime">Bug of the Week</a>
+  <div class="sheet">
+    <span class="tape-strip"></span>
+    <span class="tape-strip"></span>
+    <span class="cut" aria-hidden="true"></span>
+
+    <!-- 1 · cover -->
+    <section class="panel paper p-cover" style="--stock: var(--lilac)">
+      <p class="thin vol">vol. &infin;</p>
+      <h1 class="loud riso cover-title" aria-label="Judetopia">
+        <span aria-hidden="true">Jude<br />T<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />pia</span>
+      </h1>
+      <img class="cover-figure" src="assets/img/doodle-figure.webp" alt="" width="800" height="924" />
+      <p class="cap">a corner of the internet for community, curiosity &amp; cats.</p>
+    </section>
+
+    <!-- 2 · zines -->
+    <a class="panel paper p-zines" style="--stock: var(--pink)" href="zines.html">
+      <h2 class="loud riso p-title">Zines</h2>
+      <div class="mini-covers">
+        <img class="a" src="assets/img/zines/alien-mode/p1.webp" alt="Alien Mode, vol. 1" width="640" height="998" />
+        <img class="b" src="assets/img/zines/emergence/p1.webp" alt="Emergence, vol. 1" width="640" height="911" />
+      </div>
+      <p class="cap go">read every page</p>
+    </a>
+
+    <!-- 3 · tuba -->
+    <a class="panel paper p-tuba" style="--stock: var(--mint)" href="tuba.html">
+      <h2 class="loud riso p-title">Tuba's<br />Corner</h2>
+      <span class="bubble" aria-hidden="true">&hellip;</span>
+      <img class="tuba" src="assets/img/tuba.svg" alt="" width="160" height="170" />
+      <p class="cap go">a word from the cat in charge</p>
+    </a>
+
+    <!-- 4 · bug -->
+    <a class="panel paper p-bug" style="--stock: var(--sky)" href="bug.html">
+      <h2 class="yolk-title p-title">Bug of the Week</h2>
+      <img class="beetle" src="assets/img/beetle.svg" alt="" width="120" height="120" />
+      <p class="bug-name">Dogbane Beetle</p>
+      <p class="cap go"><i>Chrysochus auratus</i></p>
+    </a>
+
+    <!-- 5 · charms -->
+    <a class="panel paper p-charms" style="--stock: var(--butter)" href="zines.html#charms">
+      <img class="big-eye" src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />
+      <h2 class="charm-title">Third Eye Charms</h2>
+      <p class="cap go">handmade charms &amp; wearable art</p>
+    </a>
+
+    <!-- 6 · gecko -->
+    <div class="panel paper p-gecko" style="--stock: var(--peach)">
+      <svg viewBox="0 0 110 170" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M14 160 C 30 130, 8 110, 34 92 S 70 70, 58 44 S 84 14, 100 6" fill="none" stroke="#1b1420" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0 6" opacity=".55" />
+      </svg>
+      <img class="gecko" src="assets/img/doodle-gecko.webp" alt="" width="1000" height="536" />
+      <p class="cap">just passing through</p>
+    </div>
+
+    <!-- 7 · gargoyle -->
+    <div class="panel paper p-garg" style="--stock: var(--olive)">
+      <img src="assets/img/doodle-gargoyle.jpg" alt="" width="818" height="1112" />
+    </div>
+
+    <!-- 8 · back cover -->
+    <div class="panel paper p-back" style="--stock: var(--aqua)">
+      <img class="stitch" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
+      <img class="mark" src="assets/img/brand-mark.png" alt="" width="520" height="329" />
+      <p class="cap">Made with care in Seattle.<br />Tuba-approved.</p>
     </div>
   </div>
-</section>
+</main>
 
-<div class="divider"></div>
-
-<section class="cards-section">
-  <div class="container">
-    <h2>Explore</h2>
-    <div class="card-grid">
-
-      <!-- Zines card -->
-      <a href="art.html" class="site-card">
-        <svg class="card-icon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="8" width="38" height="52" rx="3" fill="#240040" stroke="#D4006A" stroke-width="2"/>
-          <rect x="18" y="8" width="38" height="52" rx="3" fill="#160028" stroke="#9340D8" stroke-width="2"/>
-          <line x1="24" y1="24" x2="48" y2="24" stroke="#FF0F7F" stroke-width="2" stroke-linecap="round"/>
-          <line x1="24" y1="32" x2="48" y2="32" stroke="#FF0F7F" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-          <line x1="24" y1="39" x2="40" y2="39" stroke="#FF0F7F" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-          <ellipse cx="36" cy="17" rx="6" ry="4" fill="none" stroke="#A8FF3E" stroke-width="1.5"/>
-          <circle cx="36" cy="17" r="2" fill="#A8FF3E" opacity=".7"/>
-        </svg>
-        <span class="card-label">Printed Matter</span>
-        <p class="card-title">Zines</p>
-        <p class="card-desc">Hand-drawn, photocopied, printed with love. Alien Mode, Emergence, and Third Eye Charms.</p>
-        <span class="card-link">Browse Zines →</span>
-      </a>
-
-      <!-- Tuba card -->
-      <a href="tuba.html" class="site-card">
-        <svg class="card-icon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="hG2" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stop-color="#5c3418"/><stop offset="100%" stop-color="#100600"/>
-            </radialGradient>
-            <radialGradient id="eG2" cx="30%" cy="25%" r="70%">
-              <stop offset="0%" stop-color="#f0d050"/><stop offset="100%" stop-color="#504010"/>
-            </radialGradient>
-          </defs>
-          <polygon points="22,30 30,10 38,32" fill="#0e0600"/>
-          <polygon points="50,30 42,10 34,32" fill="#0e0600"/>
-          <circle cx="36" cy="44" r="22" fill="url(#hG2)"/>
-          <ellipse cx="28" cy="40" rx="6" ry="5" fill="url(#eG2)"/>
-          <ellipse cx="28" cy="40" rx="2.5" ry="4.5" fill="#120900"/>
-          <circle cx="27" cy="38" r="1.5" fill="rgba(255,255,255,.65)"/>
-          <ellipse cx="44" cy="40" rx="6" ry="5" fill="url(#eG2)"/>
-          <ellipse cx="44" cy="40" rx="2.5" ry="4.5" fill="#120900"/>
-          <circle cx="43" cy="38" r="1.5" fill="rgba(255,255,255,.65)"/>
-          <polygon points="34,52 36,52 35,56" fill="white" opacity=".95"/>
-          <polygon points="37,52 40,52 39.5,57" fill="white" opacity=".6"/>
-        </svg>
-        <span class="card-label">The Cat</span>
-        <p class="card-title">Tuba's Corner</p>
-        <p class="card-desc">Dispatches from the loudest, most opinionated cat in Seattle.</p>
-        <span class="card-link">Visit the Corner →</span>
-      </a>
-
-      <!-- Bug card -->
-      <a href="bug.html" class="site-card">
-        <svg class="card-icon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="sG2" cx="40%" cy="35%" r="60%">
-              <stop offset="0%" stop-color="#D4006A"/><stop offset="100%" stop-color="#6B1FA8"/>
-            </radialGradient>
-          </defs>
-          <line x1="28" y1="18" x2="16" y2="6" stroke="#9340D8" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="16" cy="6" r="1.5" fill="#9340D8"/>
-          <line x1="44" y1="18" x2="56" y2="6" stroke="#9340D8" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="56" cy="6" r="1.5" fill="#9340D8"/>
-          <line x1="22" y1="36" x2="8" y2="30" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <line x1="21" y1="43" x2="6" y2="43" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <line x1="22" y1="50" x2="8" y2="58" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <line x1="50" y1="36" x2="64" y2="30" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <line x1="51" y1="43" x2="66" y2="43" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <line x1="50" y1="50" x2="64" y2="58" stroke="#6B1FA8" stroke-width="2" stroke-linecap="round"/>
-          <ellipse cx="36" cy="43" rx="14" ry="20" fill="url(#sG2)"/>
-          <line x1="36" y1="24" x2="36" y2="62" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
-          <ellipse cx="36" cy="22" rx="9" ry="7" fill="#9340D8"/>
-          <circle cx="31" cy="20" r="2" fill="#0A0010"/>
-          <circle cx="41" cy="20" r="2" fill="#0A0010"/>
-          <circle cx="30" cy="19" r=".8" fill="rgba(255,255,255,.5)"/>
-          <circle cx="40" cy="19" r=".8" fill="rgba(255,255,255,.5)"/>
-        </svg>
-        <span class="card-label">Weekly</span>
-        <p class="card-title">Bug of the Week</p>
-        <p class="card-desc">Every week a different tiny creature gets their moment in the spotlight.</p>
-        <span class="card-link">Meet the Bug →</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p class="foot-logo">Judetopia</p>
-  <p class="foot-sub">goodboy.ink &mdash; Seattle</p>
-  <ul class="foot-nav">
-    <li><a href="art.html">Zines</a></li>
-    <li><a href="bug.html">Bug of the Week</a></li>
-    <li><a href="tuba.html">Tuba's Corner</a></li>
-  </ul>
-  <p class="foot-copy">Made with care in Seattle. Tuba-approved.</p>
-</footer>
-
-<script>
-  const cur = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-  });
-</script>
 </body>
 </html>

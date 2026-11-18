@@ -4,270 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tuba's Corner — Judetopia</title>
+  <meta name="description" content="A word from Tuba, the cat in charge." />
+  <link rel="icon" href="assets/img/doodle-eye-spiral.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comfortaa:wght@700&family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
-    :root { color-scheme: light; 
-      --lavender:#BDA7D1; --lav-deep:#9B82B8; --lav-light:#EDE6F5; --lav-pale:#F7F3FC;
-      --sage:#74BF92; --sage-deep:#4EA070; --sage-light:#C5E8D2; --sage-pale:#F0FAF4;
-      --navy:#00127A; --periwinkle:#4E5AE4; --ice:#D9E3E8; --white:#FEFEFE;
-      --text-dark:#1A1035; --text-mid:#5A4E6E; --text-soft:#8B7FA0;
-      --font-logo:'Pacifico',cursive; --font-hero:'Comfortaa',cursive;
-      --font-head:'Baloo 2',sans-serif; --font-body:'Nunito',sans-serif;
-      --radius:20px; --radius-sm:12px;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    html{background:#F7F3FC;}
-    body{font-family:var(--font-body);background:#F7F3FC;color:var(--text-dark);overflow-x:hidden;cursor:none;display:flex;flex-direction:column;min-height:100vh;}
-    a{text-decoration:none;color:inherit;}
-    .cursor{width:18px;height:18px;background:var(--lavender);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .2s;mix-blend-mode:multiply;}
-    .cursor.big{width:36px;height:36px;background:var(--sage);}
-
-    /* NAV */
-    nav.topnav{position:sticky;top:0;z-index:100;background:rgba(247,243,252,0.96);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1.5rem;border-bottom:4px solid var(--navy);flex-wrap:nowrap;gap:1rem;}
-    .topnav .nav-logo{font-family:var(--font-hero);font-size:1.85rem;color:var(--sage);white-space:nowrap;font-weight:700;-webkit-text-stroke:1.5px var(--sage);}
-    .topnav .nav-links{display:flex;gap:0.1rem;list-style:none;flex-wrap:nowrap;}
-    .topnav .nav-links a{font-family:var(--font-body);font-weight:700;font-size:0.76rem;color:var(--text-mid);padding:0.35rem 0.6rem;border-radius:999px;transition:background .2s,color .2s;white-space:nowrap;}
-    .topnav .nav-links a:hover,.topnav .nav-links a.active{background:var(--lavender);color:var(--white);}
-    @media(max-width:700px){
-      nav.topnav{padding:.6rem .75rem;}
-      .topnav .nav-links a{font-size:.68rem;padding:.28rem .42rem;}
-      .topnav .nav-logo{font-size:1.45rem;}
-      .full-label{display:none;}.short-label{display:inline;}
-    }
-    @media(min-width:701px){.short-label{display:none;}.full-label{display:inline;}}
-
-    /* MAIN LAYOUT */
-    .tuba-page { background:#F7F3FC;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    .corner {
+      width: min(860px, 100%);
+      margin: 1rem auto 0;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3.5rem) clamp(4.5rem, 10vw, 6rem);
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
       align-items: center;
-      justify-content: center;
-      padding: 2rem 1.5rem;
-      gap: 0.25rem;
-      max-height: 80vh;
+      gap: 1.5rem 2.5rem;
+      rotate: -.6deg;
+      animation: pop-in .6s ease both;
     }
+    .corner > .tape-strip:nth-of-type(1) { top: -12px; left: 10%; rotate: -5deg; }
+    .corner > .tape-strip:nth-of-type(2) { top: -12px; right: 10%; rotate: 4deg; }
+    .corner h1 { grid-column: 1 / -1; font-size: clamp(2.8rem, 9vw, 5.2rem); }
+    .tuba { width: min(100%, 260px); margin-inline: auto; animation: bob 4s ease-in-out infinite; position: relative; z-index: 2; }
 
-    .page-title {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--text-dark);
+    /* thought bubble, drawn like the speech bubble on the Alien Mode cover */
+    .thought { position: relative; z-index: 2; }
+    .dots { position: absolute; left: -2.2rem; bottom: 1.2rem; }
+    .dots span {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--butter);
+      border: 3px solid var(--violet);
+    }
+    .dots span:nth-child(1) { width: 12px; height: 12px; left: -1.6rem; top: 1.4rem; }
+    .dots span:nth-child(2) { width: 20px; height: 20px; left: -.4rem; top: 0; }
+    .bubble {
+      padding: 1.8rem 1.9rem 1.6rem;
+      background: var(--butter);
+      border: 3px solid var(--violet);
+      border-radius: 58% 42% 52% 48% / 46% 56% 44% 54%;
+      box-shadow: 6px 6px 0 var(--magenta);
       text-align: center;
-      margin-bottom: 0.5rem;
+      rotate: 2deg;
     }
-
-    /* TUBA SVG */
-    .tuba-float {
-      width: 155px;
-      height: 165px;
-      animation: floatY 4s ease-in-out infinite;
-      filter: drop-shadow(0 8px 24px rgba(155,130,184,0.4));
+    .bubble p { font-weight: 700; font-size: clamp(1rem, 2.2vw, 1.2rem); line-height: 1.45; }
+    .bubble cite {
       display: block;
-    }
-
-    /* THOUGHT BUBBLE */
-    .thought-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      margin-top: 0.25rem;
-    }
-    .thought-dot { background: var(--white); border-radius: 50%; border: 2px solid var(--lavender); }
-    .thought-dot.d1 { width: 8px;  height: 8px; }
-    .thought-dot.d2 { width: 13px; height: 13px; }
-    .thought-dot.d3 { width: 18px; height: 18px; }
-    .thought-bubble {
-      background: var(--white);
-      border: 2.5px solid var(--lavender);
-      border-radius: 24px;
-      padding: 1.1rem 1.4rem;
-      max-width: 320px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(189,167,209,0.2);
-    }
-    .thought-bubble p {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: var(--text-dark);
-      font-style: italic;
-    }
-    .thought-bubble cite {
-      display: block;
-      margin-top: 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--lav-deep);
+      margin-top: .8rem;
       font-style: normal;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--magenta);
     }
 
-    /* FOOTER */
-    footer{background:var(--navy);padding:1.25rem 2rem;text-align:center;border-top:3px solid var(--lavender);}
-    .foot-copy{font-size:.72rem;color:rgba(255,255,255,.18);font-weight:500;}
+    .visitor {
+      position: absolute;
+      width: clamp(150px, 26vw, 230px);
+      right: 6%;
+      bottom: -6px;
+      rotate: 178deg;
+      scale: 1 -1;
+      mix-blend-mode: multiply;
+      animation: crawl 5s ease-in-out infinite;
+      z-index: 1;
+    }
+    .watcher {
+      position: absolute;
+      width: clamp(70px, 11vw, 104px);
+      top: 1.6rem;
+      right: 1.6rem;
+      rotate: 10deg;
+      animation: blink 5s 1s infinite;
+      z-index: 2;
+    }
 
-    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @media (max-width: 700px) {
+      .corner { grid-template-columns: 1fr; text-align: center; rotate: 0deg; }
+      .dots { left: 50%; top: -1.6rem; bottom: auto; }
+      .dots span:nth-child(1) { left: -.6rem; top: -1rem; }
+      .dots span:nth-child(2) { left: .4rem; top: .2rem; }
+      .watcher { top: auto; right: auto; bottom: 1.2rem; left: 1.2rem; }
+    }
   </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
 
-<nav class="topnav">
-  <a href="index.html" class="nav-logo">Judetopia</a>
-  <ul class="nav-links">
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="art.html">Art</a></li>
-    <li><a href="tuba.html" class="active">Tuba's Corner</a></li>
-    <li><a href="bug.html"><span class="full-label">Bug of the Week</span><span class="short-label">Bugs</span></a></li>
-  </ul>
-</nav>
+<header class="site-head">
+  <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />PIA</a>
+  <nav aria-label="Main">
+    <ul class="site-nav">
+      <li><a class="tape" href="zines.html">Zines</a></li>
+      <li><a class="tape" href="tuba.html" aria-current="page"><span class="full">Tuba's Corner</span><span class="short">Tuba</span></a></li>
+      <li><a class="tape" href="bug.html"><span class="full">Bug of the Week</span><span class="short">Bugs</span></a></li>
+    </ul>
+  </nav>
+</header>
 
-<div class="tuba-page">
-
-  <h1 class="page-title">Tuba's Corner</h1>
-
-  <!-- Tuba SVG — clean circle head, radiating fur lines, signature fangs -->
-  <svg class="tuba-float" viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="headG" cx="38%" cy="32%" r="65%">
-        <stop offset="0%"   stop-color="#5c3418"/>
-        <stop offset="45%"  stop-color="#2a1008"/>
-        <stop offset="100%" stop-color="#100600"/>
-      </radialGradient>
-      <radialGradient id="faceG" cx="50%" cy="45%" r="55%">
-        <stop offset="0%"   stop-color="#6a3e20"/>
-        <stop offset="70%"  stop-color="#2a1208"/>
-        <stop offset="100%" stop-color="#180a02"/>
-      </radialGradient>
-      <radialGradient id="eyeG" cx="30%" cy="25%" r="70%">
-        <stop offset="0%"   stop-color="#f0d050"/>
-        <stop offset="50%"  stop-color="#b09020"/>
-        <stop offset="100%" stop-color="#504010"/>
-      </radialGradient>
-      <radialGradient id="innerEar" cx="50%" cy="50%" r="55%">
-        <stop offset="0%"   stop-color="#5a2018"/>
-        <stop offset="100%" stop-color="#2a0c08"/>
-      </radialGradient>
-    </defs>
-
-    <!-- drop shadow -->
-    <ellipse cx="80" cy="162" rx="24" ry="4" fill="rgba(0,0,0,0.10)"/>
-
-    <!-- EARS behind head -->
-    <polygon points="38,62 54,22 70,64" fill="#0e0600"/>
-    <polygon points="44,60 54,28 67,61" fill="url(#innerEar)" opacity="0.85"/>
-    <polygon points="122,62 106,22 90,64" fill="#0e0600"/>
-    <polygon points="116,60 106,28 93,61" fill="url(#innerEar)" opacity="0.85"/>
-
-    <!-- FUR WISPS — curved, varied length and angle for natural fluff -->
-    <!-- top -->
-    <path d="M74,44 Q71,35 69,32" fill="none" stroke="#1c0a04" stroke-width="3.5" stroke-linecap="round"/>
-    <path d="M80,42 Q80,32 79,28" fill="none" stroke="#241004" stroke-width="4"   stroke-linecap="round"/>
-    <path d="M86,44 Q89,34 91,31" fill="none" stroke="#1c0a04" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- upper left -->
-    <path d="M60,54 Q52,46 48,43" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M52,66 Q42,60 38,57" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <!-- left -->
-    <path d="M42,80 Q30,78 26,77" fill="none" stroke="#1c0a04" stroke-width="3.5" stroke-linecap="round"/>
-    <path d="M41,93 Q28,94 24,94" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <!-- lower left -->
-    <path d="M46,108 Q35,114 31,117" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M56,120 Q48,128 45,132" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <!-- bottom -->
-    <path d="M70,128 Q68,138 67,142" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M80,130 Q80,140 80,144" fill="none" stroke="#241004" stroke-width="4"   stroke-linecap="round"/>
-    <path d="M90,128 Q92,138 93,142" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <!-- lower right -->
-    <path d="M104,120 Q112,128 115,132" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M114,108 Q125,114 129,117" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <!-- right -->
-    <path d="M119,93 Q132,94 136,94" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M118,80 Q130,78 134,77" fill="none" stroke="#1c0a04" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- upper right -->
-    <path d="M108,66 Q118,60 122,57" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-    <path d="M100,54 Q108,46 112,43" fill="none" stroke="#180804" stroke-width="3"   stroke-linecap="round"/>
-
-    <!-- MAIN HEAD -->
-    <circle cx="80" cy="88" r="46" fill="url(#headG)"/>
-
-    <!-- chest/chin fur wisps (shorter, light brown tufts below face) -->
-    <path d="M66,128 Q62,134 60,138" fill="none" stroke="#3a1a08" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M73,131 Q72,137 71,140" fill="none" stroke="#3a1a08" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M80,132 Q80,138 80,141" fill="none" stroke="#3a1a08" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M87,131 Q88,137 89,140" fill="none" stroke="#3a1a08" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M94,128 Q98,134 100,138" fill="none" stroke="#3a1a08" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-
-    <!-- face center highlight -->
-    <ellipse cx="80" cy="93" rx="30" ry="32" fill="url(#faceG)" opacity="0.65"/>
-
-    <!-- EYES -->
-    <ellipse cx="63" cy="81" rx="12"  ry="9.5" fill="url(#eyeG)"/>
-    <ellipse cx="63" cy="81" rx="4.5" ry="8.5" fill="#120900"/>
-    <circle  cx="60" cy="78" r="2.5"  fill="rgba(255,255,255,0.65)"/>
-    <!-- subtle eyelid line -->
-    <path d="M51,79 Q63,72 75,79" fill="none" stroke="#0e0600" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-
-    <ellipse cx="97" cy="81" rx="12"  ry="9.5" fill="url(#eyeG)"/>
-    <ellipse cx="97" cy="81" rx="4.5" ry="8.5" fill="#120900"/>
-    <circle  cx="94" cy="78" r="2.5"  fill="rgba(255,255,255,0.65)"/>
-    <path d="M85,79 Q97,72 109,79" fill="none" stroke="#0e0600" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-
-    <!-- NOSE -->
-    <polygon points="78,98 82,98 80,103" fill="#b04858"/>
-    <!-- highlight -->
-    <circle cx="79" cy="99" r="1" fill="rgba(255,255,255,0.35)"/>
-
-    <!-- MOUTH -->
-    <path d="M70,108 Q80,114 90,108" stroke="#6a2838" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-
-    <!-- LEFT FANG — long, signature Tuba -->
-    <polygon points="71,108 76.5,108 72.5,126" fill="white" opacity="0.96"/>
-    <line x1="72.5" y1="108" x2="72" y2="126" stroke="rgba(200,200,200,0.3)" stroke-width="0.8"/>
-
-    <!-- RIGHT FANG — noticeably shorter -->
-    <polygon points="83.5,108 87.5,108 87,117" fill="white" opacity="0.96"/>
-
-    <!-- WHISKERS left -->
-    <line x1="62" y1="99"  x2="16"  y2="91"  stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-    <line x1="62" y1="103" x2="14"  y2="103" stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-    <line x1="62" y1="107" x2="16"  y2="115" stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-    <!-- WHISKERS right -->
-    <line x1="98" y1="99"  x2="144" y2="91"  stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-    <line x1="98" y1="103" x2="146" y2="103" stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-    <line x1="98" y1="107" x2="144" y2="115" stroke="rgba(255,255,255,0.7)" stroke-width="1.1" stroke-linecap="round"/>
-  </svg>
-
-  <!-- Thought bubble -->
-  <div class="thought-wrap">
-    <div class="thought-dot d1"></div>
-    <div class="thought-dot d2"></div>
-    <div class="thought-dot d3"></div>
-    <div class="thought-bubble">
-      <p>"Where were you when I laid the foundations of the earth? Tell me, if you have understanding."</p>
-      <cite>— God to Job, Job 38:4</cite>
+<main class="wrap">
+  <section class="corner paper shadowed" style="--stock: var(--mint)">
+    <span class="tape-strip"></span>
+    <span class="tape-strip"></span>
+    <img class="watcher" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
+    <h1 class="loud riso">Tuba's Corner</h1>
+    <img class="tuba" src="assets/img/tuba.svg" alt="Tuba, a dark brown cat with gold eyes and one long fang." width="160" height="170" />
+    <div class="thought">
+      <div class="dots" aria-hidden="true"><span></span><span></span></div>
+      <blockquote class="bubble">
+        <p>&ldquo;Where were you when I laid the foundations of the earth? Tell me, if you have understanding.&rdquo;</p>
+        <cite>&mdash; God to Job, Job 38:4</cite>
+      </blockquote>
     </div>
-  </div>
+    <img class="visitor" src="assets/img/doodle-gecko.webp" alt="" width="1000" height="536" />
+  </section>
+</main>
 
-</div>
-
-<footer>
-  <p class="foot-copy">Made with care in Seattle. Tuba-approved.</p>
+<footer class="site-foot">
+  <img class="foot-mark" src="assets/img/brand-mark.png" alt="" width="520" height="329" />
+  <p>Made with care in Seattle. Tuba-approved.</p>
+  <ul class="foot-links">
+    <li><a href="zines.html">Zines</a></li>
+    <li><a href="tuba.html">Tuba's Corner</a></li>
+    <li><a href="bug.html">Bug of the Week</a></li>
+  </ul>
 </footer>
 
-<script>
-  const cur = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-  });
-</script>
 </body>
 </html>
