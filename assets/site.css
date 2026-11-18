@@ -141,7 +141,7 @@ main { flex: 1; overflow-x: clip; }
 .logo:hover img { transform: rotate(-18deg) scale(1.12); }
 
 .site-nav { display: flex; gap: .55rem; flex-wrap: wrap; list-style: none; }
-.tape {
+.nav-link {
   display: inline-block;
   padding: .42rem .95rem .38rem;
   font-family: var(--f-type);
@@ -151,21 +151,20 @@ main { flex: 1; overflow-x: clip; }
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  background: var(--tape, var(--butter));
-  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 95%, 0 50%);
-  transform: rotate(var(--tilt, -1.5deg));
+  background: var(--chip, var(--butter));
+  border-radius: 999px;
   transition: transform .2s, background .2s;
   white-space: nowrap;
 }
-.tape:hover { transform: rotate(0deg) translateY(-2px); }
-.tape[aria-current="page"] {
+.nav-link:hover { transform: translateY(-2px); }
+.nav-link[aria-current="page"] {
   text-decoration: underline wavy var(--magenta);
   text-decoration-thickness: 2px;
   text-underline-offset: 5px;
 }
-.site-nav li:nth-child(1) .tape { --tape: var(--pink); --tilt: -2deg; }
-.site-nav li:nth-child(2) .tape { --tape: var(--mint); --tilt: 1.5deg; }
-.site-nav li:nth-child(3) .tape { --tape: var(--sky); --tilt: -1deg; }
+.site-nav li:nth-child(1) .nav-link { --chip: var(--pink); }
+.site-nav li:nth-child(2) .nav-link { --chip: var(--mint); }
+.site-nav li:nth-child(3) .nav-link { --chip: var(--sky); }
 
 /* ---------- paper ---------- */
 .paper {
@@ -185,18 +184,6 @@ main { flex: 1; overflow-x: clip; }
   z-index: 3;
 }
 .shadowed { box-shadow: 0 1px 0 rgba(0,0,0,.25), 0 22px 50px -18px rgba(0,0,0,.65); }
-
-/* a strip of masking tape holding something down */
-.tape-strip {
-  position: absolute;
-  width: 92px;
-  height: 26px;
-  background: rgba(236, 237, 160, .78);
-  clip-path: polygon(4% 0, 100% 6%, 96% 100%, 0 92%);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  z-index: 5;
-  pointer-events: none;
-}
 
 .sticker {
   filter: drop-shadow(0 3px 0 rgba(255,255,255,.9)) drop-shadow(0 -2px 0 rgba(255,255,255,.9)) drop-shadow(2px 0 0 rgba(255,255,255,.9)) drop-shadow(-2px 0 0 rgba(255,255,255,.9)) drop-shadow(0 10px 14px rgba(0,0,0,.35));
@@ -224,7 +211,7 @@ main { flex: 1; overflow-x: clip; }
 .foot-mark {
   width: 150px;
   margin: 0 auto .9rem;
-  filter: invert(1) drop-shadow(2px 2px 0 var(--magenta));
+  filter: invert(1);
   opacity: .9;
 }
 .foot-links {
@@ -248,7 +235,7 @@ main { flex: 1; overflow-x: clip; }
   .site-head { justify-content: center; text-align: center; }
   .site-nav { justify-content: center; }
   .site-nav { gap: .45rem; }
-  .tape { font-size: .7rem; letter-spacing: .04em; padding: .38rem .6rem .34rem; }
+  .nav-link { font-size: .7rem; letter-spacing: .04em; padding: .38rem .6rem .34rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

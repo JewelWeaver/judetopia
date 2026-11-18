@@ -22,7 +22,6 @@
       rotate: .5deg;
       animation: pop-in .6s ease both;
     }
-    .feature > .tape-strip { top: -12px; left: 40%; rotate: -3deg; }
     .beetle {
       width: min(100%, 300px);
       margin-inline: auto;
@@ -37,12 +36,13 @@
     .bug-desc { font-size: 1rem; line-height: 1.7; }
     .fact {
       position: relative;
-      margin-top: 1.6rem;
-      padding: 1.3rem 1.3rem 1.1rem;
-      rotate: -1.5deg;
-      box-shadow: 0 10px 20px -10px rgba(0,0,0,.35);
+      margin-top: 1.4rem;
+      padding: .85rem 1rem .8rem;
+      font-size: .88rem;
+      line-height: 1.55;
+      rotate: -.5deg; /* cancels the card's tilt so the fact sits level */
+      box-shadow: 0 8px 16px -10px rgba(0,0,0,.35);
     }
-    .fact .tape-strip { width: 70px; top: -11px; right: 12%; rotate: 6deg; }
     .fact strong {
       display: block;
       font-family: var(--f-thin);
@@ -80,6 +80,7 @@
 
     @media (max-width: 760px) {
       .feature { grid-template-columns: 1fr; rotate: 0deg; }
+      .fact { rotate: 0deg; }
       .beetle { width: 190px; }
     }
   </style>
@@ -90,9 +91,9 @@
   <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />PIA</a>
   <nav aria-label="Main">
     <ul class="site-nav">
-      <li><a class="tape" href="zines.html">Joodlebug Ink</a></li>
-      <li><a class="tape" href="tuba.html">Tuba's Corner</a></li>
-      <li><a class="tape" href="bug.html" aria-current="page">Featured Bug</a></li>
+      <li><a class="nav-link" href="zines.html">Joodlebug Ink</a></li>
+      <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
+      <li><a class="nav-link" href="bug.html" aria-current="page">Featured Bug</a></li>
     </ul>
   </nav>
 </header>
@@ -104,7 +105,6 @@
   </header>
 
   <article class="feature paper shadowed" style="--stock: var(--sky)">
-    <span class="tape-strip"></span>
     <img class="beetle" src="assets/img/beetle.svg" alt="An iridescent green-blue beetle with copper highlights." width="120" height="120" />
     <div>
       <p class="thin">featured this week</p>
@@ -112,7 +112,6 @@
       <p class="bug-sci">Chrysochus auratus</p>
       <p class="bug-desc">Found across North America, the Dogbane Beetle is one of the most iridescently beautiful insects on the continent. Its shell shifts between copper, green, and blue depending on how light hits it &mdash; structural color, not pigment. It feeds exclusively on dogbane and milkweed plants, which makes it a quiet specialist in a world that rewards generalists.</p>
       <aside class="fact paper" style="--stock: var(--butter)">
-        <span class="tape-strip"></span>
         <strong>Fun fact</strong>
         Their metallic shimmer isn't paint &mdash; it's microscopic architecture. The shell's layered structure bends light itself into color.
       </aside>
