@@ -13,7 +13,8 @@
   <style>
     .page-head { padding: 1.6rem 0 .6rem; text-align: center; }
     #alien-mode { padding-top: 1.4rem; padding-bottom: 1.2rem; } /* first zine sits close under the jump links */
-    #emergence { padding-top: 2.6rem; } /* and the second a little below the first */
+    #emergence { padding-top: 2.6rem; padding-bottom: 1.2rem; } /* and the second a little below the first */
+    .site-foot { margin-top: 1.6rem; } /* the footer line sits close under Emergence's page turns */
     .page-head h1 { font-size: var(--title-size); margin-bottom: 1.1rem; }
     .shelf { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 2rem; list-style: none; }
     .shelf a {
@@ -31,7 +32,7 @@
       scroll-margin-top: 1rem;
     }
     .blurb { text-align: center; margin: 0 auto 2rem; max-width: 34rem; }
-    .blurb h2 { font-size: var(--title-size); }
+    .blurb h2 { font-size: clamp(1.8rem, 5vw, 3.1rem); } /* zine names sit a step below the ZINES title */
     .blurb .vol { display: block; margin-top: .5rem; font-size: .74rem; color: var(--on-desk-soft); }
     .blurb p { margin-top: .9rem; color: var(--on-desk-soft); }
 
