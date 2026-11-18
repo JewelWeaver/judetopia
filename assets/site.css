@@ -173,10 +173,11 @@ main { flex: 1; overflow-x: clip; }
   text-decoration-thickness: 4px;
   text-underline-offset: 5px;
 }
-.site-nav li:nth-child(1) .nav-link { --chip: var(--pink); }
-.site-nav li:nth-child(2) .nav-link { --chip: var(--mint); }
-.site-nav li:nth-child(3) .nav-link { --chip: var(--sky); }
-.site-nav li:nth-child(4) .nav-link { --chip: var(--peach); }
+/* each page keeps its own colour, wherever it sits in the menu */
+.nav-link[href="zines.html"] { --chip: var(--pink); }
+.nav-link[href="tuba.html"] { --chip: var(--mint); }
+.nav-link[href="bug.html"] { --chip: var(--sky); }
+.nav-link[href="artifacts.html"] { --chip: var(--peach); }
 
 /* ---------- paper ---------- */
 .paper {
