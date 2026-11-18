@@ -27,15 +27,8 @@ Plain static HTML in the repo root, one shared stylesheet. No build step.
 
 ## Open items
 
-### 1. Button-eye images (game is built, art is not in yet)
-The game runs today with drawn stand-in buttons. The real images are the **41 PNGs in the Google Drive folder "Eyes"** (0.6–2 MB each, private). They could not be pulled from Drive in this session: the Drive connector only returns file contents as text inside the chat. Get them by either:
-- having the owner attach them (or a zip of the folder) to the chat, or upload them to the repo; or
-- with the owner's OK, turn on view-only link sharing for that folder, then `curl -L "https://drive.usercontent.google.com/download?id=<FILE_ID>&export=download"`. Turning the link back off has to be done by the owner in Drive.
-
-Then:
-1. Trim and shrink each one to about 160px webp: `convert in.png -trim +repage -resize 160x160 -quality 85 assets/img/buttons/eye-01.webp` (keep transparency; if they have a white background, knock it out).
-2. In `assets/buttons.js` set `COUNT` to the number of images and
-   `const art = i => \`assets/img/buttons/eye-${String(i + 1).padStart(2, '0')}.webp\`;`
+### Button-eye game (done)
+The 42 photos from the Drive folder "Eyes" are in `assets/img/buttons/eye-01…42.webp` (trimmed, 160px, transparent). Eye 22 had a fake checkerboard background baked in and was cut out with an ellipse mask. `cursor.png` (32px, from eye 07) is the prize cursor shown after collecting all 42; the drawn SVG stays as a fallback. To add or swap a button, replace or add a webp and update `COUNT` in `assets/buttons.js` (there are 49 spots, so up to 49 buttons fit without adding spots).
 
 How the game works:
 - `SPOTS` lists where buttons sit on each page as `[selector, nth, x, y]`, with x and y as fractions of that element's box. Spots are dealt round-robin across pages, and button *i* gets the *i*-th spot.
@@ -44,13 +37,10 @@ How the game works:
 - A pentatonic "pop" plays per find and a fanfare plays at the end. Collecting everything turns the cursor into a button eye.
 - The tin in the bottom-right corner shows the count, progress per page, a sound toggle, and a two-tap "start over".
 
-### 2. Tuba photo
-The owner shared a cut-out photo of Tuba (black cat reaching up with one paw) but only inline in chat, so it was never saved as a file. Ask for it as an attachment, then:
-- Save it as `assets/img/tuba-photo.webp` with a transparent background (remove the white).
-- In `tuba.html`, point the `.tuba` img at it and update its width/height/alt.
-- Retune `.halo` (left/top/width) to sit over her head and `.lure` (right/top) just past her raised paw. Let the bottom flames hide where the photo is cropped.
+### Tuba photo (done)
+`assets/img/tuba-photo.webp` (900px, transparent) replaces the drawn `tuba.svg` in `tuba.html`. The halo sits over her ears and the eyeball hangs just past her raised paw. The photo sits low so the flames cover where it's cropped at the bottom. If the photo is swapped, retune `.halo` and `.lure`.
 
-### 3. Small questions for the owner
+### Small questions for the owner for the owner
 - Rename the page headings to match the nav: "Zines" → "Joodlebug Ink", "Bug of the Week" → "Featured Bug"?
 - Merge to `main` / go live?
 
