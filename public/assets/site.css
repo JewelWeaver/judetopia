@@ -33,6 +33,7 @@
   --olive: #b2b19a;
   --bone: #ebe8ef;
   --eye-green: #4dd27f; /* sampled from the homepage eye */
+  --title-size: clamp(2.4rem, 7vw, 4.4rem); /* every page and zine title */
   --edge: var(--ink); /* every box and button border */
 
   /* bold outlines, like the Third Eye Charms logo */
@@ -67,7 +68,7 @@ body {
   overflow-x: hidden;
   cursor: var(--eye-cursor);
   /* every page is framed by thick bands of the homepage eye's green */
-  border-inline: clamp(10px, 2.2vw, 28px) solid var(--eye-green);
+  border-inline: clamp(7.5px, 1.65vw, 21px) solid var(--eye-green);
 }
 body::before {
   content: '';
