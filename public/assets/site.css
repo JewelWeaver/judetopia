@@ -157,10 +157,10 @@ main { flex: 1; overflow-x: clip; }
 .nav-link {
   display: inline-block;
   padding: .42rem .95rem .38rem;
-  font-family: var(--f-type);
-  font-weight: 700;
-  font-size: .82rem;
-  letter-spacing: .08em;
+  font-family: 'Bungee', var(--f-type); /* funky retro sign lettering for the menu */
+  font-weight: 400;
+  font-size: .8rem;
+  letter-spacing: .04em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
@@ -254,7 +254,7 @@ main { flex: 1; overflow-x: clip; }
   .site-head { justify-content: center; text-align: center; }
   .site-nav { justify-content: center; }
   .site-nav { gap: .45rem; }
-  .nav-link { font-size: .7rem; letter-spacing: .04em; padding: .38rem .6rem .34rem; }
+  .nav-link { font-size: .68rem; letter-spacing: .02em; padding: .38rem .6rem .34rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
