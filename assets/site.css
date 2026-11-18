@@ -166,7 +166,6 @@ main { flex: 1; overflow-x: clip; }
 .site-nav li:nth-child(1) .tape { --tape: var(--pink); --tilt: -2deg; }
 .site-nav li:nth-child(2) .tape { --tape: var(--mint); --tilt: 1.5deg; }
 .site-nav li:nth-child(3) .tape { --tape: var(--sky); --tilt: -1deg; }
-.short { display: none; }
 
 /* ---------- paper ---------- */
 .paper {
@@ -248,9 +247,8 @@ main { flex: 1; overflow-x: clip; }
 @media (max-width: 700px) {
   .site-head { justify-content: center; text-align: center; }
   .site-nav { justify-content: center; }
-  .tape { font-size: .74rem; padding: .38rem .7rem .34rem; }
-  .full { display: none; }
-  .short { display: inline; }
+  .site-nav { gap: .45rem; }
+  .tape { font-size: .7rem; letter-spacing: .04em; padding: .38rem .6rem .34rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

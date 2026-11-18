@@ -4,317 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Judetopia</title>
-  <meta name="description" content="A corner of the internet for community, curiosity & cats. Zines, Tuba's Corner, and the Bug of the Week." />
+  <meta name="description" content="A corner of the internet for community, curiosity & cats." />
   <link rel="icon" href="assets/img/doodle-eye-spiral.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    .hint {
-      text-align: center;
-      color: var(--on-desk-soft);
-      font-size: .9rem;
-      margin: .25rem 16px 1.6rem;
-    }
-    .hint b { color: var(--yolk); font-weight: 700; }
-
-    /* ---- the unfolded sheet ---- */
-    .sheet {
-      position: relative;
-      width: min(1180px, 100% - 32px);
-      margin: 0 auto 3rem;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      rotate: -.5deg;
-      box-shadow: 0 2px 0 rgba(0,0,0,.35), 0 50px 90px -30px rgba(0,0,0,.85);
-      animation: pop-in .7s ease both;
-    }
-    .sheet > .tape-strip:nth-of-type(1) { top: -12px; left: 6%; rotate: -4deg; }
-    .sheet > .tape-strip:nth-of-type(2) { top: -10px; right: 7%; rotate: 5deg; }
-    /* the one cut that turns a sheet into a booklet */
-    .cut {
-      position: absolute;
-      top: 50%;
-      left: 25%;
-      width: 50%;
-      border-top: 2px solid var(--ink);
-      z-index: 6;
-      pointer-events: none;
-    }
-    .cut::before {
-      content: '\2702';
-      position: absolute;
-      left: -.2em;
-      top: -.72em;
-      font-size: 1.6rem;
-      color: var(--ink);
-      background: var(--lilac);
-      border-radius: 50%;
-      line-height: 1;
-      padding: 0 .1em;
+    body {
+      background:
+        radial-gradient(ellipse 55% 50% at 50% 36%, rgba(74, 31, 154, .2), transparent 70%),
+        radial-gradient(ellipse 120% 95% at 50% 40%, var(--desk) 25%, #0b0610 100%);
     }
 
-    .panel {
-      position: relative;
-      aspect-ratio: 11 / 17;
-      container-type: inline-size;
-      overflow: hidden;
+    .stage {
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
-      padding: 9% 8%;
-      text-decoration: none;
-      border-right: 1.5px dashed rgba(27, 20, 32, .3);
-      transition: transform .35s cubic-bezier(.3, 1.4, .5, 1), box-shadow .35s;
-      --cap: 5.6cqi;
-    }
-    .panel:nth-child(4n of .panel) { border-right: 0; }
-    .panel:nth-child(-n + 4 of .panel) { border-bottom: 1.5px dashed rgba(27, 20, 32, .3); }
-    a.panel:hover, a.panel:focus-visible {
-      transform: translateY(-12px) rotate(-1.4deg);
-      z-index: 7;
-      box-shadow: 0 30px 44px -18px rgba(0, 0, 0, .6);
-      outline-offset: -8px;
-    }
-    .p-title { font-size: 15cqi; position: relative; z-index: 2; }
-    .cap {
-      position: relative;
-      z-index: 2;
-      font-size: var(--cap);
-      line-height: 1.35;
-      font-weight: 700;
-    }
-    .go::after { content: '\2192'; display: inline-block; margin-left: .45em; transition: translate .25s; }
-    a.panel:hover .go::after { translate: 4px 0; }
-
-    /* 1 — cover */
-    .p-cover .vol { font-size: 4.4cqi; letter-spacing: .3em; margin-bottom: 3cqi; }
-    .cover-title { font-size: 22cqi; position: relative; z-index: 2; }
-    .cover-title img {
-      display: inline-block;
-      height: 1.08em;
-      width: auto;
-      vertical-align: -.2em;
-      margin: 0 -.04em;
-      animation: blink 6s 2s infinite;
-    }
-    /* the scan has opaque paper scraps at its edges; fade them into the stock */
-    .cover-figure {
-      position: absolute;
-      width: 118%;
-      left: -9%;
-      bottom: -12%;
-      mix-blend-mode: multiply;
-      -webkit-mask-image: radial-gradient(ellipse 52% 62% at 50% 46%, #000 62%, transparent 100%);
-      mask-image: radial-gradient(ellipse 52% 62% at 50% 46%, #000 62%, transparent 100%);
-      z-index: 1;
-    }
-    .p-cover .cap {
-      position: absolute;
-      left: 7cqi;
-      right: 9cqi;
-      bottom: 9cqi;
-      padding: 3cqi 4cqi;
-      background: var(--butter);
-      rotate: -2deg;
-      box-shadow: 0 2px 6px rgba(0,0,0,.18);
-      font-weight: 400;
-    }
-
-    /* 2 — zines */
-    .mini-covers { position: relative; flex: 1; margin: 6cqi 0 4cqi; }
-    .mini-covers img {
-      position: absolute;
-      width: 54cqi;
-      border: 1.5cqi solid #fff;
-      box-shadow: 0 8px 16px rgba(0,0,0,.3);
-      transition: rotate .35s, translate .35s;
-    }
-    .mini-covers .a { top: 0; left: 0; rotate: -7deg; }
-    .mini-covers .b { top: 16cqi; right: 0; rotate: 6deg; }
-    a.panel:hover .mini-covers .a { rotate: -13deg; translate: -3cqi -2cqi; }
-    a.panel:hover .mini-covers .b { rotate: 11deg; translate: 3cqi 2cqi; }
-
-    /* 3 — tuba */
-    .p-tuba .tuba { width: 72cqi; margin: auto auto 2cqi; animation: bob 4s ease-in-out infinite; }
-    .bubble {
-      position: absolute;
-      top: 44cqi;
-      right: 7cqi;
-      padding: 2.5cqi 5cqi;
-      font-size: 9cqi;
-      font-weight: 700;
-      color: var(--violet);
-      background: var(--butter);
-      border: .9cqi solid var(--violet);
-      border-radius: 55% 45% 50% 50% / 60% 55% 45% 40%;
-      rotate: 8deg;
-      z-index: 2;
-    }
-
-    /* 4 — bug */
-    .p-bug .p-title { font-size: 13.5cqi; }
-    .p-bug .beetle { width: 66cqi; margin: auto auto 3cqi; rotate: 14deg; transition: rotate .4s; }
-    a.p-bug:hover .beetle { rotate: -10deg; }
-    .bug-name { font-size: 7.4cqi; font-weight: 700; color: #1f6f2c; line-height: 1.2; position: relative; z-index: 2; }
-    .p-bug .cap { font-weight: 400; color: var(--navy); }
-
-    /* 5 — charms */
-    .p-charms { justify-content: flex-end; }
-    .p-charms .big-eye {
-      position: absolute;
-      width: 110cqi;
-      top: -16cqi;
-      left: -22cqi;
-      rotate: -8deg;
-      mix-blend-mode: multiply;
-      transition: rotate .5s;
-    }
-    a.p-charms:hover .big-eye { rotate: 4deg; }
-    .charm-title {
-      position: relative;
-      z-index: 2;
-      font-size: 11cqi;
-      line-height: 1.05;
-      font-weight: 700;
-      color: var(--magenta);
-      margin-bottom: 3cqi;
-    }
-
-    /* 6 — gecko (just visiting) */
-    .p-gecko .gecko {
-      position: absolute;
-      width: 118cqi;
-      left: -12cqi;
-      top: 52cqi;
-      rotate: -62deg;
-      mix-blend-mode: multiply;
-      animation: crawl 5s ease-in-out infinite;
-    }
-    .p-gecko svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .p-gecko .cap {
-      margin-top: auto;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--navy);
-      font-size: 5cqi;
+      align-items: center;
+      justify-content: center;
+      padding: 3vh 16px 6vh;
       text-align: center;
     }
 
-    /* 7 — gargoyle, white ink screened onto olive stock like the zine page */
-    .p-garg { padding: 0; }
-    .p-garg img {
+    /* A shape in the dark. Only the eye is lit; the rest shows where the light falls. */
+    .presence {
+      --x: 53%;
+      --y: 34%;
+      --r: clamp(120px, 24vmin, 250px);
+      position: relative;
+      width: min(calc(60svh * .866), 100%, 500px);
+      aspect-ratio: 800 / 924;
+      animation: surface 2.6s ease both;
+    }
+    /* the haze spills 30% past the figure on every side, so its centre is remapped onto the larger box */
+    .presence::before {
+      content: '';
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle var(--r) at calc(18.75% + var(--x) * .625) calc(18.75% + var(--y) * .625), rgba(200, 183, 218, .09), transparent);
+      pointer-events: none;
+    }
+    .shape {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: 50% 30%;
-      mix-blend-mode: screen;
+      opacity: .85;
+      /* the light, intersected with a soft vignette so the scan's edges never show */
+      -webkit-mask-image:
+        radial-gradient(circle var(--r) at var(--x) var(--y), #000, rgba(0, 0, 0, .4) 45%, rgba(0, 0, 0, .03)),
+        radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        radial-gradient(circle var(--r) at var(--x) var(--y), #000, rgba(0, 0, 0, .4) 45%, rgba(0, 0, 0, .03)),
+        radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%);
+      mask-composite: intersect;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    /* sits exactly over the eye drawn in the figure's chest */
+    .eye {
+      position: absolute;
+      left: 53.2%;
+      top: 33.5%;
+      width: 44%;
+      translate: -51% -52%;
+      filter: drop-shadow(0 0 22px rgba(224, 37, 143, .35));
+      animation: blink 7s 3s infinite;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    /* 8 — back cover */
-    .p-back { align-items: center; justify-content: center; text-align: center; }
-    .p-back .stitch { width: 52cqi; margin-bottom: 9cqi; rotate: -6deg; animation: blink 5s infinite; }
-    .p-back .mark { width: 74cqi; margin-bottom: 7cqi; }
-    .p-back .cap { font-weight: 400; font-size: 5cqi; }
-
-    @media (max-width: 760px) {
-      .sheet { grid-template-columns: repeat(2, 1fr); rotate: 0deg; }
-      .cut { display: none; }
-      .panel { --cap: 7.4cqi; border-bottom: 1.5px dashed rgba(27, 20, 32, .3); }
-      .panel:nth-child(odd of .panel) { border-right: 1.5px dashed rgba(27, 20, 32, .3); }
-      .panel:nth-child(even of .panel) { border-right: 0; }
-      .panel:nth-child(n + 7 of .panel) { border-bottom: 0; }
-      .p-cover .cap { font-size: 6.6cqi; }
-      .p-back .cap, .p-gecko .cap { font-size: 6.4cqi; }
+    .words {
+      position: relative;
+      z-index: 2;
+      margin-top: clamp(-80px, -7vh, -24px);
     }
+    .name {
+      font-family: var(--f-thin);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3.4vw, 1.9rem);
+      letter-spacing: .55em;
+      margin-right: -.55em;
+      text-transform: uppercase;
+      color: var(--on-desk);
+      text-shadow: 0 0 24px rgba(11, 6, 16, .9);
+    }
+    .whisper {
+      margin: .7rem 0 1.9rem;
+      font-style: italic;
+      color: var(--on-desk-soft);
+    }
+    .whisper span {
+      display: inline-block;
+      width: 15ch;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: bottom;
+      border-right: .08em solid currentColor;
+      animation: type 1.8s steps(14) 1.4s both, caret 1.1s step-end 3.2s infinite;
+    }
+    @keyframes type { from { width: 0; } }
+    @keyframes caret { 50% { border-color: transparent; } }
+    @keyframes surface { from { opacity: 0; filter: blur(6px); } }
+
+    .words .site-nav { justify-content: center; }
+    .words .tape { filter: saturate(.4) brightness(.78); transition: filter .35s, transform .2s; }
+    .words .tape:hover, .words .tape:focus-visible { filter: none; }
   </style>
 </head>
 <body>
 
-<header class="site-head">
-  <a class="logo" href="index.html" aria-label="Judetopia, home">JUDET<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />PIA</a>
-  <nav aria-label="Main">
-    <ul class="site-nav">
-      <li><a class="tape" href="zines.html">Zines</a></li>
-      <li><a class="tape" href="tuba.html"><span class="full">Tuba's Corner</span><span class="short">Tuba</span></a></li>
-      <li><a class="tape" href="bug.html"><span class="full">Bug of the Week</span><span class="short">Bugs</span></a></li>
-    </ul>
-  </nav>
-</header>
+<main class="stage">
+  <div class="presence" aria-hidden="true">
+    <img class="shape" src="assets/img/doodle-figure.webp" alt="" width="800" height="924" />
+    <img class="eye" src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />
+  </div>
 
-<main>
-  <p class="hint">this whole page is a zine. <b>pick a panel</b> to open it.</p>
-
-  <div class="sheet">
-    <span class="tape-strip"></span>
-    <span class="tape-strip"></span>
-    <span class="cut" aria-hidden="true"></span>
-
-    <!-- 1 · cover -->
-    <section class="panel paper p-cover" style="--stock: var(--lilac)">
-      <p class="thin vol">vol. &infin;</p>
-      <h1 class="loud riso cover-title" aria-label="Judetopia">
-        <span aria-hidden="true">Jude<br />T<img src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />pia</span>
-      </h1>
-      <img class="cover-figure" src="assets/img/doodle-figure.webp" alt="" width="800" height="924" />
-      <p class="cap">a corner of the internet for community, curiosity &amp; cats.</p>
-    </section>
-
-    <!-- 2 · zines -->
-    <a class="panel paper p-zines" style="--stock: var(--pink)" href="zines.html">
-      <h2 class="loud riso p-title">Zines</h2>
-      <div class="mini-covers">
-        <img class="a" src="assets/img/zines/alien-mode/p1.webp" alt="Alien Mode, vol. 1" width="640" height="998" />
-        <img class="b" src="assets/img/zines/emergence/p1.webp" alt="Emergence, vol. 1" width="640" height="911" />
-      </div>
-      <p class="cap go">read every page</p>
-    </a>
-
-    <!-- 3 · tuba -->
-    <a class="panel paper p-tuba" style="--stock: var(--mint)" href="tuba.html">
-      <h2 class="loud riso p-title">Tuba's<br />Corner</h2>
-      <span class="bubble" aria-hidden="true">&hellip;</span>
-      <img class="tuba" src="assets/img/tuba.svg" alt="" width="160" height="170" />
-      <p class="cap go">a word from the cat in charge</p>
-    </a>
-
-    <!-- 4 · bug -->
-    <a class="panel paper p-bug" style="--stock: var(--sky)" href="bug.html">
-      <h2 class="yolk-title p-title">Bug of the Week</h2>
-      <img class="beetle" src="assets/img/beetle.svg" alt="" width="120" height="120" />
-      <p class="bug-name">Dogbane Beetle</p>
-      <p class="cap go"><i>Chrysochus auratus</i></p>
-    </a>
-
-    <!-- 5 · charms -->
-    <a class="panel paper p-charms" style="--stock: var(--butter)" href="zines.html#charms">
-      <img class="big-eye" src="assets/img/doodle-eye-spiral.webp" alt="" width="700" height="934" />
-      <h2 class="charm-title">Third Eye Charms</h2>
-      <p class="cap go">handmade charms &amp; wearable art</p>
-    </a>
-
-    <!-- 6 · gecko -->
-    <div class="panel paper p-gecko" style="--stock: var(--peach)">
-      <svg viewBox="0 0 110 170" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M14 160 C 30 130, 8 110, 34 92 S 70 70, 58 44 S 84 14, 100 6" fill="none" stroke="#1b1420" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0 6" opacity=".55" />
-      </svg>
-      <img class="gecko" src="assets/img/doodle-gecko.webp" alt="" width="1000" height="536" />
-      <p class="cap">just passing through</p>
-    </div>
-
-    <!-- 7 · gargoyle -->
-    <div class="panel paper p-garg" style="--stock: var(--olive)">
-      <img src="assets/img/doodle-gargoyle.jpg" alt="" width="818" height="1112" />
-    </div>
-
-    <!-- 8 · back cover -->
-    <div class="panel paper p-back" style="--stock: var(--aqua)">
-      <img class="stitch" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
-      <img class="mark" src="assets/img/brand-mark.png" alt="" width="520" height="329" />
-      <p class="cap">Made with care in Seattle.<br />Tuba-approved.</p>
-    </div>
+  <div class="words">
+    <h1 class="name">Judetopia</h1>
+    <p class="whisper"><span>are you there?</span></p>
+    <nav aria-label="Main">
+      <ul class="site-nav">
+        <li><a class="tape" href="zines.html">Joodlebug Ink</a></li>
+        <li><a class="tape" href="tuba.html">Tuba's Corner</a></li>
+        <li><a class="tape" href="bug.html">Featured Bug</a></li>
+      </ul>
+    </nav>
   </div>
 </main>
 
+<script>
+  // The light follows the pointer; left alone, it wanders over the figure. The eye watches it.
+  const presence = document.querySelector('.presence');
+  const eye = presence.querySelector('.eye');
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  const home = { x: .532, y: .335 };
+  let target = { ...home };
+  let light = { ...home };
+  let lastMove = -Infinity;
+
+  addEventListener('pointermove', e => {
+    const r = presence.getBoundingClientRect();
+    target = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+    lastMove = performance.now();
+  }, { passive: true });
+
+  const frame = t => {
+    if (t - lastMove > 2600) {
+      target = { x: .52 + .3 * Math.sin(t / 3400), y: .46 + .34 * Math.sin(t / 4700 - .33) };
+    }
+    light.x += (target.x - light.x) * .07;
+    light.y += (target.y - light.y) * .07;
+    presence.style.setProperty('--x', (light.x * 100).toFixed(2) + '%');
+    presence.style.setProperty('--y', (light.y * 100).toFixed(2) + '%');
+    const dx = Math.max(-1, Math.min(1, (light.x - home.x) * 2.2));
+    const dy = Math.max(-1, Math.min(1, (light.y - home.y) * 2.2));
+    eye.style.transform = `translate(${(dx * 9).toFixed(1)}px, ${(dy * 6).toFixed(1)}px) rotate(${(dx * 5).toFixed(1)}deg)`;
+    requestAnimationFrame(frame);
+  };
+  if (!still.matches) requestAnimationFrame(frame);
+</script>
 </body>
 </html>
