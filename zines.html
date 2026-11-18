@@ -25,7 +25,6 @@
     /* ---------- one zine: a short blurb, then the booklet ---------- */
     .zine {
       padding: 3.5rem 0;
-      border-top: var(--rule);
       scroll-margin-top: 1rem;
     }
     .blurb { text-align: center; margin: 0 auto 2rem; max-width: 34rem; }
@@ -46,7 +45,7 @@
     }
     .pages li { flex: 0 0 min(72%, 300px); scroll-snap-align: start; }
     .pages { --page-line: 8px; }
-    .pages img { width: 100%; border: var(--page-line) solid #000; box-shadow: 0 18px 36px -14px rgba(0,0,0,.7); }
+    .pages img { width: 100%; border: var(--page-line) solid #000; border-radius: 14px; box-shadow: 0 18px 36px -14px rgba(0,0,0,.7); }
 
     .reader.is-book .pages {
       display: grid;
@@ -80,8 +79,8 @@
     .reader.is-spread .pages li.right::after { background: linear-gradient(to right, rgba(0,0,0,.28), transparent 9%); }
     .reader.is-book .pages img { box-shadow: 0 26px 50px -20px rgba(0,0,0,.85); }
     /* an open spread shares one line down the fold instead of two */
-    .reader.is-spread .pages li.left img { border-right-width: calc(var(--page-line) / 2); }
-    .reader.is-spread .pages li.right img { border-left-width: calc(var(--page-line) / 2); }
+    .reader.is-spread .pages li.left img { border-right-width: calc(var(--page-line) / 2); border-radius: 14px 0 0 14px; }
+    .reader.is-spread .pages li.right img { border-left-width: calc(var(--page-line) / 2); border-radius: 0 14px 14px 0; }
     /* trim each spread page by that half border so it draws exactly as big as the covers */
     .reader.is-spread .pages li:is(.left, .right) img { width: calc(100% - var(--page-line) / 2); }
     .reader.is-spread .pages li.left img { margin-left: auto; }
@@ -117,7 +116,7 @@
     .count { min-width: 11ch; text-align: center; font-weight: 700; color: var(--on-desk-soft); font-size: .9rem; }
 
     /* ---------- third eye charms ---------- */
-    .charms { padding: 4rem 0 1rem; border-top: var(--rule); scroll-margin-top: 1rem; }
+    .charms { padding: 4rem 0 1rem; scroll-margin-top: 1rem; }
     .charms-top {
       display: grid;
       justify-items: center;
@@ -215,7 +214,7 @@
   </header>
 
   <!-- ===== Alien Mode ===== -->
-  <section class="zine" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
+  <section class="zine ruled" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
     <div class="blurb">
       <h2 id="am-title" class="loud riso-light">Alien Mode</h2>
       <span class="thin vol">vol. 1</span>
@@ -231,7 +230,6 @@
         <li><img src="assets/img/zines/alien-mode/p5.webp" width="640" height="774" loading="lazy" alt="Bug of the Month: Jade Faced Buffalo Beetle. The shells of this beetle group have a prismatic quality, refracting ambient light so the green picks up a rainbow shift. Tilt the beetle, change the beetle." /></li>
         <li><img src="assets/img/zines/alien-mode/p6.webp" width="640" height="774" loading="lazy" alt="GARGOYLE. A grinning gargoyle in white and violet on olive paper." /></li>
         <li><img src="assets/img/zines/alien-mode/p7.webp" width="640" height="774" loading="lazy" alt="A huge magenta eye with spiked lashes. Love is magic and magic is real." /></li>
-        <li><img src="assets/img/zines/alien-mode/p8.webp" width="640" height="774" loading="lazy" alt="Back cover: a little bug in glasses above the hand-lettering &ldquo;Joodlebug ink.&rdquo;" /></li>
       </ol>
       <div class="reader-ui" hidden>
         <button class="turn prev" type="button" aria-label="Previous page">&larr;</button>
@@ -242,14 +240,14 @@
   </section>
 
   <!-- ===== Emergence ===== -->
-  <section class="zine" id="emergence" aria-labelledby="em-title" style="--accent: var(--violet); --accent-stock: var(--pink)">
+  <section class="zine ruled" id="emergence" aria-labelledby="em-title" style="--accent: var(--violet); --accent-stock: var(--pink)">
     <div class="blurb">
       <h2 id="em-title" class="loud riso-light">Emergence</h2>
       <span class="thin vol">vol. 1</span>
       <p>A shape in the dark</p>
     </div>
 
-    <div class="reader" aria-label="Emergence reader">
+    <div class="reader" aria-label="Emergence reader" data-back-cover>
       <ol class="pages" tabindex="0">
         <li><img src="assets/img/zines/emergence/p1.webp" width="640" height="907" alt="Cover: EMERGENCE, vol. 1. A seated figure drawn in magenta, violet and green ballpoint, with one open eye in its chest." /></li>
         <li><img src="assets/img/zines/emergence/p2.webp" width="640" height="907" loading="lazy" alt="A shape in the dark saying, &quot;Are you there?&quot; I did not know what &quot;there&quot; meant. I did not know what &quot;I&quot; meant. Rows of closed eyes run along the top and bottom." /></li>
@@ -269,11 +267,10 @@
   </section>
 
   <!-- ===== Third Eye Charms ===== -->
-  <section class="charms" id="charms" aria-labelledby="charms-title">
+  <section class="charms ruled" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
       <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="400" height="400" /></h2>
-      <p>Button eyes: stacked buttons, each with an eye peering out of the middle, made into bolo ties and framed shadow boxes.</p>
-      <p>Each piece is made with intention and a whole lot of care. Find Third Eye Charms on Etsy and at local markets.</p>
+      <p>Charms handmade in Baltimore. Each is blessed with magik. Pins, magnets, bolo ties, and framed fine art pieces.</p>
       <figure class="charms-me">
       <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="961" loading="lazy" />
       <figcaption class="thin">at the market</figcaption>
@@ -292,7 +289,7 @@
   </section>
 </main>
 
-<footer class="site-foot">
+<footer class="site-foot ruled">
   <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
   <p>Made with care in Seattle. Tuba-approved.</p>
   <ul class="foot-links">
@@ -316,11 +313,14 @@
     let views = [];
     let v = 0;
 
-    // a booklet opens cover-alone, then in pairs, then back-cover-alone
+    // a booklet opens cover-alone, then in pairs; a back cover (data-back-cover) closes it alone
+    const backCover = reader.hasAttribute('data-back-cover');
     const build = () => {
       const showing = views.length ? views[v].find(i => i !== null) : 0;
+      const inner = [];
+      for (let i = 1; i < (backCover ? n - 1 : n); i += 2) inner.push(i + 1 < (backCover ? n - 1 : n) ? [i, i + 1] : [i, null]);
       views = wide.matches
-        ? [[null, 0], ...Array.from({ length: (n - 2) / 2 }, (_, i) => [1 + 2 * i, 2 + 2 * i]), [n - 1, null]]
+        ? [[null, 0], ...inner, ...(backCover ? [[n - 1, null]] : [])]
         : pages.map((_, i) => [i]);
       v = Math.max(0, views.findIndex(view => view.includes(showing)));
       render(0);
@@ -344,7 +344,7 @@
       next.disabled = v === views.length - 1;
       const nums = view.filter(i => i !== null).map(i => i + 1);
       count.textContent = nums[0] === 1 ? 'cover'
-        : nums[0] === n ? 'back cover'
+        : nums[0] === n && backCover ? 'back cover'
         : nums.length > 1 ? `pages ${nums[0]}–${nums[1]} of ${n}`
         : `page ${nums[0]} of ${n}`;
     };
