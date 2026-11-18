@@ -49,7 +49,7 @@ How the game works:
 ## Zine page sources (in case pages need re-cutting)
 Both zines come from the owner's per-page PDFs in `~/Joodlebug Ink/zines/Zine_individual_pages/`:
 - **Alien Mode**: `AlienMode_issue01_individual_pages/AlienMode_issue01_0N_*.pdf`. All 8 pages are the same size (1240×1500 at 300 dpi), saved as 640×774 webp.
-- **Emergence**: `Emergence_vol1_individual_pages/Emergence_vol1_0N_*.pdf`. They're A6 (1240×1754 at 300 dpi), saved as 640×907 webp. These PDFs have a 1px black trim line on the right and bottom edges, so shave 4px off each side before resizing.
+- **Emergence**: `Emergence_vol1_individual_pages/Emergence_vol1_0N_*.pdf`. They're A6 (1240×1754 at 300 dpi), saved as 640×911 webp. These PDFs carry trim lines and thin slivers of neighbouring pages (up to ~22px on pages 2–5), so each page is cropped to 1214×1728 with its own offset (x,y): p1 6,13 · p2 23,24 · p3 4,20 · p4 4,19 · p5 5,19 · p6–8 13,13.
 - Render with `gs -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=out.png in.pdf`, then `convert out.png [-shave 4x4 +repage] -resize 640x -strip -quality 76 pN.webp`.
 - Every zine page `<img>` in `zines.html` has full alt text (the poem text for Emergence). Update it if a page changes.
 
