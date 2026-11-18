@@ -15,7 +15,8 @@ Plain static HTML in the repo root, one shared stylesheet. No build step.
 | Page | What it is |
 |---|---|
 | `index.html` | Quiet homepage: one eye in the dark, "are you there?", three nav links. The Emergence figure is hidden around the eye and shows where a light follows the pointer (drifts on its own when idle). |
-| `zines.html` | "Joodlebug Ink" in the nav. Alien Mode vol. 1 and Emergence vol. 1 as page-flip readers (spreads on wide screens, single pages on phones, arrows/keys/swipe), each with a one-line blurb. Third Eye Charms below as hang tags. |
+| `zines.html` | "Joodlebug Ink" in the nav. Alien Mode vol. 1 (7 pages, no back cover) and Emergence vol. 1 (8 pages) as page-flip readers, with jump links at the top. |
+| `artifacts.html` | "Artifacts" in the nav: Third Eye Charms. Logo, copy, the market photo, a Shop on Etsy link and six product cards. |
 | `tuba.html` | Tuba's Corner: silly hell (flames, embers, pitchfork wallpaper, flaming halo, dangling eyeball) + Job 38:4 thought bubble. |
 | `bug.html` | Featured Bug (page heading still says "Bug of the Week"). Dogbane Beetle + archive scraps, incl. the Jade Faced Buffalo Beetle from Alien Mode. |
 | `art.html` | Redirect to `zines.html` so old links work. |

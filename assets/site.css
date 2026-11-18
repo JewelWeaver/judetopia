@@ -176,6 +176,7 @@ main { flex: 1; overflow-x: clip; }
 .site-nav li:nth-child(1) .nav-link { --chip: var(--pink); }
 .site-nav li:nth-child(2) .nav-link { --chip: var(--mint); }
 .site-nav li:nth-child(3) .nav-link { --chip: var(--sky); }
+.site-nav li:nth-child(4) .nav-link { --chip: var(--peach); }
 
 /* ---------- paper ---------- */
 .paper {
