@@ -11,19 +11,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    .page-head h1 { font-size: clamp(2.8rem, 10vw, 6.4rem); }
+    .page-head { padding: 1.6rem 0 1.2rem; text-align: center; }
+    .page-head h1 { font-size: clamp(2.4rem, 7vw, 4.4rem); }
 
     .feature {
       display: grid;
-      grid-template-columns: minmax(200px, .8fr) 1.4fr;
-      gap: 1.5rem 3rem;
+      grid-template-columns: minmax(180px, 260px) 1fr;
+      gap: 1rem 2rem;
       align-items: center;
-      padding: clamp(1.75rem, 5vw, 3.25rem);
+      padding: clamp(1rem, 2.6vw, 1.6rem) clamp(1rem, 3vw, 2rem);
       animation: pop-in .6s ease both;
     }
     /* a photo print of this week's bug */
-    .beetle { margin: 0; rotate: -2deg; transition: rotate .4s; }
-    .feature:hover .beetle { rotate: 0deg; }
+    .beetle { margin: 0; }
+    .beetle img { transition: rotate .35s cubic-bezier(.3, 1.6, .5, 1); }
+    .beetle img:hover { rotate: -4deg; }
     .beetle img {
       display: block;
       width: 100%;
@@ -34,15 +36,15 @@
     }
     .credit { margin-top: .55rem; font-size: .66rem; line-height: 1.4; color: var(--navy); }
     .credit a { color: inherit; text-underline-offset: 2px; }
-    .feature .thin { font-size: .78rem; color: var(--navy); }
-    .bug-name { font-weight: 700; font-size: clamp(1.8rem, 4.4vw, 2.6rem); line-height: 1.1; color: #1f6f2c; margin: .3rem 0 .2rem; }
-    .bug-sci { font-style: italic; color: var(--navy); margin-bottom: 1.1rem; }
-    .bug-desc { font-size: 1rem; line-height: 1.7; }
+    .feature .thin { font-size: .7rem; color: var(--navy); }
+    .bug-name { font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.1; color: #1f6f2c; margin: .2rem 0 .1rem; }
+    .bug-sci { font-style: italic; font-size: .9rem; color: var(--navy); margin-bottom: .6rem; }
+    .bug-desc { font-size: .9rem; line-height: 1.6; }
     .fact {
       position: relative;
-      margin-top: 1.4rem;
-      padding: .85rem 1rem .8rem;
-      font-size: .88rem;
+      margin-top: .9rem;
+      padding: .65rem .9rem .6rem;
+      font-size: .82rem;
       line-height: 1.55;
       border: var(--line-thin) solid var(--ink);
       border-radius: 14px;
@@ -59,7 +61,7 @@
       margin-bottom: .35rem;
     }
 
-    .archive-label { margin: 3.5rem 0 1.2rem; font-size: .82rem; color: var(--on-desk-soft); }
+    .archive-label { margin: 2.2rem 0 1rem; font-size: .82rem; color: var(--on-desk-soft); }
     .archive {
       list-style: none;
       display: grid;
@@ -87,8 +89,9 @@
     .scrap.from-zine .a-date { color: var(--magenta); }
 
     @media (max-width: 760px) {
-      .feature { grid-template-columns: 1fr; rotate: 0deg; }
-      .beetle { width: min(100%, 340px); justify-self: center; }
+      /* stacked: the box matches a zine page's width instead of stretching across the page */
+      .feature { grid-template-columns: 1fr; width: min(100%, 420px); margin-inline: auto; }
+      .beetle { width: 100%; }
     }
   </style>
 </head>
@@ -153,7 +156,7 @@
   </ul>
 </main>
 
-<footer class="site-foot">
+<footer class="site-foot ruled">
   <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
   <p>Made with care in Seattle. Tuba-approved.</p>
   <ul class="foot-links">

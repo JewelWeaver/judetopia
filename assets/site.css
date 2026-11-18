@@ -38,7 +38,7 @@
   --line: 4px;
   --line-thin: 3px;
   --round: 20px;
-  --rule: var(--line) solid rgba(196, 179, 209, .3);
+  --rule-color: rgba(196, 179, 209, .3);
 
   --f-type: 'Courier Prime', ui-monospace, 'Courier New', monospace;
   --f-loud: 'Luckiest Guy', 'Arial Black', system-ui, sans-serif;
@@ -196,6 +196,9 @@ main { flex: 1; overflow-x: clip; }
 }
 .shadowed { box-shadow: 0 1px 0 rgba(0,0,0,.25), 0 22px 50px -18px rgba(0,0,0,.65); }
 .boxed { border: var(--line) solid var(--ink); border-radius: var(--round); }
+/* a thick divider bar with rounded ends, drawn along the top of the element */
+.ruled { position: relative; }
+.ruled::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: var(--line); border-radius: 999px; background: var(--rule-color); }
 
 .sticker {
   filter: drop-shadow(0 3px 0 rgba(255,255,255,.9)) drop-shadow(0 -2px 0 rgba(255,255,255,.9)) drop-shadow(2px 0 0 rgba(255,255,255,.9)) drop-shadow(-2px 0 0 rgba(255,255,255,.9)) drop-shadow(0 10px 14px rgba(0,0,0,.35));
@@ -215,7 +218,6 @@ main { flex: 1; overflow-x: clip; }
 .site-foot {
   margin-top: 4rem;
   padding: 2.5rem 16px 2rem;
-  border-top: var(--rule);
   text-align: center;
   color: var(--on-desk-soft);
   font-size: .85rem;

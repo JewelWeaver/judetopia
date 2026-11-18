@@ -52,14 +52,6 @@
       animation: smolder 2.6s ease-in-out infinite alternate;
     }
     @keyframes smolder { to { text-shadow: .06em .07em 0 var(--blood), 0 0 .6em rgba(255, 90, 42, .95); } }
-    .pop {
-      margin-top: .7rem;
-      font-family: var(--f-thin);
-      text-transform: uppercase;
-      letter-spacing: .3em;
-      font-size: .78rem;
-      color: #ffc9a0;
-    }
 
     /* ---- the scene ---- */
     .scene {
@@ -129,9 +121,10 @@
     .lure {
       position: absolute;
       z-index: 3;
-      right: -4%;
-      top: -9%;
-      width: 20%;
+      right: -14%;
+      top: -24%;
+      width: 23%;
+      height: auto;
       transform-origin: 50% -200px;
       animation: dangle 3.2s ease-in-out infinite;
     }
@@ -212,7 +205,6 @@
   <section class="inferno">
 
     <h1 class="yolk-title hell-title">Tuba's Corner</h1>
-    <p class="pop">population: one cat</p>
 
     <div class="scene">
       <div class="thought">
@@ -224,9 +216,9 @@
       </div>
 
       <div class="tuba-spot">
-        <img class="lure" src="assets/img/doodle-eye-stitch.webp" alt="" width="700" height="553" />
+        <img class="lure" src="assets/img/jazzy.webp" alt="" width="600" height="710" />
         <span class="halo" aria-hidden="true"></span>
-        <img class="tuba" src="assets/img/tuba-photo.webp" alt="Tuba, a fluffy black cat, wearing a flaming halo and reaching one paw up toward an eyeball dangling just out of reach." width="900" height="816" />
+        <img class="tuba" src="assets/img/tuba-photo.webp" alt="Tuba, a fluffy black cat, wearing a flaming halo and reaching one paw up toward Jazzy, a curled-up grey cat dangling on a string just out of reach." width="900" height="816" />
       </div>
     </div>
 
@@ -249,7 +241,7 @@
   </section>
 </main>
 
-<footer class="site-foot">
+<footer class="site-foot ruled">
   <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
   <p>Made with care in Seattle. Tuba-approved.</p>
   <ul class="foot-links">

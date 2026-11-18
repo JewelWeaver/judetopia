@@ -15,15 +15,15 @@
   const SPOTS = {
     zines: [
       ['.shelf li', 0, -.35, .5], ['.product', 0, .82, .9], ['#alien-mode .blurb h2', 0, -.06, .35], ['#alien-mode', 0, .92, .1],
-      ['#emergence .pages', 0, .95, .06], ['.product', 2, .2, .92], ['.charms-top p', 1, 1.02, .5], ['#alien-mode .reader-ui', 0, .9, .5],
+      ['#emergence .pages', 0, .95, .06], ['.product', 2, .2, .92], ['.charms-top p', 0, 1.02, .5], ['#alien-mode .reader-ui', 0, .9, .5],
       ['.etsy', 0, 1.12, .5], ['#emergence .blurb h2', 0, 1.06, .6], ['.product', 4, .5, .2], ['.shelf li', 2, 1.3, .5],
       ['.charms-logo', 0, .95, .12], ['.site-foot', 0, .14, .55], ['#alien-mode .pages', 0, .04, .96], ['.product', 1, .78, .1],
       ['#emergence .reader-ui', 0, .1, .5], ['.foot-mark', 0, 1.05, .1], ['#alien-mode .blurb p', 0, 1.04, .5], ['.product', 3, .15, .5],
       ['.site-foot', 0, .86, .3], ['.logo', 0, 1.06, .3],
     ],
     tuba: [
-      ['.hell-title', 0, .96, .25], ['.inferno', 0, .07, .55], ['.bubble', 0, .92, .04], ['.inferno', 0, .3, .3],
-      ['.inferno', 0, .22, .93], ['.inferno', 0, .93, .42], ['.halo', 0, .5, .5], ['.pop', 0, .78, .5],
+      ['.hell-title', 0, .96, .25], ['.inferno', 0, .07, .55], ['.bubble', 0, .92, .04], ['.inferno', 0, .05, .3],
+      ['.inferno', 0, .22, .93], ['.inferno', 0, .93, .42], ['.halo', 0, .5, .5], ['.inferno', 0, .64, .16],
       ['.inferno', 0, .76, .95], ['.inferno', 0, .5, .985], ['.site-foot', 0, .8, .5],
     ],
     bug: [
