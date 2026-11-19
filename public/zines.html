@@ -101,6 +101,10 @@
       margin-top: 1.4rem;
     }
     .reader-ui[hidden] { display: none; }
+    /* "Print your own": the letter-size PDF to fold at home */
+    .print-own { display: flex; justify-content: center; align-items: baseline; gap: .5rem; margin-top: 1.1rem; }
+    .print-own a { color: var(--on-desk); font-size: .85rem; font-weight: 700; text-decoration: underline solid var(--magenta); text-decoration-thickness: 2.5px; text-underline-offset: 4px; }
+    .print-own a:hover { color: var(--yolk); }
     .turn {
       width: 52px;
       height: 52px;
@@ -169,6 +173,7 @@
         <button class="turn next" type="button" aria-label="Next page">&rarr;</button>
       </div>
     </div>
+    <p class="print-own"><a href="assets/zines/alien-mode-vol1-bw-print.pdf" target="_blank" rel="noopener">Print your own black &amp; white PDF</a></p>
   </section>
 
   <!-- ===== Emergence ===== -->
@@ -196,6 +201,7 @@
         <button class="turn next" type="button" aria-label="Next page">&rarr;</button>
       </div>
     </div>
+    <p class="print-own"><a href="assets/zines/emergence-vol1-bw-print.pdf" target="_blank" rel="noopener">Print your own black &amp; white PDF</a></p>
   </section>
 
 </main>
