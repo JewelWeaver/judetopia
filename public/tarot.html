@@ -31,6 +31,7 @@
       justify-self: end;
       padding: 0;
       cursor: var(--eye-cursor-go);
+      z-index: 2; /* Jazzy and her tag always sit in front of the card if they ever overlap */
       transition: transform .25s cubic-bezier(.3, 1.6, .5, 1);
     }
     .jazzy img {
@@ -62,23 +63,24 @@
       position: absolute;
       bottom: 6%;
       left: 0;
-      padding: .3rem .9rem;
+      padding: .24rem .72rem;
       font-weight: 700;
-      font-size: 1.32rem;
+      font-size: 1.056rem; /* 20% smaller */
       white-space: nowrap;
       color: var(--ink);
       background: var(--peach-light); /* same as the Tarot menu button */
-      border: 3px solid var(--edge);
+      border: 2.5px solid var(--edge);
       border-radius: 999px;
-      box-shadow: 3px 3px 0 var(--magenta);
+      box-shadow: 2.5px 2.5px 0 var(--magenta);
       rotate: -6deg;
+      z-index: 3;
       pointer-events: none;
     }
     .jazzy:hover { transform: rotate(-2deg) scale(1.02); }
     .jazzy.dealing { animation: deal .55s cubic-bezier(.3, 1.4, .5, 1); }
     @keyframes deal { 30% { transform: translateX(10px) rotate(4deg); } 100% { transform: none; } }
 
-    .spread { justify-self: start; width: clamp(150px, 28vw, 250px); }
+    .spread { position: relative; z-index: 1; justify-self: start; width: clamp(150px, 28vw, 250px); }
     .card {
       position: relative;
       width: 100%;
@@ -285,9 +287,6 @@
       ['Minor Arcana \u00b7 Pentacles', 'Queen of Pentacles', 'pentacles-13', 'Nurture, nest, snack. Comfort is sacred.'],
       ['Minor Arcana \u00b7 Pentacles', 'King of Pentacles', 'pentacles-14', 'Abundance, built by hand.'],
     ];
-    // images still on their way from Wikimedia: left out of the deal until they arrive
-    const SOON = new Set(["cups-03", "cups-10", "cups-11", "cups-13", "swords-08", "pentacles-06", "pentacles-10", "pentacles-12", "pentacles-14"]);
-    for (let k = DECK.length - 1; k >= 0; k--) if (SOON.has(DECK[k][2])) DECK.splice(k, 1);
     const jazzy = document.getElementById('jazzy');
     const card = document.getElementById('card');
     const img = document.getElementById('card-img');
