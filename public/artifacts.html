@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wares — Judetopia</title>
-  <meta name="description" content="Artifacts: Third Eye Charms, handmade in Baltimore. Pins, magnets, bolo ties, and framed fine art pieces." />
+  <meta name="description" content="Wares: Third Eye Charms, handmade in Baltimore. Pins, magnets, bolo ties, and shadowboxes." />
   <link rel="icon" href="assets/img/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,9 @@
     /* ---------- third eye charms ---------- */
     .page-head { padding: 1.6rem 0 .4rem; text-align: center; }
     .page-head h1 { font-size: var(--title-size); }
-    .charms { padding: .6rem 0 1rem; }
+    .charms { padding: .6rem 0 0; }
+    /* the circle logo sits evenly between the product cards and the footer line (about 36.6px each, shadows included) */
+    .site-foot { margin-top: 44.6px; }
     .charms-top {
       display: grid;
       justify-items: center;
@@ -26,7 +28,7 @@
     .charms-logo {
       display: block;
       width: clamp(220px, 34.6vw, 348px); /* sits centred under the product cards */
-      margin: 2.6rem auto .4rem;
+      margin: 2.6rem auto 0;
       height: auto;
       border-radius: 50%;
       box-shadow: 4px 4px 0 var(--ink), 8px 8px 0 var(--hot); /* no border, just a two-tone shadow: black, then pink */
@@ -47,7 +49,7 @@
       border-radius: 14px;
       box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
     }
-    .charms-me figcaption { margin-top: .6rem; font-size: .74rem; color: var(--on-desk-soft); }
+    .charms-me figcaption { margin-top: .6rem; font-size: .74rem; color: var(--on-desk-soft); text-transform: none; letter-spacing: .06em; } /* sentence case, unlike the other small labels */
     .etsy {
       display: inline-flex;
       align-items: center;
@@ -118,14 +120,14 @@
   </header>
   <section class="charms" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
-      <p>Handmade art pieces, each blessed with magick.<br />Pins, magnets, bolo ties, and framed fine art pieces.</p>
+      <p>Handmade art pieces, each blessed with magick.<br />Pins, magnets, bolo ties, and shadowboxes.</p>
       <figure class="charms-me">
       <div class="market-photos">
         <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="851" loading="lazy" />
         <img src="assets/img/charms/market-night.webp" alt="At an indoor Third Eye Charms table at night, wearing light-up antennae, behind framed boards of button eyes, a rack of bolo ties and bracelets, and a pricing sign." width="900" height="606" loading="lazy" />
         <img src="assets/img/charms/market-stars.webp" alt="At an outdoor Third Eye Charms table at dusk, wearing a button-eye bolo tie, behind framed constellations made of button eyes: Leo, Boötes and Cassiopeia." width="640" height="850" loading="lazy" />
       </div>
-      <figcaption class="thin">at the market</figcaption>
+      <figcaption class="thin">At the market.</figcaption>
     </figure>
     <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
     </div>
