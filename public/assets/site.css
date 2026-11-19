@@ -42,10 +42,10 @@
   --round: 20px;
   --rule-color: rgba(196, 179, 209, .3);
 
-  --f-type: 'DM Sans', system-ui, sans-serif; /* body text: calm, round, readable under the chunky titles */
-  --f-loud: 'Luckiest Guy', 'Arial Black', system-ui, sans-serif;
+  --f-type: 'Fredoka', system-ui, sans-serif; /* body text: round and bubbly, in the spirit of the chunky titles */
+  --f-loud: 'Chango', 'Arial Black', system-ui, sans-serif; /* logo and titles: wide, heavy poster lettering */
   --f-thin: 'Space Mono', ui-monospace, monospace; /* labels and captions: a zine/typewriter accent */
-  --f-head: 'DM Sans', system-ui, sans-serif; /* sub-headings, set bold */
+  --f-head: 'Fredoka', system-ui, sans-serif; /* sub-headings, set bold */
 
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --eye-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='20' viewBox='0 0 30 20'%3E%3Cpath d='M2 10Q15-2 28 10Q15 22 2 10Z' fill='%23fff' stroke='%23b0126f' stroke-width='2.4'/%3E%3Ccircle cx='15' cy='10' r='4.6' fill='%234a1f9a'/%3E%3Ccircle cx='15' cy='10' r='1.8' fill='%231b1420'/%3E%3C/svg%3E") 15 10, auto;
@@ -146,9 +146,11 @@ main { flex: 1; overflow-x: clip; }
   text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green);
 }
 .logo img {
-  height: 40px; /* the eye stays this size whatever the letters do */
+  height: 1.09em; /* 48px beside the desktop letters, and it shrinks with them on phones */
   width: auto;
-  margin: -6px 1px 0;
+  margin: 0 .22em 0 0; /* sits just before the word */
+  position: relative;
+  top: .025em; /* pupil level with the middle of the capitals */
   transition: transform .4s cubic-bezier(.3, 1.6, .5, 1);
 }
 .logo:hover img { transform: rotate(-18deg) scale(1.12); }
@@ -157,9 +159,9 @@ main { flex: 1; overflow-x: clip; }
 .nav-link {
   display: inline-block;
   padding: .42rem .95rem .38rem;
-  font-family: 'Bungee', var(--f-type); /* funky retro sign lettering for the menu */
+  font-family: 'Lilita One', var(--f-type); /* bold and soft: a little sibling to the Chango titles */
   font-weight: 400;
-  font-size: .8rem;
+  font-size: 1rem; /* Lilita runs smaller than Bungee did */
   letter-spacing: .04em;
   text-transform: uppercase;
   text-decoration: none;
@@ -253,8 +255,9 @@ main { flex: 1; overflow-x: clip; }
 @media (max-width: 700px) {
   .site-head { justify-content: center; text-align: center; }
   .site-nav { justify-content: center; }
+  .logo { font-size: min(2.75rem, 9vw); } /* Chango is wide: eye and letters shrink together to fit */
   .site-nav { gap: .45rem; }
-  .nav-link { font-size: .68rem; letter-spacing: .02em; padding: .38rem .6rem .34rem; }
+  .nav-link { font-size: .85rem; letter-spacing: .02em; padding: .38rem .6rem .34rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
