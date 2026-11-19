@@ -22,7 +22,7 @@
     ],
     artifacts: [
       ['.charms-logo', 0, .95, .12], ['.product', 0, .82, .9], ['.charms-logo', 0, .08, .86], ['.product', 2, .9, .07],
-      ['.etsy', 0, 1.12, .5], ['.product', 4, .5, .2], ['.market-photos img', 1, .9, -.04], ['.product', 1, .78, .1],
+      ['.etsy', 0, 1.12, .5], ['.market-photos img', 0, .92, .96], ['.market-photos img', 1, .9, -.04], ['.product', 1, .78, .1],
       ['.product', 3, .15, .5], ['.site-foot', 0, .8, .45], ['.logo', 0, 1.06, .3],
     ],
     tuba: [
