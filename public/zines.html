@@ -49,7 +49,7 @@
     }
     .pages li { flex: 0 0 min(72%, 300px); scroll-snap-align: start; }
     .pages { --page-line: 8px; }
-    .pages img { width: 100%; border: var(--page-line) solid var(--hot); /* zine pages get the bright logo pink */ border-radius: 14px; box-shadow: 0 18px 36px -14px rgba(0,0,0,.7); }
+    .pages img { width: 100%; /* two-tone frame: logo pink outside, black inside, half and half */ border: calc(var(--page-line) / 2) solid var(--hot); padding: calc(var(--page-line) / 2); background: var(--ink); border-radius: 14px; box-shadow: 0 18px 36px -14px rgba(0,0,0,.7); }
 
     .reader.is-book .pages {
       display: grid;
@@ -83,8 +83,8 @@
     .reader.is-spread .pages li.right::after { background: linear-gradient(to right, rgba(0,0,0,.28), transparent 9%); }
     .reader.is-book .pages img { box-shadow: 0 26px 50px -20px rgba(0,0,0,.85); }
     /* an open spread shares one line down the fold instead of two */
-    .reader.is-spread .pages li.left img { border-right-width: calc(var(--page-line) / 2); border-radius: 14px 0 0 14px; }
-    .reader.is-spread .pages li.right img { border-left-width: calc(var(--page-line) / 2); border-radius: 0 14px 14px 0; }
+    .reader.is-spread .pages li.left img { border-right-width: 0; /* the spine is the two black insides meeting */ border-radius: 14px 0 0 14px; }
+    .reader.is-spread .pages li.right img { border-left-width: 0; border-radius: 0 14px 14px 0; }
     /* trim each spread page by that half border so it draws exactly as big as the covers */
     .reader.is-spread .pages li:is(.left, .right) img { width: calc(100% - var(--page-line) / 2); }
     .reader.is-spread .pages li.left img { margin-left: auto; }

@@ -41,7 +41,10 @@
       width: 100%;
       height: 100%; /* all three share the row's height exactly */
       object-fit: cover;
-      border: var(--photo-line) solid var(--hot); /* the bright pink from the logo ring */
+      /* two-tone frame like the zine pages: logo pink outside, black inside, half and half */
+      border: calc(var(--photo-line) / 2) solid var(--hot);
+      padding: calc(var(--photo-line) / 2);
+      background: var(--ink);
       border-radius: 14px;
       box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
     }
