@@ -95,7 +95,7 @@
   hud.innerHTML = `
     <p class="be-toast" role="status"></p>
     <section class="be-panel" id="be-panel" aria-label="Button eye collection" hidden>
-      <div class="be-top"><h2>Button eyes</h2><button type="button" class="be-x" aria-label="Close">&times;</button></div>
+      <div class="be-top"><h2>Button eyes</h2><button type="button" class="be-x" aria-label="Close"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
       <p class="be-sum"></p>
       <ul class="be-where"></ul>
       <ol class="be-grid"></ol>
@@ -121,7 +121,7 @@
     $('.be-count').textContent = `${n}/${buttons.length}`;
     tin.setAttribute('aria-label', `Button eyes collected: ${n} of ${buttons.length}. Open collection.`);
     $('.be-sum').textContent = n === buttons.length
-      ? 'Every button eye found. Tuba-approved.'
+      ? 'Every button eye found. Jazzy-approved.'
       : `${n} of ${buttons.length} found. They're scattered all over the site.`;
     $('.be-where').innerHTML = Object.entries(PAGES).map(([key, p]) => {
       const all = buttons.filter(b => b.page === key);
