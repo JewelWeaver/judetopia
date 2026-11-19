@@ -68,14 +68,18 @@
       transition: transform .2s, box-shadow .2s;
     }
     .etsy:hover, .etsy:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--magenta); }
+    /* the product row is exactly as wide as the market photos above it: four across, two on phones */
     .products {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fit, min(190px, calc(50% - .75rem))); /* card-sized columns centred as a group; two across on phones */
-      justify-content: center;
-      gap: 1.4rem;
+      width: min(100%, 940px);
+      margin-inline: auto;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(.9rem, 2vw, 1.4rem);
     }
+    @media (max-width: 700px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     .product {
+      container-type: inline-size; /* lets the name size itself to the card */
       padding: .7rem .7rem .9rem;
       box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
       transition: translate .2s, box-shadow .2s;
@@ -91,7 +95,7 @@
       border-radius: 14px;
       margin-bottom: .75rem;
     }
-    .product h3 { font-family: var(--f-pop); font-weight: 400; font-size: min(1.1rem, 3.7vw); /* shrinks on narrow phones so SHADOWBOXES fits its card */ line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
+    .product h3 { font-family: var(--f-pop); font-weight: 400; font-size: min(1.25rem, 11cqi); /* sized to the card, so SHADOWBOXES always fits on one line */ line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
 
   </style>
 </head>
@@ -129,8 +133,8 @@
     </div>
 
     <ul class="products">
-      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/pins.webp" alt="Button-eye pins on a denim jacket: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Pins</h3></li>
       <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
+      <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/pins.webp" alt="Button-eye pins on a denim jacket: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Pins</h3></li>
       <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/magnets.webp" alt="Button-eye magnets on a teal surface: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Magnets</h3></li>
       <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Shadowboxes</h3></li>
     </ul>
