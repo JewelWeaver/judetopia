@@ -9,7 +9,7 @@
     zines: { name: 'Joodlebug Ink', href: 'zines.html' },
     tuba: { name: "Tuba's Corner", href: 'tuba.html' },
     bug: { name: 'Featured Bug', href: 'bug.html' },
-    artifacts: { name: 'Artifacts', href: 'artifacts.html' },
+    artifacts: { name: 'Wares', href: 'artifacts.html' },
   };
 
   // [selector, nth match, x, y] — x/y are fractions of that element's box
