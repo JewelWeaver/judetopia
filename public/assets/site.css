@@ -36,6 +36,7 @@
   --olive: #b2b19a;
   --bone: #ebe8ef;
   --eye-green: #4dd27f; /* sampled from the homepage eye */
+  --electric: #8b2cff; /* electric purple: the line inside the side bands */
   --title-size: clamp(min(2.25rem, 9vw), 6.4vw, 3.5rem); /* every page title: the biggest type on each page */
   --edge: var(--ink); /* every box and button border */
 
@@ -73,11 +74,11 @@ body {
   /* every page is framed by thick bands of the homepage eye's green, with the inner third in logo pink */
   border-inline: clamp(7.5px, 1.65vw, 21px) solid var(--eye-green);
   /* each side band draws one half of this gradient squeezed into its width:
-     left band = green, a thin black line, then pink; the right band mirrors it.
-     Within a band: black takes 12% of its width, pink the inner third, green the rest */
+     left band = green, an electric purple line, then pink; the right band mirrors it.
+     Within a band: purple takes 18% of its width, pink the inner third, green the rest */
   border-image: linear-gradient(to right,
-    var(--eye-green) 0 27.333%, var(--ink) 0 33.333%, var(--hot) 0 50%,
-    var(--hot) 0 66.667%, var(--ink) 0 72.667%, var(--eye-green) 0) 0 50%;
+    var(--eye-green) 0 24.333%, var(--electric) 0 33.333%, var(--hot) 0 50%,
+    var(--hot) 0 66.667%, var(--electric) 0 75.667%, var(--eye-green) 0) 0 50%;
 }
 body::before {
   content: '';
