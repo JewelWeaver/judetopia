@@ -8,14 +8,14 @@
   <link rel="icon" href="assets/img/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&family=Titan+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&family=Bungee&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
     .page-head { padding: 1.6rem 0 .6rem; text-align: center; }
     #alien-mode { padding-top: 1.4rem; padding-bottom: 1.2rem; } /* first zine sits close under the jump links */
     #emergence { padding-top: 2.6rem; padding-bottom: 1.2rem; } /* and the second a little below the first */
     .site-foot { margin-top: 1.6rem; } /* the footer line sits close under Emergence's page turns */
-    .page-head h1 { font-size: var(--title-size); margin-bottom: 1.1rem; }
+    .page-head h1 { font-size: var(--title-size); margin-bottom: calc(1.1rem - .065em); } /* about 27px from the title down to the jump links, the same as from the menu to the title */
     .shelf { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 2rem; list-style: none; }
     .shelf a {
       color: var(--on-desk);
@@ -200,7 +200,7 @@
 </main>
 
 <footer class="site-foot ruled">
-  <img class="foot-mark" src="assets/img/brand-mark.png" alt="Joodlebug Ink" width="520" height="329" />
+  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
   <ul class="foot-links">
     <li><a href="zines.html">Joodlebug Ink</a></li>
     <li><a href="artifacts.html">Artifacts</a></li>
