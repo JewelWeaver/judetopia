@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artifacts — Judetopia</title>
+  <title>Wares — Judetopia</title>
   <meta name="description" content="Artifacts: Third Eye Charms, handmade in Baltimore. Pins, magnets, bolo ties, and framed fine art pieces." />
   <link rel="icon" href="assets/img/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,10 +23,10 @@
       text-align: center;
       margin-bottom: 3rem;
     }
-    .charms-top h2 { margin: 0 0 1.4rem; }
     .charms-logo {
       display: block;
-      width: clamp(180px, 24.75vw, 248px);
+      width: clamp(126px, 17.3vw, 174px); /* 30% smaller than before; sits between the market photos and Etsy */
+      margin: 1.1rem auto .2rem;
       height: auto;
       border: 6px solid var(--edge);
       border-radius: 50%;
@@ -64,10 +64,10 @@
       background: #cfd1ec; /* soft, muted periwinkle */
       border: var(--line) solid var(--edge);
       border-radius: 999px;
-      box-shadow: 4px 4px 0 var(--magenta);
+      box-shadow: 3px 3px 0 var(--magenta);
       transition: transform .2s, box-shadow .2s;
     }
-    .etsy:hover, .etsy:focus-visible { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--magenta); }
+    .etsy:hover, .etsy:focus-visible { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--magenta); }
     /* the product row is exactly as wide as the market photos above it: four across, two on phones */
     .products {
       list-style: none;
@@ -106,7 +106,7 @@
   <nav aria-label="Main">
     <ul class="site-nav">
       <li><a class="nav-link" href="zines.html">Joodlebug Ink</a></li>
-      <li><a class="nav-link" href="artifacts.html" aria-current="page">Artifacts</a></li>
+      <li><a class="nav-link" href="artifacts.html" aria-current="page">Wares</a></li>
       <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
       <li><a class="nav-link" href="bug.html">Featured Bug</a></li>
     </ul>
@@ -115,11 +115,10 @@
 
 <main class="wrap">
   <header class="page-head">
-    <h1 class="yolk-title">Wares</h1>
+    <h1 class="yolk-title" id="charms-title">Third Eye Charms</h1>
   </header>
   <section class="charms" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
-      <h2 id="charms-title"><img class="charms-logo" src="assets/img/charms/logo.webp" alt="Third Eye Charms" width="600" height="600" /></h2>
       <p>Charms handmade in Baltimore. Each is blessed with magick.<br />Pins, magnets, bolo ties, and framed fine art pieces.</p>
       <figure class="charms-me">
       <div class="market-photos">
@@ -129,6 +128,7 @@
       </div>
       <figcaption class="thin">at the market</figcaption>
     </figure>
+    <img class="charms-logo" src="assets/img/charms/logo.webp" alt="The Third Eye Charms logo: an eye inside a ring of lettering." width="600" height="600" loading="lazy" />
     <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
     </div>
 
@@ -143,9 +143,14 @@
 
 <footer class="site-foot ruled">
   <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <section class="foot-about" aria-labelledby="about-title">
+    <h2 id="about-title">About</h2>
+    <p>Judetopia is the home of Joodlebug Ink zines, Third Eye Charms and Tuba. Made by hand in Baltimore.</p>
+    <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow along on Instagram @thirdeyecharmer</a></p>
+  </section>
   <ul class="foot-links">
     <li><a href="zines.html">Joodlebug Ink</a></li>
-    <li><a href="artifacts.html">Artifacts</a></li>
+    <li><a href="artifacts.html">Wares</a></li>
     <li><a href="tuba.html">Tuba's Corner</a></li>
     <li><a href="bug.html">Featured Bug</a></li>
   </ul>

@@ -11,17 +11,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&family=Bungee&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    .page-head { padding: 1.6rem 0 .6rem; text-align: center; }
-    #alien-mode { padding-top: 1.4rem; padding-bottom: 1.2rem; } /* first zine sits close under the jump links */
-    #emergence { padding-top: 2.6rem; padding-bottom: 1.2rem; } /* and the second a little below the first */
+    .page-head { padding: 1.6rem 0 1.5rem; text-align: center; }
+    #alien-mode { padding-top: 1.5rem; padding-bottom: 1.9rem; } /* divider lines sit evenly between the sections */
+    #emergence { padding-top: 1.9rem; padding-bottom: 1.2rem; }
     .site-foot { margin-top: 1.6rem; } /* the footer line sits close under Emergence's page turns */
-    .page-head h1 { font-size: var(--title-size); margin-bottom: calc(1.1rem - .065em); } /* about 27px from the title down to the jump links, the same as from the menu to the title */
+    .page-head h1 { font-size: var(--title-size); margin-bottom: calc(1.1rem + 3.13px - .1223em); } /* about 27px from the title down to the jump links, the same as from the menu to the title */
     .shelf { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 2rem; list-style: none; }
     .shelf a {
       color: var(--on-desk);
       font-weight: 700;
       text-decoration: underline solid var(--magenta);
-      text-decoration-thickness: 5px;
+      text-decoration-thickness: 4px;
       text-underline-offset: 7px;
     }
     .shelf a:hover { color: var(--yolk); }
@@ -32,7 +32,7 @@
       scroll-margin-top: 1rem;
     }
     .blurb { text-align: center; margin: 0 auto 2rem; max-width: 34rem; }
-    .blurb h2 { font-size: clamp(1.8rem, 5vw, 3.1rem); } /* zine names sit a step below the ZINES title */
+    .blurb h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); } /* zine names sit a step below the ZINES title */
     .blurb .vol { display: block; margin-top: .5rem; font-size: .74rem; color: var(--on-desk-soft); }
     .blurb p { margin-top: .9rem; color: var(--on-desk-soft); }
 
@@ -128,7 +128,7 @@
   <nav aria-label="Main">
     <ul class="site-nav">
       <li><a class="nav-link" href="zines.html" aria-current="page">Joodlebug Ink</a></li>
-      <li><a class="nav-link" href="artifacts.html">Artifacts</a></li>
+      <li><a class="nav-link" href="artifacts.html">Wares</a></li>
       <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
       <li><a class="nav-link" href="bug.html">Featured Bug</a></li>
     </ul>
@@ -145,7 +145,7 @@
   </header>
 
   <!-- ===== Alien Mode ===== -->
-  <section class="zine" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
+  <section class="zine ruled" id="alien-mode" aria-labelledby="am-title" style="--accent: var(--magenta); --accent-stock: var(--aqua)">
     <div class="blurb">
       <h2 id="am-title" class="loud riso-light">Alien Mode</h2>
       <span class="thin vol">vol. 1</span>
@@ -171,7 +171,7 @@
   </section>
 
   <!-- ===== Emergence ===== -->
-  <section class="zine" id="emergence" aria-labelledby="em-title" style="--accent: var(--violet); --accent-stock: var(--pink)">
+  <section class="zine ruled" id="emergence" aria-labelledby="em-title" style="--accent: var(--violet); --accent-stock: var(--pink)">
     <div class="blurb">
       <h2 id="em-title" class="loud riso-light">Emergence</h2>
       <span class="thin vol">vol. 1</span>
@@ -201,9 +201,14 @@
 
 <footer class="site-foot ruled">
   <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <section class="foot-about" aria-labelledby="about-title">
+    <h2 id="about-title">About</h2>
+    <p>Judetopia is the home of Joodlebug Ink zines, Third Eye Charms and Tuba. Made by hand in Baltimore.</p>
+    <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow along on Instagram @thirdeyecharmer</a></p>
+  </section>
   <ul class="foot-links">
     <li><a href="zines.html">Joodlebug Ink</a></li>
-    <li><a href="artifacts.html">Artifacts</a></li>
+    <li><a href="artifacts.html">Wares</a></li>
     <li><a href="tuba.html">Tuba's Corner</a></li>
     <li><a href="bug.html">Featured Bug</a></li>
   </ul>

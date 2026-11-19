@@ -35,7 +35,7 @@
   --olive: #b2b19a;
   --bone: #ebe8ef;
   --eye-green: #4dd27f; /* sampled from the homepage eye */
-  --title-size: clamp(2.4rem, 7vw, 4.4rem); /* every page and zine title */
+  --title-size: clamp(min(2.25rem, 9vw), 6.4vw, 3.5rem); /* every page title: big, but still a step below the JUDETOPIA logo */
   --edge: var(--ink); /* every box and button border */
 
   /* bold outlines, like the Third Eye Charms logo */
@@ -146,7 +146,7 @@ main { flex: 1; overflow-x: clip; }
   display: inline-flex;
   align-items: center;
   font-family: var(--f-logo);
-  font-size: 2.75rem; /* letters about as tall as the eye's ring */
+  font-size: min(3.75rem, calc((100vw - 40px) / 7.6)); /* the biggest type on the page; shrinks to fit narrow phones */
   line-height: 1;
   text-decoration: none;
   color: var(--on-desk);
@@ -182,8 +182,8 @@ main { flex: 1; overflow-x: clip; }
 .nav-link:hover { transform: translateY(-2px); }
 .nav-link[aria-current="page"] {
   text-decoration: underline solid var(--magenta);
-  text-decoration-thickness: 4px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+  text-underline-offset: .14em; /* tucked up under the letters, clear of the pill's rounded edge */
 }
 /* each page keeps its own colour, wherever it sits in the menu */
 .nav-link[href="zines.html"] { --chip: var(--pink); }
@@ -223,7 +223,7 @@ main { flex: 1; overflow-x: clip; }
 .page-head h1 { font-size: clamp(3rem, 11vw, 7rem); }
 /* pull each page's big title up under the menu: about 27px from the menu to the title's
    capitals at every size, the same as from ZINES down to its Alien Mode / Emergence links */
-.page-head > h1.yolk-title { margin-top: calc(-15.7px - .1265em); }
+.page-head > h1.yolk-title { margin-top: calc(-18.63px - .0692em); }
 .page-head p {
   max-width: 34rem;
   margin-top: 1rem;
@@ -253,6 +253,9 @@ main { flex: 1; overflow-x: clip; }
   list-style: none;
 }
 .foot-links a { color: var(--on-desk); text-underline-offset: 4px; text-decoration-color: var(--magenta); }
+.foot-about { max-width: 34rem; margin: 0 auto 1.1rem; line-height: 1.5; }
+.foot-about h2 { font-family: var(--f-pop); font-weight: 400; font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: var(--on-desk); margin-bottom: .3rem; }
+.foot-about a { color: var(--on-desk); font-weight: 600; text-underline-offset: 4px; text-decoration-color: var(--magenta); }
 .foot-links a:hover { color: var(--yolk); }
 
 /* ---------- motion ---------- */
@@ -261,12 +264,16 @@ main { flex: 1; overflow-x: clip; }
 @keyframes blink { 0%, 92%, 100% { scale: 1 1; } 95% { scale: 1 .1; } }
 @keyframes pop-in { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
 
-@media (max-width: 700px) {
+/* below about 1170px the big logo and the menu no longer fit on one row, so both centre */
+@media (max-width: 1179px) {
   .site-head { justify-content: center; text-align: center; }
   .site-nav { justify-content: center; }
-  .logo { font-size: min(2.75rem, 11vw); } /* eye and letters shrink together on narrow phones */
-  .site-nav { gap: .45rem; }
-  .nav-link { font-size: .85rem; letter-spacing: .02em; padding: .38rem .6rem .34rem; }
+}
+@media (max-width: 700px) {
+  /* all four menu buttons stay on one row: the text scales with the screen */
+  .site-head { padding-inline: 10px; }
+  .site-nav { gap: .22rem; flex-wrap: nowrap; }
+  .nav-link { font-size: min(.85rem, 2.75vw); letter-spacing: 0; padding: .5em .48em .44em; border-width: 3px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -335,7 +342,7 @@ main { flex: 1; overflow-x: clip; }
   color: var(--ink);
   background: var(--butter);
   border: var(--line) solid var(--edge);
-  box-shadow: 3px 3px 0 var(--magenta);
+  box-shadow: 2px 2px 0 var(--magenta);
 }
 .be-ico { display: block; width: 26px; height: 26px; border-radius: 50%; }
 .be-toast {
@@ -382,9 +389,9 @@ main { flex: 1; overflow-x: clip; }
 .be-foot { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .78rem; }
 .be-foot button { padding: .3rem .8rem; font-weight: 700; border: var(--line) solid var(--edge); border-radius: 999px; background: var(--butter); }
 .be-reset.sure { color: var(--red); font-weight: 700; }
-/* the prize: a button-eye cursor */
+/* the prize: the eye cursor turns round, like a button eye (same inks as the everyday eye) */
 html.be-complete {
-  --eye-cursor: url("img/buttons/cursor.png") 16 16, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='12' fill='%23e0258f' stroke='%231b1420' stroke-width='2'/%3E%3Cg fill='%231b1420'%3E%3Ccircle cx='10.5' cy='10.5' r='2'/%3E%3Ccircle cx='17.5' cy='10.5' r='2'/%3E%3Ccircle cx='10.5' cy='17.5' r='2'/%3E%3Ccircle cx='17.5' cy='17.5' r='2'/%3E%3C/g%3E%3C/svg%3E") 14 14, auto;
-  --eye-cursor-go: url("img/buttons/cursor.png") 16 16, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='12' fill='%23ffd21f' stroke='%231b1420' stroke-width='2'/%3E%3Cg fill='%231b1420'%3E%3Ccircle cx='10.5' cy='10.5' r='2'/%3E%3Ccircle cx='17.5' cy='10.5' r='2'/%3E%3Ccircle cx='10.5' cy='17.5' r='2'/%3E%3Ccircle cx='17.5' cy='17.5' r='2'/%3E%3C/g%3E%3C/svg%3E") 14 14, pointer;
+  --eye-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11.5' fill='%23fff' stroke='%23b0126f' stroke-width='2.4'/%3E%3Ccircle cx='13' cy='13' r='8.6' fill='none' stroke='%23b0126f' stroke-width='1' opacity='.45'/%3E%3Ccircle cx='13' cy='13' r='5.4' fill='%234a1f9a'/%3E%3Ccircle cx='13' cy='13' r='2.1' fill='%231b1420'/%3E%3Ccircle cx='11.2' cy='11.2' r='1' fill='%23fff'/%3E%3C/svg%3E") 13 13, auto;
+  --eye-cursor-go: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11.5' fill='%23ffd21f' stroke='%233fb34a' stroke-width='2.4'/%3E%3Ccircle cx='13' cy='13' r='8.6' fill='none' stroke='%233fb34a' stroke-width='1' opacity='.45'/%3E%3Ccircle cx='13' cy='13' r='5.4' fill='%23b0126f'/%3E%3Ccircle cx='13' cy='13' r='2.1' fill='%231b1420'/%3E%3Ccircle cx='11.2' cy='11.2' r='1' fill='%23fff'/%3E%3C/svg%3E") 13 13, pointer;
 }
 @media (max-width: 700px) { .be-layer { --be-size: 36px; } }
