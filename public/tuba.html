@@ -31,7 +31,7 @@
       text-align: center;
       background:
         radial-gradient(ellipse 70% 55% at 50% 100%, #ff6a2a 0%, var(--red) 28%, var(--blood) 58%, transparent 85%),
-        linear-gradient(to bottom, #2a0613, var(--blood) 70%, var(--red));
+        linear-gradient(to bottom, transparent, var(--blood) 70%, var(--red)); /* starts see-through, so it rises out of the page's own grainy plum with no seam */
     }
     /* silly little pitchforks for wallpaper */
     .inferno::before {
@@ -40,6 +40,8 @@
       inset: 0;
       z-index: -2;
       opacity: .09;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%); /* the pitchforks fade in with the red */
+      mask-image: linear-gradient(to bottom, transparent, #000 30%);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffd21f' stroke-width='2.4' stroke-linecap='round' transform='rotate(-22 48 48)'%3E%3Cpath d='M48 36v40M37 24v7q0 9 11 9t11-9v-7M48 22v14'/%3E%3C/g%3E%3C/svg%3E");
       animation: drift 30s linear infinite;
     }
