@@ -241,7 +241,7 @@ main { flex: 1; overflow-x: clip; }
 }
 .foot-mark {
   width: 150px;
-  margin: 0 auto 9.3px; /* with the About block's spacing below, the gaps logo→text and text→links match (about 16.6px each) */
+  margin: 0 auto 9.3px; /* about 16.6px from the logo down to the About text (the links sit about 22px below the text) */
   opacity: .9; /* the image is already white on clear, its lines thinned a little to read at this size */
 }
 .foot-links {
@@ -249,7 +249,7 @@ main { flex: 1; overflow-x: clip; }
   justify-content: center;
   flex-wrap: wrap;
   gap: .4rem 1.25rem;
-  margin-top: 10.7px;
+  margin-top: 16.1px;
   list-style: none;
 }
 .foot-links a { color: var(--on-desk); text-underline-offset: 4px; text-decoration-color: var(--magenta); }
