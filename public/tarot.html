@@ -101,7 +101,7 @@
       -webkit-backface-visibility: hidden;
       border: 4px solid var(--hot);
       border-radius: 16px;
-      background: var(--ink);
+      background: var(--electric); /* two-tone frame: pink outside, electric purple inside */
       padding: 4px;
       box-shadow: 0 18px 36px -14px rgba(0, 0, 0, .7);
       overflow: hidden;
@@ -113,8 +113,9 @@
       background:
         radial-gradient(circle at 50% 50%, rgba(224, 37, 143, .35), transparent 55%),
         repeating-radial-gradient(circle at 50% 50%, transparent 0 14px, rgba(255, 210, 31, .12) 14px 15px),
-        var(--desk-2);
-      background-clip: content-box;
+        linear-gradient(var(--desk-2), var(--desk-2)),
+        linear-gradient(var(--electric), var(--electric));
+      background-clip: content-box, content-box, content-box, border-box; /* the purple inner frame shows around the card back too */
     }
     .card-back img { width: 46%; height: auto; filter: drop-shadow(0 0 12px rgba(224, 37, 143, .6)); }
     .card-face { transform: rotateY(180deg); }
@@ -189,7 +190,7 @@
 </main>
 
 <footer class="site-foot ruled">
-  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Ink." width="600" height="393" />
   <section class="foot-about" aria-label="About">
     <p>Judetopia is created by Jude Evangeline in Baltimore, MD.<br />A home for the sacred grotesque.</p>
     <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow them on Instagram @thirdeyecharmer</a></p>

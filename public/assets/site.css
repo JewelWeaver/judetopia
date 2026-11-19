@@ -213,6 +213,11 @@ main { flex: 1; overflow-x: clip; }
 }
 .shadowed { box-shadow: 0 1px 0 rgba(0,0,0,.25), 0 22px 50px -18px rgba(0,0,0,.65); }
 .boxed { border: var(--line) solid var(--edge); border-radius: var(--round); }
+/* a thin electric purple stripe just outside every solid black border (zero specificity, so focus rings still win) */
+:where(.nav-link, .boxed, .be-tin, .be-panel, .be-x, .be-foot button, .etsy, .bubble, .dots span, .beetle img, .fact, .turn, .ask) {
+  outline: 2px solid var(--electric);
+  outline-offset: 0;
+}
 /* a thick divider bar with rounded ends, drawn along the top of the element */
 .ruled { position: relative; }
 .ruled::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: var(--line); border-radius: 999px; background: var(--rule-color); }
