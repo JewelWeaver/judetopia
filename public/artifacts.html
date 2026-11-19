@@ -25,12 +25,11 @@
     }
     .charms-logo {
       display: block;
-      width: clamp(126px, 17.3vw, 174px); /* 30% smaller than before; sits between the market photos and Etsy */
-      margin: 1.1rem auto .2rem;
+      width: clamp(220px, 34.6vw, 348px); /* sits centred under the product cards */
+      margin: 2.6rem auto .4rem;
       height: auto;
-      border: 6px solid var(--edge);
       border-radius: 50%;
-      box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
+      box-shadow: 4px 4px 0 var(--ink), 8px 8px 0 var(--hot); /* no border, just a two-tone shadow: black, then pink */
     }
     .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin: 0 auto .8rem; }
     /* at the market: three photos in one row, columns sized by each photo's shape so they share a height */
@@ -119,7 +118,7 @@
   </header>
   <section class="charms" id="charms" aria-labelledby="charms-title">
     <div class="charms-top">
-      <p>Charms handmade in Baltimore. Each is blessed with magick.<br />Pins, magnets, bolo ties, and framed fine art pieces.</p>
+      <p>Handmade art pieces, each blessed with magick.<br />Pins, magnets, bolo ties, and framed fine art pieces.</p>
       <figure class="charms-me">
       <div class="market-photos">
         <img src="assets/img/charms/market-booth.webp" alt="At the Third Eye Charms market booth, with boards of button eyes and a rack of bolo ties." width="640" height="851" loading="lazy" />
@@ -128,7 +127,6 @@
       </div>
       <figcaption class="thin">at the market</figcaption>
     </figure>
-    <img class="charms-logo" src="assets/img/charms/logo.webp" alt="The Third Eye Charms logo: an eye inside a ring of lettering." width="600" height="600" loading="lazy" />
     <a class="etsy" href="https://www.etsy.com/shop/ThirdEyeCharmsMD">Shop on Etsy <span aria-hidden="true">&rarr;</span></a>
     </div>
 
@@ -138,6 +136,7 @@
       <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/magnets.webp" alt="Button-eye magnets on a teal surface: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Magnets</h3></li>
       <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Shadowboxes</h3></li>
     </ul>
+    <img class="charms-logo" src="assets/img/charms/logo.webp" alt="The Third Eye Charms logo: an eye inside a ring of lettering." width="600" height="600" loading="lazy" />
   </section>
 </main>
 
