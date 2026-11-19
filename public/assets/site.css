@@ -45,7 +45,8 @@
   --rule-color: rgba(196, 179, 209, .3);
 
   --f-type: 'Fredoka', system-ui, sans-serif; /* body text: round and bubbly, in the spirit of the chunky titles */
-  --f-loud: 'Titan One', 'Arial Black', system-ui, sans-serif; /* logo and the yellow page titles: fat, friendly cartoon lettering */
+  --f-loud: 'Lilita One', 'Arial Black', system-ui, sans-serif; /* the big page titles: bold but open, easy to read */
+  --f-logo: 'Bungee', 'Arial Black', system-ui, sans-serif; /* the JUDETOPIA logomark: square retro sign lettering */
   --f-pop: 'Lilita One', var(--f-type); /* menu buttons and the smaller, non-yellow titles */
   --f-thin: var(--f-type); /* labels and captions: the body font, small and spaced out */
   --f-head: 'Fredoka', system-ui, sans-serif; /* sub-headings, set bold */
@@ -125,9 +126,9 @@ main { flex: 1; overflow-x: clip; }
   font-family: var(--f-loud);
   text-transform: uppercase;
   color: var(--bone-pink);
-  -webkit-text-stroke: .055em var(--ink);
-  paint-order: stroke fill;
-  text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green); /* the same two-ink shadow as the logo */
+  /* no black outline: on the dark plum it only reads as a dark gap between the letters and
+     their shadow. Same two-ink shadow as the logo and the zine names. */
+  text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green);
   letter-spacing: .02em;
   line-height: 1;
 }
@@ -144,7 +145,7 @@ main { flex: 1; overflow-x: clip; }
 .logo {
   display: inline-flex;
   align-items: center;
-  font-family: var(--f-loud);
+  font-family: var(--f-logo);
   font-size: 2.75rem; /* letters about as tall as the eye's ring */
   line-height: 1;
   text-decoration: none;
@@ -156,7 +157,7 @@ main { flex: 1; overflow-x: clip; }
   width: auto;
   margin: 0 .22em 0 0; /* sits just before the word */
   position: relative;
-  top: .055em; /* pupil level with the middle of the capitals */
+  top: -.004em; /* pupil level with the middle of the Bungee capitals */
   transition: transform .4s cubic-bezier(.3, 1.6, .5, 1);
 }
 .logo:hover img { transform: rotate(-18deg) scale(1.12); }
@@ -165,7 +166,7 @@ main { flex: 1; overflow-x: clip; }
 .nav-link {
   display: inline-block;
   padding: .42rem .95rem .38rem;
-  font-family: var(--f-pop); /* bold and soft: a little sibling to the Titan One titles */
+  font-family: var(--f-pop); /* bold and soft, the same family as the titles */
   font-weight: 400;
   font-size: 1rem; /* Lilita runs smaller than Bungee did */
   letter-spacing: .04em;
@@ -220,9 +221,9 @@ main { flex: 1; overflow-x: clip; }
 /* ---------- page heads ---------- */
 .page-head { padding: 2.5rem 0 1.5rem; }
 .page-head h1 { font-size: clamp(3rem, 11vw, 7rem); }
-/* pull each page's big title up close under the menu: about 18.5px from the menu to the
-   title's capitals at every size, a touch more than the 13.5px from JUDETOPIA to the menu */
-.page-head > h1.yolk-title { margin-top: calc(-24px - .147em); }
+/* pull each page's big title up under the menu: about 27px from the menu to the title's
+   capitals at every size, the same as from ZINES down to its Alien Mode / Emergence links */
+.page-head > h1.yolk-title { margin-top: calc(-15.7px - .1265em); }
 .page-head p {
   max-width: 34rem;
   margin-top: 1rem;
@@ -241,8 +242,7 @@ main { flex: 1; overflow-x: clip; }
 .foot-mark {
   width: 150px;
   margin: 0 auto .9rem;
-  filter: invert(1);
-  opacity: .9;
+  opacity: .9; /* the image is already white on clear, its lines thinned a little to read at this size */
 }
 .foot-links {
   display: flex;
