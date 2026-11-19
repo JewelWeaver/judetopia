@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarot — Judetopia</title>
+  <meta name="description" content="Ask Jazzy the cat for a tarot card. A free one-card reading from all 78 cards." />
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&family=Bungee&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    .page-head { padding: 1.6rem 0 1.2rem; text-align: center; }
+    .page-head h1 { font-size: var(--title-size); }
+
+    /* ---- the reading table: Jazzy on one side, the card on the other ---- */
+    /* Jazzy sits beside the card at every screen size; the reading text runs underneath both */
+    .reading {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: center;
+      align-items: end;
+      gap: 1.2rem clamp(.4rem, 2.5vw, 1.6rem);
+      margin: .5rem auto 0;
+    }
+    .jazzy {
+      position: relative;
+      display: block;
+      width: clamp(108px, 20vw, 180px); /* half her old size */
+      justify-self: end;
+      padding: 0;
+      cursor: var(--eye-cursor-go);
+      transition: transform .25s cubic-bezier(.3, 1.6, .5, 1);
+    }
+    .jazzy img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* the photo is cut off at the left and bottom, so those edges melt into the page */
+      -webkit-mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.35) 18%, #000 42%), linear-gradient(to top, transparent, rgba(0,0,0,.35) 14%, #000 34%), radial-gradient(130% 120% at 85% 15%, #000 52%, transparent 88%);
+      -webkit-mask-composite: source-in, source-in;
+      mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.35) 18%, #000 42%), linear-gradient(to top, transparent, rgba(0,0,0,.35) 14%, #000 34%), radial-gradient(130% 120% at 85% 15%, #000 52%, transparent 88%);
+      mask-composite: intersect;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .jazzy:hover { transform: rotate(-2deg) scale(1.02); }
+    .jazzy.dealing { animation: deal .55s cubic-bezier(.3, 1.4, .5, 1); }
+    @keyframes deal { 30% { transform: translateX(10px) rotate(4deg); } 100% { transform: none; } }
+    .ask {
+      position: absolute;
+      top: -4%;
+      left: 50%;
+      padding: .35rem .65rem;
+      font-weight: 700;
+      font-size: clamp(.7rem, 1.8vw, .85rem);
+      white-space: nowrap;
+      color: var(--ink);
+      background: var(--butter);
+      border: var(--line-thin) solid var(--edge);
+      border-radius: 999px;
+      box-shadow: 3px 3px 0 var(--magenta);
+      translate: -50% 0;
+      rotate: 4deg;
+      pointer-events: none;
+    }
+
+    .spread { justify-self: start; width: clamp(150px, 28vw, 250px); }
+    .card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 400 / 690;
+      perspective: 1200px;
+    }
+    .card-inner {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform .7s cubic-bezier(.3, 1.2, .5, 1);
+    }
+    .card.face-up .card-inner { transform: rotateY(180deg); }
+    .card-side {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 4px solid var(--hot);
+      border-radius: 16px;
+      background: var(--ink);
+      padding: 4px;
+      box-shadow: 0 18px 36px -14px rgba(0, 0, 0, .7);
+      overflow: hidden;
+    }
+    /* the back: a little night sky with the Judetopia eye */
+    .card-back {
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(224, 37, 143, .35), transparent 55%),
+        repeating-radial-gradient(circle at 50% 50%, transparent 0 14px, rgba(255, 210, 31, .12) 14px 15px),
+        var(--desk-2);
+      background-clip: content-box;
+    }
+    .card-back img { width: 46%; height: auto; filter: drop-shadow(0 0 12px rgba(224, 37, 143, .6)); }
+    .card-face { transform: rotateY(180deg); }
+    .card-face img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+    .card.reversed .card-face img { rotate: 180deg; }
+
+    .meaning { grid-column: 1 / -1; text-align: center; min-height: 6.5rem; }
+    .meaning h2 { font-family: var(--f-pop); font-weight: 400; font-size: 1.5rem; letter-spacing: .02em; text-transform: uppercase; color: var(--on-desk); text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green); }
+    .meaning .thin { display: block; margin-bottom: .25rem; font-size: .72rem; color: var(--on-desk-soft); }
+    .meaning .thin.says { text-transform: none; letter-spacing: .06em; } /* "Soothsayer." in sentence case, like "At the market." */
+    .meaning p { margin-top: .4rem; color: var(--on-desk-soft); max-width: 30ch; margin-inline: auto; }
+
+    .credit-line { margin-top: 2.2rem; text-align: center; font-size: .72rem; color: var(--on-desk-soft); }
+    .credit-line a { color: inherit; }
+
+    @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+  </style>
+</head>
+<body data-page="tarot">
+
+<header class="site-head">
+  <a class="logo" href="index.html" aria-label="Judetopia, home"><img src="assets/img/eye-mandala-sm.webp" alt="" width="128" height="128" />JUDETOPIA</a>
+  <nav aria-label="Main">
+    <ul class="site-nav">
+      <li><a class="nav-link" href="zines.html">Joodlebug Ink</a></li>
+      <li><a class="nav-link" href="artifacts.html">Wares</a></li>
+      <li><a class="nav-link" href="bug.html">BOTW</a></li>
+      <li><a class="nav-link" href="tarot.html" aria-current="page">Tarot</a></li>
+      <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+  <header class="page-head">
+    <h1 class="yolk-title">Ask Jazzy</h1>
+  </header>
+
+  <section class="reading" aria-label="A one-card tarot reading">
+    <div class="meaning" id="reading-text" aria-live="polite">
+      <span class="thin says" id="card-label">Soothsayer.</span>
+      <h2 id="card-name">Your card awaits</h2>
+      <p id="card-note">Tap Jazzy and a card will be dealt to you.</p>
+    </div>
+
+    <button type="button" class="jazzy" id="jazzy" aria-describedby="reading-text">
+      <img src="assets/img/jazzy-paw.webp" alt="Jazzy the cat, one paw raised, ready to deal a card" width="640" height="1128" />
+      <span class="ask" aria-hidden="true">Tap me!</span>
+    </button>
+
+    <div class="spread">
+      <div class="card" id="card">
+        <div class="card-inner">
+          <div class="card-side card-back"><img src="assets/img/eye-mandala-sm.webp" alt="" width="128" height="128" /></div>
+          <div class="card-side card-face"><img id="card-img" alt="" width="400" height="690" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="credit-line">Card art: the Rider&ndash;Waite&ndash;Smith deck by Pamela Colman Smith (1909), <a href="https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck_(Roses_%26_Lilies)">public domain via Wikimedia Commons</a>.</p>
+</main>
+
+<footer class="site-foot ruled">
+  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <section class="foot-about" aria-label="About">
+    <p>Judetopia is created by Jude Evangeline in Baltimore, MD.<br />A home for the sacred grotesque.</p>
+    <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow them on Instagram @thirdeyecharmer</a></p>
+  </section>
+  <ul class="foot-links">
+    <li><a href="zines.html">Joodlebug Ink</a></li>
+    <li><a href="artifacts.html">Wares</a></li>
+    <li><a href="bug.html">BOTW</a></li>
+    <li><a href="tarot.html">Tarot</a></li>
+    <li><a href="tuba.html">Tuba's Corner</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Jazzy deals one card at random from all 78 (never the same card twice in a row).
+  (() => {
+    // [label, name, image file, reading]: 22 Major Arcana, then 56 Minor Arcana
+    const DECK = [
+      ['Major Arcana \u00b7 0', 'The Fool', '00-fool', 'A leap with no map. Go on, the cliff is friendlier than it looks.'],
+      ['Major Arcana \u00b7 I', 'The Magician', '01-magician', 'Everything you need is already on the table. Use it.'],
+      ['Major Arcana \u00b7 II', 'The High Priestess', '02-high-priestess', 'You already know. Get quiet enough to hear it.'],
+      ['Major Arcana \u00b7 III', 'The Empress', '03-empress', 'Tend the garden, feed yourself, let things grow wild.'],
+      ['Major Arcana \u00b7 IV', 'The Emperor', '04-emperor', 'Build the walls you want to live inside.'],
+      ['Major Arcana \u00b7 V', 'The Hierophant', '05-hierophant', 'Learn the old rules, then decide which ones to keep.'],
+      ['Major Arcana \u00b7 VI', 'The Lovers', '06-lovers', 'A choice made with the whole heart.'],
+      ['Major Arcana \u00b7 VII', 'The Chariot', '07-chariot', 'Point both wild horses the same way and go.'],
+      ['Major Arcana \u00b7 VIII', 'Strength', '08-strength', 'Soft hands can calm the loudest lion.'],
+      ['Major Arcana \u00b7 IX', 'The Hermit', '09-hermit', 'Take the lantern somewhere quiet. Answers like the dark.'],
+      ['Major Arcana \u00b7 X', 'Wheel of Fortune', '10-wheel-of-fortune', 'The wheel turns. Enjoy the ride up, hold on for the dip.'],
+      ['Major Arcana \u00b7 XI', 'Justice', '11-justice', 'What you put out comes back around. Weigh it fairly.'],
+      ['Major Arcana \u00b7 XII', 'The Hanged Man', '12-hanged-man', 'Hang upside down a while. The view is different from here.'],
+      ['Major Arcana \u00b7 XIII', 'Death', '13-death', 'Something ends so something stranger can begin.'],
+      ['Major Arcana \u00b7 XIV', 'Temperance', '14-temperance', 'Mix it slowly. Patience is its own kind of magick.'],
+      ['Major Arcana \u00b7 XV', 'The Devil', '15-devil', 'Notice the chain. Notice it is loose enough to slip.'],
+      ['Major Arcana \u00b7 XVI', 'The Tower', '16-tower', 'Lightning clears the clutter. Let it fall.'],
+      ['Major Arcana \u00b7 XVII', 'The Star', '17-star', 'Hope pours in. Drink up and rest.'],
+      ['Major Arcana \u00b7 XVIII', 'The Moon', '18-moon', 'Not everything is what it seems tonight. Trust your nose.'],
+      ['Major Arcana \u00b7 XIX', 'The Sun', '19-sun', 'Pure joy. Roll around in it.'],
+      ['Major Arcana \u00b7 XX', 'Judgement', '20-judgement', 'A wake-up call. Answer it.'],
+      ['Major Arcana \u00b7 XXI', 'The World', '21-world', 'A whole circle, finished. Dance a little.'],
+      ['Minor Arcana \u00b7 Wands', 'Ace of Wands', 'wands-01', 'A spark. Strike the match.'],
+      ['Minor Arcana \u00b7 Wands', 'Two of Wands', 'wands-02', 'Big plans from a high window. Pick a direction.'],
+      ['Minor Arcana \u00b7 Wands', 'Three of Wands', 'wands-03', 'Your ships are on the way. Keep watching the horizon.'],
+      ['Minor Arcana \u00b7 Wands', 'Four of Wands', 'wands-04', 'Celebrate. Hang the garlands, invite everyone.'],
+      ['Minor Arcana \u00b7 Wands', 'Five of Wands', 'wands-05', 'A messy scuffle of ideas. Fun, if nobody gets hurt.'],
+      ['Minor Arcana \u00b7 Wands', 'Six of Wands', 'wands-06', 'A little victory parade. Wave back.'],
+      ['Minor Arcana \u00b7 Wands', 'Seven of Wands', 'wands-07', 'Hold your ground. You have the high spot.'],
+      ['Minor Arcana \u00b7 Wands', 'Eight of Wands', 'wands-08', 'Things move fast now. Messages incoming.'],
+      ['Minor Arcana \u00b7 Wands', 'Nine of Wands', 'wands-09', 'Bruised but still on guard. Almost there.'],
+      ['Minor Arcana \u00b7 Wands', 'Ten of Wands', 'wands-10', 'Carrying too much. Set a few sticks down.'],
+      ['Minor Arcana \u00b7 Wands', 'Page of Wands', 'wands-11', 'Curious and eager. Chase the new idea.'],
+      ['Minor Arcana \u00b7 Wands', 'Knight of Wands', 'wands-12', 'Full gallop, big feelings. Maybe check the map.'],
+      ['Minor Arcana \u00b7 Wands', 'Queen of Wands', 'wands-13', 'Warm, bold, a black cat at your feet. Own the room.'],
+      ['Minor Arcana \u00b7 Wands', 'King of Wands', 'wands-14', 'Lead with vision. Others will follow the fire.'],
+      ['Minor Arcana \u00b7 Cups', 'Ace of Cups', 'cups-01', 'The heart overflows. Let it.'],
+      ['Minor Arcana \u00b7 Cups', 'Two of Cups', 'cups-02', 'A sweet connection. Raise a toast to it.'],
+      ['Minor Arcana \u00b7 Cups', 'Three of Cups', 'cups-03', 'Friends, dancing, cups up. Party time.'],
+      ['Minor Arcana \u00b7 Cups', 'Four of Cups', 'cups-04', 'Bored of what is offered? Notice the cup floating by.'],
+      ['Minor Arcana \u00b7 Cups', 'Five of Cups', 'cups-05', 'Three spilled, two still standing. Turn around.'],
+      ['Minor Arcana \u00b7 Cups', 'Six of Cups', 'cups-06', 'Old sweetness. Give someone a flower.'],
+      ['Minor Arcana \u00b7 Cups', 'Seven of Cups', 'cups-07', 'So many daydreams. Pick one that is real.'],
+      ['Minor Arcana \u00b7 Cups', 'Eight of Cups', 'cups-08', 'Walking away from what no longer fills you.'],
+      ['Minor Arcana \u00b7 Cups', 'Nine of Cups', 'cups-09', 'Wish granted. A smug little grin is allowed.'],
+      ['Minor Arcana \u00b7 Cups', 'Ten of Cups', 'cups-10', 'A rainbow over home. Joy with your people.'],
+      ['Minor Arcana \u00b7 Cups', 'Page of Cups', 'cups-11', 'A fish pops out of your cup. Say yes to the weird.'],
+      ['Minor Arcana \u00b7 Cups', 'Knight of Cups', 'cups-12', 'A romantic on a slow horse. Follow your heart.'],
+      ['Minor Arcana \u00b7 Cups', 'Queen of Cups', 'cups-13', 'Deep intuition. Hold space for big feelings.'],
+      ['Minor Arcana \u00b7 Cups', 'King of Cups', 'cups-14', 'Calm waters, steady heart.'],
+      ['Minor Arcana \u00b7 Swords', 'Ace of Swords', 'swords-01', 'Cut through the fog. Truth time.'],
+      ['Minor Arcana \u00b7 Swords', 'Two of Swords', 'swords-02', 'Blindfolded and holding still. A choice is waiting.'],
+      ['Minor Arcana \u00b7 Swords', 'Three of Swords', 'swords-03', 'Heartache. Let it rain, then let it pass.'],
+      ['Minor Arcana \u00b7 Swords', 'Four of Swords', 'swords-04', 'Lie down. Rest is a strategy.'],
+      ['Minor Arcana \u00b7 Swords', 'Five of Swords', 'swords-05', 'Winning is not worth it if everyone leaves.'],
+      ['Minor Arcana \u00b7 Swords', 'Six of Swords', 'swords-06', 'Drifting on toward calmer water.'],
+      ['Minor Arcana \u00b7 Swords', 'Seven of Swords', 'swords-07', 'Sneaky business. Check your pockets.'],
+      ['Minor Arcana \u00b7 Swords', 'Eight of Swords', 'swords-08', 'Tied up in your own head. The ropes are loose.'],
+      ['Minor Arcana \u00b7 Swords', 'Nine of Swords', 'swords-09', '3 a.m. worries. Morning will be kinder.'],
+      ['Minor Arcana \u00b7 Swords', 'Ten of Swords', 'swords-10', 'Rock bottom. Only up from here.'],
+      ['Minor Arcana \u00b7 Swords', 'Page of Swords', 'swords-11', 'Sharp eyes, quick questions. Keep watch.'],
+      ['Minor Arcana \u00b7 Swords', 'Knight of Swords', 'swords-12', 'Charging in fast. Words can cut.'],
+      ['Minor Arcana \u00b7 Swords', 'Queen of Swords', 'swords-13', 'Honest and clear. Boundaries are love.'],
+      ['Minor Arcana \u00b7 Swords', 'King of Swords', 'swords-14', 'Think it through, then decide.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Ace of Pentacles', 'pentacles-01', 'A golden chance lands in your hand. Catch it.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Two of Pentacles', 'pentacles-02', 'Juggling it all. Keep dancing.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Three of Pentacles', 'pentacles-03', 'Teamwork builds the cathedral.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Four of Pentacles', 'pentacles-04', 'Holding on tight. Loosen your grip a little.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Five of Pentacles', 'pentacles-05', 'Out in the cold? Look for the lit window.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Six of Pentacles', 'pentacles-06', 'Give and receive. It balances out.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Seven of Pentacles', 'pentacles-07', 'Waiting on the harvest. Growth is slow.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Eight of Pentacles', 'pentacles-08', 'Practice, practice. The craft is the magick.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Nine of Pentacles', 'pentacles-09', 'A cozy garden of your own making. Enjoy it.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Ten of Pentacles', 'pentacles-10', 'Roots, family, legacy. The long game.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Page of Pentacles', 'pentacles-11', 'Studying something worth keeping.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Knight of Pentacles', 'pentacles-12', 'Slow and steady. Get it done.'],
+      ['Minor Arcana \u00b7 Pentacles', 'Queen of Pentacles', 'pentacles-13', 'Nurture, nest, snack. Comfort is sacred.'],
+      ['Minor Arcana \u00b7 Pentacles', 'King of Pentacles', 'pentacles-14', 'Abundance, built by hand.'],
+    ];
+    // images still on their way from Wikimedia: left out of the deal until they arrive
+    const SOON = new Set(["cups-03", "cups-10", "cups-11", "cups-13", "swords-08", "pentacles-06", "pentacles-10", "pentacles-12", "pentacles-14"]);
+    for (let k = DECK.length - 1; k >= 0; k--) if (SOON.has(DECK[k][2])) DECK.splice(k, 1);
+    const jazzy = document.getElementById('jazzy');
+    const card = document.getElementById('card');
+    const img = document.getElementById('card-img');
+    const nameEl = document.getElementById('card-name');
+    const noteEl = document.getElementById('card-note');
+    const ask = jazzy.querySelector('.ask');
+    let last = -1, busy = false;
+    const src = i => `assets/img/tarot/${DECK[i][2]}.webp`;
+
+    jazzy.addEventListener('click', async () => {
+      if (busy) return;
+      busy = true;
+      let i;
+      do { i = Math.floor(Math.random() * DECK.length); } while (i === last);
+      last = i;
+      const [cardLabel, name, , note] = DECK[i];
+      jazzy.classList.remove('dealing'); void jazzy.offsetWidth; jazzy.classList.add('dealing');
+      card.classList.remove('face-up');
+      const pre = new Image(); pre.src = src(i);
+      await Promise.all([pre.decode().catch(() => {}), new Promise(r => setTimeout(r, card.dataset.dealt ? 450 : 150))]);
+      img.src = pre.src;
+      img.alt = `${name}, tarot card`;
+      card.classList.add('face-up');
+      card.dataset.dealt = '1';
+      nameEl.textContent = name;
+      noteEl.textContent = note;
+      const label = reading.querySelector('.thin'); label.classList.remove('says'); label.textContent = cardLabel;
+      ask.textContent = 'Another?';
+      busy = false;
+    });
+    const reading = document.getElementById('reading-text');
+  })();
+</script>
+<script src="assets/buttons.js"></script>
+</body>
+</html>
+

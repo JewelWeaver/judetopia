@@ -4,12 +4,14 @@
   const COUNT = 23;
   const art = i => `assets/img/buttons/eye-${String(i + 1).padStart(2, '0')}.webp`;
 
+  // listed in the panel in menu order
   const PAGES = {
     home: { name: 'Home', href: 'index.html' },
     zines: { name: 'Joodlebug Ink', href: 'zines.html' },
-    tuba: { name: "Tuba's Corner", href: 'tuba.html' },
-    bug: { name: 'Featured Bug', href: 'bug.html' },
     artifacts: { name: 'Wares', href: 'artifacts.html' },
+    bug: { name: 'BOTW', href: 'bug.html' },
+    tarot: { name: 'Tarot', href: 'tarot.html' },
+    tuba: { name: "Tuba's Corner", href: 'tuba.html' },
   };
 
   // [selector, nth match, x, y] — x/y are fractions of that element's box
@@ -35,6 +37,10 @@
       ['.beetle', 0, .86, .22], ['.scrap', 2, .9, .62], ['.feature', 0, .97, .95], ['.archive-label', 0, .35, .5],
       ['.scrap', 1, .92, .58], ['.scrap', 3, .9, .2], ['.feature', 0, .5, -.05], ['.site-foot', 0, .2, .6],
     ],
+    tarot: [
+      ['.page-head h1', 0, 1.08, .4], ['.card', 0, 1.14, .82], ['.jazzy', 0, .12, .18], ['.meaning', 0, .04, .72],
+      ['.credit-line', 0, .92, -.9], ['.site-foot', 0, .15, .45], ['.logo', 0, 1.06, .3],
+    ],
     home: [
       ['.stage', 0, .12, .2], ['.stage', 0, .87, .3], ['.stage', 0, .18, .8], ['.stage', 0, .9, .86],
     ],
@@ -42,7 +48,7 @@
 
   // deal spots round-robin so every page gets its share
   const order = [];
-  const queues = ['zines', 'artifacts', 'tuba', 'bug', 'home'].map(p => SPOTS[p].map(s => [p, ...s]));
+  const queues = ['zines', 'artifacts', 'bug', 'tarot', 'tuba', 'home'].map(p => SPOTS[p].map(s => [p, ...s]));
   while (queues.some(q => q.length)) queues.forEach(q => q.length && order.push(q.shift()));
   const buttons = order.slice(0, COUNT).map(([page, sel, nth, x, y], i) => ({ id: 'b' + i, i, page, sel, nth, x, y }));
 
