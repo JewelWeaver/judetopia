@@ -71,7 +71,8 @@
     .products {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(165px, 42vw), 1fr));
+      grid-template-columns: repeat(auto-fit, min(190px, calc(50% - .75rem))); /* card-sized columns centred as a group; two across on phones */
+      justify-content: center;
       gap: 1.4rem;
     }
     .product {
@@ -90,7 +91,7 @@
       border-radius: 14px;
       margin-bottom: .75rem;
     }
-    .product h3 { font-family: var(--f-pop); font-weight: 400; font-size: 1.1rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
+    .product h3 { font-family: var(--f-pop); font-weight: 400; font-size: min(1.1rem, 3.7vw); /* shrinks on narrow phones so SHADOWBOXES fits its card */ line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; padding-inline: .2rem; }
 
   </style>
 </head>
@@ -131,9 +132,7 @@
       <li class="product paper boxed" style="--stock: var(--lilac)"><img src="assets/img/charms/pins.webp" alt="Button-eye pins on a denim jacket: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Pins</h3></li>
       <li class="product paper boxed" style="--stock: var(--salmon)"><img src="assets/img/charms/bolos.webp" alt="Button-eye bolo ties hanging on braided cords with metal tips." width="560" height="560" loading="lazy" /><h3>Bolo ties</h3></li>
       <li class="product paper boxed" style="--stock: var(--peach)"><img src="assets/img/charms/magnets.webp" alt="Button-eye magnets on a teal surface: stacked buttons with painted glass eyes and googly eyes." width="560" height="560" loading="lazy" /><h3>Magnets</h3></li>
-      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Council of Watchers</h3></li>
-      <li class="product paper boxed" style="--stock: var(--mint)"><img src="assets/img/charms/box-rainbow.webp" alt="A shadow box packed with dozens of button eyes sorted in rainbow order." width="560" height="560" loading="lazy" /><h3>Good Afternoon</h3></li>
-      <li class="product paper boxed" style="--stock: var(--butter)"><img src="assets/img/charms/box-red.webp" alt="A black shadow box filled with red and white button eyes." width="560" height="560" loading="lazy" /><h3>Applebees</h3></li>
+      <li class="product paper boxed" style="--stock: var(--sky)"><img src="assets/img/charms/box-mixed.webp" alt="A black shadow box of button eyes in mixed shapes and colours: flowers, squares, a star and a heart, each with a painted glass eye." width="560" height="560" loading="lazy" /><h3>Shadowboxes</h3></li>
     </ul>
   </section>
 </main>
