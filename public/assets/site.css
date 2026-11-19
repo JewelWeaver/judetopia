@@ -1,8 +1,8 @@
 /* Judetopia — palette sampled from the Alien Mode and Emergence print sheets */
 :root {
   /* the table the zines are lying on */
-  --desk: #22142e;
-  --desk-2: #2d1b3d;
+  --desk: #1e0a1b; /* very dark plum: the solid background on every page */
+  --desk-2: #2b1127;
   --on-desk: #f3ecf6;
   --on-desk-soft: #c4b3d1;
 
@@ -15,6 +15,8 @@
   --red: #d8282c;
   --navy: #2b2f8f;
   --yolk: #ffd21f;
+  --bone-pink: #f8e3ec; /* bone white with a touch of pink: the big page titles */
+  --forest: #1f7a3a; /* dark green: the big titles' drop shadow */
 
   /* paper stock */
   --lilac: #c8b7da;
@@ -45,7 +47,7 @@
   --f-type: 'Fredoka', system-ui, sans-serif; /* body text: round and bubbly, in the spirit of the chunky titles */
   --f-loud: 'Titan One', 'Arial Black', system-ui, sans-serif; /* logo and the yellow page titles: fat, friendly cartoon lettering */
   --f-pop: 'Lilita One', var(--f-type); /* menu buttons and the smaller, non-yellow titles */
-  --f-thin: 'Space Mono', ui-monospace, monospace; /* labels and captions: a zine/typewriter accent */
+  --f-thin: var(--f-type); /* labels and captions: the body font, small and spaced out */
   --f-head: 'Fredoka', system-ui, sans-serif; /* sub-headings, set bold */
 
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -63,14 +65,17 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--on-desk);
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(176, 18, 111, .22), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(63, 179, 74, .12), transparent 70%),
-    var(--desk);
+  background: var(--desk); /* solid plum, no gradient */
   overflow-x: hidden;
   cursor: var(--eye-cursor);
-  /* every page is framed by thick bands of the homepage eye's green */
+  /* every page is framed by thick bands of the homepage eye's green, with the inner third in logo pink */
   border-inline: clamp(7.5px, 1.65vw, 21px) solid var(--eye-green);
+  /* each side band draws one half of this gradient squeezed into its width:
+     left band = green, a thin black line, then pink; the right band mirrors it.
+     Within a band: black takes 12% of its width, pink the inner third, green the rest */
+  border-image: linear-gradient(to right,
+    var(--eye-green) 0 27.333%, var(--ink) 0 33.333%, var(--hot) 0 50%,
+    var(--hot) 0 66.667%, var(--ink) 0 72.667%, var(--eye-green) 0) 0 50%;
 }
 body::before {
   content: '';
@@ -112,17 +117,17 @@ main { flex: 1; overflow-x: clip; }
 }
 .thin {
   font-family: var(--f-thin);
-  font-weight: 400;
+  font-weight: 500; /* a touch heavier so the small capitals stay crisp */
   text-transform: uppercase;
   letter-spacing: .12em;
 }
 .yolk-title {
   font-family: var(--f-loud);
   text-transform: uppercase;
-  color: var(--yolk);
+  color: var(--bone-pink);
   -webkit-text-stroke: .055em var(--ink);
   paint-order: stroke fill;
-  text-shadow: .07em .07em 0 var(--violet);
+  text-shadow: .06em .06em 0 var(--magenta), -.035em -.03em 0 var(--green); /* the same two-ink shadow as the logo */
   letter-spacing: .02em;
   line-height: 1;
 }
@@ -215,6 +220,9 @@ main { flex: 1; overflow-x: clip; }
 /* ---------- page heads ---------- */
 .page-head { padding: 2.5rem 0 1.5rem; }
 .page-head h1 { font-size: clamp(3rem, 11vw, 7rem); }
+/* pull each page's big title up close under the menu: about 18.5px from the menu to the
+   title's capitals at every size, a touch more than the 13.5px from JUDETOPIA to the menu */
+.page-head > h1.yolk-title { margin-top: calc(-24px - .147em); }
 .page-head p {
   max-width: 34rem;
   margin-top: 1rem;
