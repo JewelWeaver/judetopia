@@ -21,6 +21,11 @@
       align-items: center;
       padding: clamp(1rem, 2.6vw, 1.6rem) clamp(1rem, 3vw, 2rem);
       animation: pop-in .6s ease both;
+      /* the market photos' two-tone frame: logo pink outside, electric purple inside (the soft shadow stays) */
+      --frame: calc(clamp(4px, .9vw, 8px) / 2);
+      border: var(--frame) solid var(--hot);
+      box-shadow: inset 0 0 0 var(--frame) var(--electric), 0 1px 0 rgba(0,0,0,.25), 0 22px 50px -18px rgba(0,0,0,.65);
+      outline: none;
     }
     /* a photo print of this week's bug */
     .beetle { margin: 0; }
@@ -73,7 +78,7 @@
     .scrap {
       padding: 1.2rem 1.3rem 1.1rem;
       overflow: hidden;
-      box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
+      box-shadow: 5px 5px 0 var(--electric);
       transition: translate .2s;
     }
     .scrap:hover { translate: 0 -3px; }
@@ -156,7 +161,7 @@
 </main>
 
 <footer class="site-foot ruled">
-  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Ink." width="600" height="393" />
   <section class="foot-about" aria-label="About">
     <p>Judetopia is created by Jude Evangeline in Baltimore, MD.<br />A home for the sacred grotesque.</p>
     <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow them on Instagram @thirdeyecharmer</a></p>

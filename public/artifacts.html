@@ -31,7 +31,7 @@
       margin: 2.6rem auto 0;
       height: auto;
       border-radius: 50%;
-      box-shadow: 4px 4px 0 var(--ink), 8px 8px 0 var(--hot); /* no border, just a two-tone shadow: black, then pink */
+      box-shadow: 4px 4px 0 var(--electric), 8px 8px 0 var(--hot); /* no border, just a two-tone shadow: electric purple, then pink */
     }
     .charms-top p { color: var(--on-desk-soft); max-width: 36rem; margin: 0 auto .8rem; }
     /* at the market: three photos in one row, columns sized by each photo's shape so they share a height */
@@ -42,12 +42,11 @@
       width: 100%;
       height: 100%; /* all three share the row's height exactly */
       object-fit: cover;
-      /* two-tone frame like the zine pages: logo pink outside, black inside, half and half */
+      /* two-tone frame like the zine pages: logo pink outside, electric purple inside, half and half */
       border: calc(var(--photo-line) / 2) solid var(--hot);
       padding: calc(var(--photo-line) / 2);
-      background: var(--ink);
+      background: var(--electric);
       border-radius: 14px;
-      box-shadow: 6px 6px 0 rgba(0, 0, 0, .45);
     }
     .charms-me figcaption { margin-top: .6rem; font-size: .74rem; color: var(--on-desk-soft); text-transform: none; letter-spacing: .06em; } /* sentence case, unlike the other small labels */
     .etsy {
@@ -82,17 +81,21 @@
     .product {
       container-type: inline-size; /* lets the name size itself to the card */
       padding: .7rem .7rem .9rem;
-      box-shadow: 5px 5px 0 rgba(0, 0, 0, .45);
-      transition: translate .2s, box-shadow .2s;
+      /* the market photos' two-tone frame: logo pink outside, electric purple inside; no drop shadow */
+      border: calc(var(--photo-line) / 2) solid var(--hot);
+      box-shadow: inset 0 0 0 calc(var(--photo-line) / 2) var(--electric);
+      outline: none; /* the pink edge replaces the purple stripe other black-bordered things get */
+      transition: translate .2s;
     }
-    .product:hover { translate: -2px -3px; box-shadow: 7px 8px 0 rgba(0, 0, 0, .45); }
+    .product:hover { translate: -2px -3px; }
     .product img {
       display: block;
       width: 100%;
       height: auto;
       aspect-ratio: 1;
       object-fit: cover;
-      border: var(--photo-line) solid var(--edge);
+      border: var(--photo-line) solid var(--edge); /* black frame with a thin purple stripe, like the bug photo */
+      outline: 2px solid var(--electric);
       border-radius: 14px;
       margin-bottom: .75rem;
     }
@@ -144,7 +147,7 @@
 </main>
 
 <footer class="site-foot ruled">
-  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Inc." width="600" height="393" />
+  <img class="foot-mark" src="assets/img/joodlebug-mark.webp" alt="Joodlebug Ink." width="600" height="393" />
   <section class="foot-about" aria-label="About">
     <p>Judetopia is created by Jude Evangeline in Baltimore, MD.<br />A home for the sacred grotesque.</p>
     <p><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow them on Instagram @thirdeyecharmer</a></p>
