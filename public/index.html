@@ -29,7 +29,7 @@
       position: relative;
       width: min(calc(60svh * .866), 100%, 500px);
       aspect-ratio: 800 / 924;
-      animation: surface 2.6s ease both;
+      animation: surface 1.3s ease both; /* twice as fast as before */
     }
     /* the haze spills 30% past the figure on every side, so its centre is remapped onto the larger box */
     .presence::before {
@@ -103,6 +103,9 @@
     .words .site-nav { justify-content: center; }
     .words .nav-link { filter: saturate(.4) brightness(.78); transition: filter .35s, transform .2s; }
     .words .nav-link:hover, .words .nav-link:focus-visible { filter: none; }
+    .home-insta { margin-top: 1.1rem; font-size: .9rem; }
+    .home-insta a { color: var(--on-desk-soft); font-weight: 600; text-underline-offset: 4px; text-decoration-color: var(--magenta); }
+    .home-insta a:hover { color: var(--on-desk); }
   </style>
 </head>
 <body data-page="home">
@@ -128,6 +131,7 @@
         <li><a class="nav-link" href="tuba.html">Tuba's Corner</a></li>
       </ul>
     </nav>
+    <p class="home-insta"><a href="https://www.instagram.com/thirdeyecharmer/" rel="me noopener" target="_blank">Follow them on Instagram @thirdeyecharmer</a></p>
   </div>
 </main>
 
