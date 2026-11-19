@@ -30,6 +30,7 @@
   --mint: #b9d2a8;
   --leaf: #a6c999;
   --peach: #f8c39a;
+  --peach-light: #fce1cd; /* the peach mixed half and half with white: the Tarot button and Jazzy's tag */
   --salmon: #f9c9bc;
   --butter: #eceda0;
   --olive: #b2b19a;
@@ -190,7 +191,7 @@ main { flex: 1; overflow-x: clip; }
 .nav-link[href="tuba.html"] { --chip: var(--mint); }
 .nav-link[href="bug.html"] { --chip: var(--sky); }
 .nav-link[href="artifacts.html"] { --chip: var(--butter); }
-.nav-link[href="tarot.html"] { --chip: var(--peach); }
+.nav-link[href="tarot.html"] { --chip: var(--peach-light); }
 
 /* ---------- paper ---------- */
 .paper {
