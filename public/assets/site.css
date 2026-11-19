@@ -234,14 +234,14 @@ main { flex: 1; overflow-x: clip; }
 /* ---------- footer ---------- */
 .site-foot {
   margin-top: 4rem;
-  padding: 2.5rem 16px 2rem;
+  padding: 1.5rem 16px 2rem; /* the logo sits a little closer under the divider line */
   text-align: center;
   color: var(--on-desk-soft);
   font-size: .85rem;
 }
 .foot-mark {
   width: 150px;
-  margin: 0 auto .9rem;
+  margin: 0 auto 9.3px; /* with the About block's spacing below, the gaps logo→text and text→links match (about 16.6px each) */
   opacity: .9; /* the image is already white on clear, its lines thinned a little to read at this size */
 }
 .foot-links {
@@ -249,12 +249,11 @@ main { flex: 1; overflow-x: clip; }
   justify-content: center;
   flex-wrap: wrap;
   gap: .4rem 1.25rem;
-  margin-top: .9rem;
+  margin-top: 10.7px;
   list-style: none;
 }
 .foot-links a { color: var(--on-desk); text-underline-offset: 4px; text-decoration-color: var(--magenta); }
-.foot-about { max-width: 34rem; margin: 0 auto 1.1rem; line-height: 1.5; }
-.foot-about h2 { font-family: var(--f-pop); font-weight: 400; font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: var(--on-desk); margin-bottom: .3rem; }
+.foot-about { max-width: 34rem; margin: 0 auto; line-height: 1.5; }
 .foot-about a { color: var(--on-desk); font-weight: 600; text-underline-offset: 4px; text-decoration-color: var(--magenta); }
 .foot-links a:hover { color: var(--yolk); }
 
